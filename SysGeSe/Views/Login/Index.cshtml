@@ -1,0 +1,108 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SysGeSe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/Img/logo.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginForm/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('../Content/LoginForm/images/palmas2.png');">
+            <div class="wrap-login100">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "login100-form validate-form" }))
+                {
+
+
+            @*<form class="login100-form validate-form">*@
+                <span class="login100-form-logo">
+                    <img src="~/Content/Img/logo_sistema.png" alt="Logo" style="width:70%" />
+
+                </span>
+
+                <span class="login100-form-title p-b-34 p-t-27">
+                    SysGeSe<br />
+                    <span style="font-size:0.5em;">Sistema de Gestão de Unidades Socioeducativas</span>
+                    <span style="font-size:0.4em;">Versão.: 01.1.2023</span>
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate="Digite a Matrícula">
+                    <input class="input100" type="text" name="username" placeholder="Matrícula">
+                    <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Digite a Senha">
+                    <input class="input100" type="password" name="pass" placeholder="Senha">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+
+                <div class="contact100-form-checkbox">
+                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                    <label class="label-checkbox100" for="ckb1">
+                        Lembrar Acesso
+                    </label>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">  Login  </button>
+                </div>
+
+                <div class="text-center" style="padding-top:20px;">
+                    <a class="txt1" href="#">
+                        Esqueci a senha
+                    </a>
+                </div>
+                }
+            @*</form>*@
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/LoginForm/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/LoginForm/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginForm/js/main.js"></script>
+
+</body>
+</html>

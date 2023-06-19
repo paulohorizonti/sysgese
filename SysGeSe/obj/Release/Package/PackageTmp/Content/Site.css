@@ -1,0 +1,46 @@
+﻿
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*Alterações epecificas prn : PAULO ROBERTO NOGUEIRA*/
+.prn-btn {
+    color: #fff !important;
+    background-color: #063970 !important; /*CORES PADRAO*/
+    border-color: #063970 !important;
+}
+    .prn-btn:hover {
+        color: #fff !important;
+        background-color: #1e81b0 !important;
+        border-color: #1e81b0 !important;
+    }
+.prn-labels {
+    color: #0C326F !important;
+}
+
+.prn-fundo {
+    /* Background pattern from Toptal Subtle Patterns */
+
+    background-image: url("/Content/Img/logo_sistema.png") !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
