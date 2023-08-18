@@ -98,3 +98,7 @@ C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.csproj.CopyCompl
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.pdb
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.csproj.AssemblyReference.cache
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.dll
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.Mvc.dll
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.xml
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.Mvc.xml
