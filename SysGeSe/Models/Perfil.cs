@@ -42,8 +42,7 @@ namespace SysGeSe.Models
         [Column("STATUS")]
         public sbyte Status { get; set; }
 
-        //Refefencias as tabelas as quais essa tabela faz parte
-        [JsonIgnore]
-        public virtual Acesso Acesso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Acesso> Acessso { get; set; }
     }
 }

@@ -5,16 +5,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SysGeSe.Models
 {
-    [Table("TABELA")]
+    [Table("ACESSO")]
     public class Acesso
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("ID")]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Selecione uma PERFIL", AllowEmptyStrings = false)]
+        [ForeignKey("Perfil")]
+        [Column("PERFIL_ID")]
+        public int IdPerfil { get; set; }
+
         [Required(ErrorMessage = "Selecione uma TABELA", AllowEmptyStrings = false)]
-        [Column("TABELA_ID")]
         [ForeignKey("Tabela")]
+        [Column("TABELA_ID")]
         public int IdTabela { get; set; }
 
         [Required(ErrorMessage = "Informe se o acesso de VISUALIZAÇÃO é permitido", AllowEmptyStrings = false)]
@@ -61,14 +66,11 @@ namespace SysGeSe.Models
         public sbyte Status { get; set; }
 
 
-        [Required(ErrorMessage = "Selecione uma PERFIL", AllowEmptyStrings = false)]
-        [Column("PERFIL_ID")]
-        [ForeignKey("Perfil")]
-        public int IdPerfil { get; set; }
+       
 
 
         [JsonIgnore]
-        public virtual Tabela Tabela { get; set; }
+        public virtual Tabela Tabela{ get; set; }
 
         [JsonIgnore]
         public virtual Perfil Perfil { get; set; }

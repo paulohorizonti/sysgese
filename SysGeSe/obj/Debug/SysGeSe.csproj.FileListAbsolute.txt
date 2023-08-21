@@ -46,6 +46,8 @@ C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\MySql.Data.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\mysql.data.entity.EF6.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\MySql.Data.EntityFramework.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\Newtonsoft.Json.dll
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.dll
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.Mvc.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\System.Buffers.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\System.IO.Pipelines.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\System.Memory.dll
@@ -72,6 +74,8 @@ C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\Microsoft.CodeDom.Providers.Do
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\MySql.Data.xml
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\MySql.Data.EntityFramework.xml
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\Newtonsoft.Json.xml
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.xml
+C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.Mvc.xml
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\System.Buffers.xml
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\System.IO.Pipelines.xml
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\System.Memory.xml
@@ -98,7 +102,3 @@ C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.csproj.CopyCompl
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.dll
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.pdb
 C:\Users\preciso\source\repos\SysGeSe\SysGeSe\obj\Debug\SysGeSe.csproj.AssemblyReference.cache
-C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.dll
-C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.Mvc.dll
-C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.xml
-C:\Users\preciso\source\repos\SysGeSe\SysGeSe\bin\PagedList.Mvc.xml
