@@ -40,7 +40,7 @@ namespace SysGeSe.Controllers
          * produraAtivo: procura pelos ativos
          * filtroAtivo: define o filtro dos ativos
          * page: pagina que esta sendo exibida
-         * numeroLinhas: quantas linhas devem ser exibidas na view
+         * numeroLinhas: quantas linhas devem ser exibidas na view sss
          */
         public ActionResult Index(
             string param,
