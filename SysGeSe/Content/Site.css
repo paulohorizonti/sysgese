@@ -44,3 +44,50 @@ textarea {
     background-position: center;
    
 }
+
+.prn-cardposition {
+    margin-top:-25px !important;
+
+}
+.prn-head-table-color {
+    background: #063970 !important;
+    color: white !important;
+    
+}
+
+.prn-card-footer {
+    --bs-card-cap-padding-y: 0.0rem !important;
+   
+}
+.prn-card-geral {
+    --bs-card-spacer-y: 0.5rem !important;
+    --bs-card-spacer-x: 0.5rem !important;
+}
+
+.prn-continer-geral {
+    --bs-gutter-x: 0 !important;
+    --bs-gutter-y: 0 !important;
+}
+
+.prn-font-icones {
+    font-size: 1.1em;
+    color: #063970 !important;
+   
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.prn-border-table{
+    border-right: 1px solid #cccc !important;
+}
+
+.prn-inputs {
+    max-width: 100% !important;
+}
+
+.prn-font-icones-white {
+    font-size: 1.1em !important;
+    color: #ffffff !important;
+}

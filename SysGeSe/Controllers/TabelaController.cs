@@ -52,7 +52,6 @@ namespace SysGeSe.Controllers
             string procuraAtivo,
             string filtroAtivo,
             int? inputStatus,
-            string filtroCorrente, 
             int? page, 
             int? numeroLinhas)
         {
@@ -86,7 +85,7 @@ namespace SysGeSe.Controllers
 
             //numero de linhas e status (ativo=1 ou inativo=0)
             ViewBag.NumeroLinhas = (numeroLinhas != null) ? numeroLinhas : 10;
-            ViewBag.Status = (inputStatus != null) ? inputStatus : 0;
+            ViewBag.Status = (inputStatus != null) ? inputStatus : 2;
 
             //Ordenação
             ViewBag.Ordenacao = ordenacao; //viewBag da ordenação
@@ -101,20 +100,20 @@ namespace SysGeSe.Controllers
             ViewBag.FiltroAtivo = procuraAtivo;
             if (procuraNome != null)
             {
-                ViewBag.FiltroCorrenteTabela = int.Parse(procuraNome);
+                ViewBag.FiltroCorrenteTabela = (procuraNome);
             }
 
             //lista das tabelas instanciadas
-            this.listTabelas = db.Tabelas.ToList();
+            this.listTabelas = db.Tabelas.ToList(); //geral
 
             //buscar os ativos
             switch (ViewBag.Status)
             {
-                case 0://somente os ativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 1).ToList();
-                    break;
-                case 1: //somente inativos
+                case 0://somente os inativos
                     this.listTabelas = this.listTabelas.Where(s => s.Status == 0).ToList();
+                    break;
+                case 1: //somente ativos
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == 1).ToList();
                     break;
                 case 2: //todos
                     this.listTabelas = this.listTabelas.Where(s => s.Status == 0 || s.Status == 1).ToList();

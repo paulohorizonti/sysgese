@@ -2230,6 +2230,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Tabela\Index.cshtml" />
+    <Content Include="Views\Acoes\AcoesTabelas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
