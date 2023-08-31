@@ -3,6 +3,7 @@ using SysGeSe.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -141,6 +142,38 @@ namespace SysGeSe.Controllers
            
 
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
+        }
+
+
+        public ActionResult Details(int? id) {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tabela tabela = db.Tabelas.Find(id);
+            if (tabela == null)
+            {
+                return HttpNotFound();
+            }
+         
+            return View(tabela);
+          
+
+        }
+
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tabela tabela = db.Tabelas.Find(id);
+            if (tabela == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tabela);
         }
     }
 }

@@ -1,21 +1,21 @@
 ﻿@using PagedList.Mvc
 @model PagedList.IPagedList<SysGeSe.Models.Tabela>
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Tabela"; }
 
 <div class="row g-0 p-1">
+    <!--pegar o nome da controler-->
+   
     <div class="card prn-cardposition">
         <div class="card-header">
-            <span class="prn-alternative-font">Cadastro de Tabelas</span> 
+            <span class="prn-alternative-font">Cadastro de Tabelas</span>
+           
         </div>
         <div class="card-body prn-card-geral">
             <div class="container-fluid prn-continer-geral">
 
                 @using (Html.BeginForm("Index", "Tabela", FormMethod.Get))
                 {
-                         @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->
-                }
+    @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->}
 
 
                 <div class="row">
@@ -42,24 +42,25 @@
 
 
 
-            <td class="prn-border-table" style="width: 5%; text-align: center;"><i class="fas fa-smile prn-font-icones"></i></td>
+        <td class="prn-border-table" style="width: 5%; text-align: center;"><i class="fas fa-smile prn-font-icones"></i></td>
  }
-        else
-        {
+    else
+    {
 
-            <td class="prn-border-table" style="width: 5%; text-align: center;"><i class="fas fa-frown prn-font-icones"></i></td>
+<td class="prn-border-table" style="width: 5%; text-align: center;"><i class="fas fa-frown prn-font-icones"></i></td>
 }
 
 
 
-                        <td class="prn-border-table" style="text-align: center;">
+                    <td class="prn-border-table" style="text-align: center;">
+                        <button style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
 
-                            <a href="@Url.Action("Edit","Tabela",  new { id = item.Id })"><i class="prn-font-icones fas fa-edit p-1"></i>  </a>
-                            <a href="@Url.Action("Detais","Tabela",  new { id = item.Id })"><i class="prn-font-icones fas fa-eye p-1"></i>  </a>
+                        @*<a href="@Url.Action("Edit","Tabela",  new { id = item.Id })"> <i class="prn-font-icones fas fa-edit p-1"></i>  </a>*@
 
-                            <a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>
+                        <button style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
+                        <a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>
 
-                        </td>
+                    </td>
                     </tr>
 }
                             </tbody> <!--fim do corpo da tabela-->
@@ -74,44 +75,65 @@
 
         </div>
         <div class="card-footer text-body-secondary prn-card-footer">
-          <div  class="d-flex">
-              <div class="mr-auto p-2">
-                  <p>
-                      <span class="pr-fontalternativa"> Página @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</span>
-                  </p>
+            <div class="d-flex">
+                <div class="mr-auto p-2">
+                    <p>
+                        <span class="pr-fontalternativa"> Página @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</span>
+                    </p>
 
-              </div>
+                </div>
 
 
-              <div style="float:right;" class="p-2">
-                  @Html.PagedListPager(
-                     Model, page => Url.Action("Index", new
-                     { page,
-                         inputStatus = ViewBag.Status,
-                         filtroNome   = ViewBag.FiltroCorrenteTabela,
-                         numeroLinhas = ViewBag.NumeroLinhas,
-                     }),
-                        new PagedListRenderOptions()
-                        {
-                            LiElementClasses = new List<string>
-                             {
+                <div style="float:right;" class="p-2">
+                    @Html.PagedListPager(
+                                                     Model, page => Url.Action("Index", new
+                                                     {
+                                                         page,
+                                                         inputStatus = ViewBag.Status,
+                                                         filtroNome = ViewBag.FiltroCorrenteTabela,
+                                                         numeroLinhas = ViewBag.NumeroLinhas,
+                                                     }),
+                                                        new PagedListRenderOptions()
+                                                        {
+                                                            LiElementClasses = new List<string>
+                                                             {
                                "page-item",
                                "prn-botoes-geral"
 
-                             }
-                        }
+             }
+                                                        }
 
-                    )
-              </div>
-          </div>
+                                                    )
+                </div>
+            </div>
         </div>
     </div>
 
 
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="MODAL"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+@*<script>
+        $(function () {
+            $(".details").click(function () {
+                var id = $(this).attr("data-id");
+                alert('chegou aqui');
+                $("#modal").load("/Tabela/Details?id=" + id, function () {
+                    $("#modal").modal().show();
+                })
+            });
 
 
-
+        })
+    </script>*@

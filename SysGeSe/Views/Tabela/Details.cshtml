@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.Tabela
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalhes do produto</h4>
+
+            </div>
+            <div class="modal-body">
+
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Id)</dt>
+                    <dd>@Html.DisplayFor(model => model.Id)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Nome)</dt>
+                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.DataCad)</dt>
+                    <dd>@Html.DisplayFor(model => model.DataCad)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.DataAlt)</dt>
+                    <dd>@Html.DisplayFor(model => model.DataAlt)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Status)</dt>
+                    <dd>@Html.DisplayFor(model => model.Status)</dd>
+               
+                   
+                </dl>
+            </div>
+
+            <div class="modal-footer">
+
+              
+                <a class="btn btn-primary" href="@Url.Action("Edit","Tabela",  new { id = Model.Id })"><i class="fas fa-edit p-1"></i> Editar  </a>
+                <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+            </div>
+
+        </div> <!--fim modal content-->
+    </div> <!--fim modal dialog-->
+
+</div>

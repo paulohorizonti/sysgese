@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.Tabela
+@{
+    ViewBag.Title = "Edit";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar Tabela</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-horizontal">
+                        <div class="d-flex justify-content-center">
+                            <strong>@Html.DisplayFor(model => model.Nome)</strong>
+                            <p></p>
+                        </div>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <strong>Descrição: </strong>
+                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group card-footer footer d-flex justify-content-end">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                            <a class="btn btn-primary" id="detailsBack" onclick="perfilDetails(@Model.Id)" style="border-color: #7a7a7a;"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                            <a class="btn btn-primary" id="indexBack" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+
+                    <a class="btn btn-primary" href="@Url.Action("Edit","Tabela",  new { id = Model.Id })"><i class="fas fa-edit p-1"></i> Editar  </a>
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}

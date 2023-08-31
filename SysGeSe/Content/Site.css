@@ -20,6 +20,9 @@ textarea {
     max-width: 280px;
 }
 
+
+
+
 /*Alterações epecificas prn : PAULO ROBERTO NOGUEIRA*/
 .prn-btn {
     color: #fff !important;
@@ -90,6 +93,7 @@ a{
 .prn-font-icones-white {
     font-size: 1.1em !important;
     color: #ffffff !important;
+    background: none !important;
 }
 
 .prn-alternative-font{
@@ -114,4 +118,8 @@ li.active.page-item :hover {
     background-color: #ff6a00;
     font-size: 1.1em;
     color: #fff !important;
+}
+
+.prn-button-sem {
+    background-color:#ff000000 !important;
 }
