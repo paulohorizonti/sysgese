@@ -91,3 +91,27 @@ a{
     font-size: 1.1em !important;
     color: #ffffff !important;
 }
+
+.prn-alternative-font{
+    font-size:1.5em;
+}
+
+.prn-botoes-geral{
+    border:1px solid #cccc;
+    padding-right:10px;
+    padding-left:10px;
+    border-radius:5px;
+}
+
+li.active {
+    background-color: #063970;
+    font-size: 1.1em;
+    color: #fff !important;
+}
+
+
+li.active.page-item :hover {
+    background-color: #ff6a00;
+    font-size: 1.1em;
+    color: #fff !important;
+}
