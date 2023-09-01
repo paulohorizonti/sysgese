@@ -17,37 +17,51 @@
 
                 </div>
                 <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
 
-                    <div class="form-horizontal">
-                        <div class="d-flex justify-content-center">
-                            <strong>@Html.DisplayFor(model => model.Nome)</strong>
-                            <p></p>
-                        </div>
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.Id)
+                    <div class="mb-3 row">
+                        @*<label for="staticEmail" class="col-sm-2 col-form-label">IDs</label>*@
+                        @Html.LabelFor(m => m.Id, new { @class = "col-sm-2 col-form-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Id, new { @class = "form-control-plaintext", @readonly = true })
 
-                        <div class="form-group">
-
-                            <div class="col-md-10">
-                                <strong>Descrição: </strong>
-                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group card-footer footer d-flex justify-content-end">
-                            <input type="submit" value="Save" class="btn btn-success" />
-                            <a class="btn btn-primary" id="detailsBack" onclick="perfilDetails(@Model.Id)" style="border-color: #7a7a7a;"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
-                            <a class="btn btn-primary" id="indexBack" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                            @*<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">*@
                         </div>
                     </div>
+                    <div class="mb-3 row">
+                        @Html.LabelFor(m => m.Nome, new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+
+                            @Html.TextBoxFor(m => m.Obs, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <div class="modal-footer">
+                    
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+                    <a class="btn btn-dark" id="indexBack" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
 
-                    <a class="btn btn-primary" href="@Url.Action("Edit","Tabela",  new { id = Model.Id })"><i class="fas fa-edit p-1"></i> Editar  </a>
-                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+                    @*<a class="btn btn-primary" href="@Url.Action("Edit","Tabela",  new { id = Model.Id })"><i class="fas fa-edit p-1"></i> Editar  </a>
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>*@
 
                 </div>
 
