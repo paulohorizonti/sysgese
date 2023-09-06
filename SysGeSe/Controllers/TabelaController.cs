@@ -144,7 +144,11 @@ namespace SysGeSe.Controllers
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int? id) {
             if (id == null)
             {
@@ -174,6 +178,27 @@ namespace SysGeSe.Controllers
                 return HttpNotFound();
             }
             return View(tabela);
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "Id,Nome")] Tabela model)
+        {
+          
+                var tabela = db.Tabelas.Find(model.Id);
+                if (tabela == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                tabela.Nome = model.Nome;
+                tabela.Data_Alt = DateTime.Now;
+
+               
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            
+            
+            return View(model);
         }
     }
 }
