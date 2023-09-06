@@ -78,11 +78,17 @@ namespace SysGeSe.Controllers
 
             //Resultado do CREATE-EDIT-DELETE
             string resultado = param;
+            if(resultado == "1")
+            {
+                TempData["success"] = "Registro salvo com sucesso!!";
+            }
+          
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
             procuraNome = (filtroNome != null) ? filtroNome : procuraNome; //procura por nome
             procuraAtivo = (filtroAtivo != null) ? filtroAtivo : procuraAtivo; //procura por nome
 
+            ViewBag.MensagemGravar = (param != null) ? param : "";
 
             //numero de linhas e status (ativo=1 ou inativo=0)
             ViewBag.NumeroLinhas = (numeroLinhas != null) ? numeroLinhas : 10;
@@ -136,9 +142,7 @@ namespace SysGeSe.Controllers
             int numeroPagina = (page ?? 1);
 
             ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
-            ViewBag.RegSalvos = (qtdSalvos != null) ? qtdSalvos : "";
-            ViewBag.RegNaoSalvos = (qtdNaoSalvos != null) ? qtdNaoSalvos : "";
-
+          
            
 
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
@@ -181,8 +185,9 @@ namespace SysGeSe.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Nome")] Tabela model)
+        public ActionResult Edit([Bind(Include = "Id,Nome, Obs")] Tabela model)
         {
+            string resultado;
           
                 var tabela = db.Tabelas.Find(model.Id);
                 if (tabela == null)
@@ -190,15 +195,25 @@ namespace SysGeSe.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 tabela.Nome = model.Nome;
+                tabela.Obs = model.Obs;
                 tabela.Data_Alt = DateTime.Now;
 
-               
-
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                resultado = "1";
+                return RedirectToAction("Index", new { param = resultado });
+            }
+            catch (Exception e)
+            {
+                resultado = "Erro ao salvar o registro";
+                return RedirectToAction("Index", new { param = resultado });
+            }
+
+              
             
             
-            return View(model);
+            
         }
     }
 }

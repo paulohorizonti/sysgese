@@ -34,9 +34,7 @@
             </div>
 
             <div class="modal-footer">
-
-              
-                <a class="btn btn-primary" href="@Url.Action("Edit","Tabela",  new { id = Model.Id })"><i class="fas fa-edit p-1"></i> Editar  </a>
+                <a class="btn btn-primary" onclick="chamarEdit(@Model.Id,true)" style="border-color: #7a7a7a;"><i class="fas fa-edit p-1"></i> Editar</a>
                 <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
             </div>

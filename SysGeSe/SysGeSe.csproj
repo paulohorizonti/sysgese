@@ -1938,6 +1938,8 @@
     <Content Include="Content\Principal\vendor\jquery\jquery.min.js" />
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2202,6 +2204,8 @@
     <Content Include="Content\Principal\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\Principal\vendor\jquery\jquery.min.map" />
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2215,6 +2219,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\snippets.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

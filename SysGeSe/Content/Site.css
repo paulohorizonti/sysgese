@@ -123,3 +123,7 @@ li.active.page-item :hover {
 .prn-button-sem {
     background-color:#ff000000 !important;
 }
+.toast-top-right {
+    top: 60px !important;
+    right: 12px !important;
+}

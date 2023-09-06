@@ -55,7 +55,6 @@
                     <td class="prn-border-table" style="text-align: center;">
                         <button style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
 
-                        @*<a href="@Url.Action("Edit","Tabela",  new { id = item.Id })"> <i class="prn-font-icones fas fa-edit p-1"></i>  </a>*@
 
                         <button style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
                         <a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>
