@@ -144,7 +144,11 @@ namespace SysGeSe.Controllers
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int? id) {
             if (id == null)
             {
