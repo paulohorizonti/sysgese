@@ -39,6 +39,12 @@
 
 
 
+//$(function () {
+//    if ('@ViewBag.HasErrors') {
+//        $('#modal').modal("show");
+//    }
+
+//});
 
 function chamarDetails(id) {
 
@@ -50,6 +56,33 @@ function chamarDetails(id) {
         $('#modal').modal("show");
     });
 }
+
+
+
+function chamarDelete(id) {
+
+    var cont = document.querySelector(".prn-titulo"); //pega o titulo
+
+    var controller = cont.innerText;
+
+    $("#modal").load("/" + controller + "/Delete/" + id, function () {
+        $('#modal').modal("show");
+    });
+}
+
+
+function chamarIncluir() {
+
+    var cont = document.querySelector(".prn-titulo"); //pega o titulo
+
+    var controller = cont.innerText;
+
+    $("#modal").load("/" + controller + "/Incluir/", function () {
+        $('#modal').modal("show");
+    });
+}
+
+
 
 function fecharModal() {
     $('#modal').modal("hide");

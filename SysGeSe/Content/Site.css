@@ -73,7 +73,7 @@ textarea {
 }
 
 .prn-font-icones {
-    font-size: 1.1em;
+    font-size: 1.3em;
     color: #063970 !important;
    
 }
@@ -85,13 +85,16 @@ a{
 .prn-border-table{
     border-right: 1px solid #cccc !important;
 }
+.prn-border-table-white {
+    border-right: 1px solid #fff !important;
+}
 
 .prn-inputs {
     max-width: 100% !important;
 }
 
 .prn-font-icones-white {
-    font-size: 1.1em !important;
+    font-size: 1.3em !important;
     color: #ffffff !important;
     background: none !important;
 }

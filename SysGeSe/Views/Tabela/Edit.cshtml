@@ -24,7 +24,7 @@
                         @*<label for="staticEmail" class="col-sm-2 col-form-label">IDs</label>*@
                         @Html.LabelFor(m => m.Id, new { @class = "col-sm-2 col-form-label" })
                         <div class="col-sm-10">
-                            @Html.TextBoxFor(m => m.Id, new { @class = "form-control-plaintext", @readonly = true })
+                            @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @disabled = true })
 
                             @*<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">*@
                         </div>

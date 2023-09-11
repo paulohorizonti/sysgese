@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.ViewModels.TabelaViewModel
+@{
+    ViewBag.Title = "Incluir";
+}
+@using (Html.BeginForm("Incluir", "Tabela", FormMethod.Post, new { @class = "needs-validation" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Incluir novo Registro</h4>
+
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true)
+                    <div class="mb-3 row">
+                        @Html.LabelFor(m => m.Nome, new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control has-validation", placeholder = "Digite o nome da Tabela" })
+                            @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "valid-feedback" })
+                           
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
+
+                        <div class="col-sm-10">
+
+                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control", placeholder = "Digite a objservação, se houver", name = "nome", rows = "4", cols = "50", maxlength = "500" })
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+
+
+
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}

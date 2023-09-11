@@ -2241,6 +2241,8 @@
     <Content Include="Views\Acoes\AcoesTabelas.cshtml" />
     <Content Include="Views\Tabela\Details.cshtml" />
     <Content Include="Views\Tabela\Edit.cshtml" />
+    <Content Include="Views\Tabela\Delete.cshtml" />
+    <Content Include="Views\Tabela\incluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

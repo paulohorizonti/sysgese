@@ -10,7 +10,7 @@ namespace SysGeSe.Models.ViewModels
         [Required(ErrorMessage = "O nome da TABELA é obrigatório", AllowEmptyStrings = false)]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "O nome da TABELA é obrigatório", AllowEmptyStrings = false)]
+      
         public string Obs { get; set; }
 
         [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]

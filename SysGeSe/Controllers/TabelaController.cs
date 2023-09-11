@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using SysGeSe.Models;
+using SysGeSe.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,9 +79,21 @@ namespace SysGeSe.Controllers
 
             //Resultado do CREATE-EDIT-DELETE
             string resultado = param;
+            if(resultado == "0")
+            {
+                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+            }
             if(resultado == "1")
             {
                 TempData["success"] = "Registro salvo com sucesso!!";
+            }
+            if(resultado == "2")
+            {
+                TempData["info"] = "Registro Deletado com sucesso!!";
+            }
+            if(resultado == "3")
+            {
+                TempData["warning"] = "Já existe um registro com essa descrição!!";
             }
           
 
@@ -148,6 +161,80 @@ namespace SysGeSe.Controllers
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
 
+
+
+        public ActionResult Incluir()
+        {
+            
+            var model = new TabelaViewModel();
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Incluir(TabelaViewModel model)
+        {
+            string resultado = "";
+           
+            model.Data_Cad = DateTime.Now;
+            model.Data_Alt = DateTime.Now;
+            model.Status = 1;
+          
+            model.Obs = (model.Obs == null) ? "" : model.Obs;
+
+           
+
+            if (ModelState.IsValid)
+            {
+                var tabela = from s in db.Tabelas select s;
+
+                string nome = model.Nome.Trim(); //tira espaços em branco
+                nome = nome.ToUpper(); //passa para maiusculo
+
+                tabela = tabela.Where(s => s.Nome.Contains(nome));
+
+                if (tabela.Count() > 0)
+                {
+                    resultado = "3";
+                    
+                    return RedirectToAction("Index", new { param = resultado});
+
+                }
+                var tabela_nova = new Tabela();
+
+                tabela_nova.Nome = model.Nome.ToUpper(); //passa para maiusculo
+                tabela_nova.Obs = model.Obs.ToUpper();
+                tabela_nova.Status = model.Status;
+                tabela_nova.Data_Cad = model.Data_Cad;
+                tabela_nova.Data_Alt = model.Data_Alt;
+
+                
+
+                try
+                {
+                    db.Tabelas.Add(tabela_nova);
+                    db.SaveChanges();
+                    resultado = "1";
+                    return RedirectToAction("Index", new { param = resultado });
+                }
+                catch (Exception e)
+                {
+                    string ex = e.ToString();
+                    
+                    resultado = "0";
+                }
+            }
+           
+
+                return View(model);
+            
+
+            
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -169,9 +256,70 @@ namespace SysGeSe.Controllers
 
         }
 
-
-        public ActionResult Edit(int? id)
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tabela tabela = db.Tabelas.Find(id);
+            if (tabela == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(tabela);
+        }
+
+        // POST: Produtos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? Id)
+        {
+            string resultado;
+            Tabela tabela = db.Tabelas.Find(Id);
+            db.Tabelas.Remove(tabela);
+
+            try
+            {
+                db.SaveChanges();
+                resultado = "2"; //2 = deletado
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+            catch (Exception e)
+            {
+                resultado = "0"; //não foi possivel
+                return RedirectToAction("Index", new { param = resultado });
+            }
+
+
+        }
+        //EDIÇÃO
+        public ActionResult Edit(int? id, bool? atv)
+        {
+
+
+            if (atv != null)
+            {
+                var tabela_var = db.Tabelas.Find(id);
+
+                if (tabela_var.Status == 1)
+                {
+                    tabela_var.Status = 0;
+                }
+                else
+                {
+                    tabela_var.Status = 1;
+                }
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -206,7 +354,7 @@ namespace SysGeSe.Controllers
             }
             catch (Exception e)
             {
-                resultado = "Erro ao salvar o registro";
+                resultado = "0";
                 return RedirectToAction("Index", new { param = resultado });
             }
 

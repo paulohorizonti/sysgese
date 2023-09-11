@@ -12,25 +12,55 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Detalhes do produto</h4>
+                <h4 class="modal-title">Detalhes da TABELA</h4>
 
             </div>
             <div class="modal-body">
 
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.Id)</dt>
-                    <dd>@Html.DisplayFor(model => model.Id)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.Nome)</dt>
-                    <dd>@Html.DisplayFor(model => model.Nome)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.DataCad)</dt>
-                    <dd>@Html.DisplayFor(model => model.DataCad)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.DataAlt)</dt>
-                    <dd>@Html.DisplayFor(model => model.DataAlt)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.Status)</dt>
-                    <dd>@Html.DisplayFor(model => model.Status)</dd>
-               
-                   
-                </dl>
+                <div class="mb-1 row">
+                    <label for="id" class="col-lg-3 col-form-label">Id</label>
+                    <div class="col-lg-5">
+                        <input type="text" disabled class="form-control" id="id" value=@Model.Id>
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <label for="nome" class="col-lg-3 col-form-label">Nome</label>
+                    <div class="col-lg-9">
+                        <input type="text" disabled class="form-control" id="nome" value="@Model.Nome">
+                    </div>
+                </div>
+
+                <div class="mb-1 row">
+                    <label for="cad" class="col-lg-3 col-form-label">Cadastro</label>
+                    <div class="col-lg-7">
+                        <input type="text" disabled class="form-control" id="cad" value="@Model.DataCad">
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <label for="alt" class="col-lg-3 col-form-label">Alteração</label>
+                    <div class="col-lg-7">
+                        <input type="text" disabled class="form-control" id="alt" value="@Model.DataAlt">
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <label for="atv" class="col-lg-3 col-form-label">Ativo</label>
+                    <div class="col-lg-7">
+                        @if (Model.Status == 1)
+                        {
+
+
+                            <input type="text" disabled class="form-control" id="atv" value="SIM">
+                        }
+                        else
+                        {
+                            <input type="text" disabled class="form-control" id="atv" value="NÃO">
+                        }
+                       
+                    </div>
+                </div>
+
+
+              
             </div>
 
             <div class="modal-footer">
