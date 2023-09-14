@@ -205,9 +205,11 @@
     <Content Include="Content\Img\fundlg.png" />
     <Content Include="Content\Img\fundo-login-22.png" />
     <Content Include="Content\Img\logo-2022.ico" />
+    <Content Include="Content\Img\logo-sitema-opaco.png" />
     <Content Include="Content\Img\logo.ico" />
     <Content Include="Content\Img\logo_sistema.png" />
     <Content Include="Content\Img\logo_transp.png" />
+    <Content Include="Content\Img\luxa.org-opacity-changed-logo-sitema-opaco.png" />
     <Content Include="Content\Img\sistema.png" />
     <Content Include="Content\LoginForm\css\main.css" />
     <Content Include="Content\LoginForm\css\util.css" />

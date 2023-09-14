@@ -103,3 +103,8 @@ function chamarEdit(id, condicao) {
             $('#indexBack').hide();
     });
 }
+
+function maiuscula(z) {
+    v = z.value.toUpperCase();
+    z.value = v;
+}

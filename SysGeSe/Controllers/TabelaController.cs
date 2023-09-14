@@ -342,8 +342,8 @@ namespace SysGeSe.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                tabela.Nome = model.Nome;
-                tabela.Obs = model.Obs;
+                tabela.Nome = model.Nome.ToUpper();
+                tabela.Obs = model.Obs.ToUpper();
                 tabela.Data_Alt = DateTime.Now;
 
             try
@@ -356,12 +356,12 @@ namespace SysGeSe.Controllers
             {
                 resultado = "0";
                 return RedirectToAction("Index", new { param = resultado });
+
             }
 
-              
-            
-            
-            
+           
+
+
         }
     }
 }
