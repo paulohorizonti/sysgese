@@ -11,16 +11,16 @@ namespace SysGeSe.Models.ViewModels
         public int IdTabela { get; set; }
 
      
-        public sbyte Tabela_V { get; set; }
+        public bool Tabela_V { get; set; }
 
       
-        public sbyte Tabela_I { get; set; }
+        public bool Tabela_I { get; set; }
 
        
-        public sbyte Tabela_A { get; set; }
+        public bool Tabela_A { get; set; }
 
        
-        public sbyte Tabela_E { get; set; }
+        public bool Tabela_E { get; set; }
 
 
 

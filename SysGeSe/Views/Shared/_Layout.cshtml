@@ -97,7 +97,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         @*<a class="collapse-item" href="utilities-color.html">Perfis</a>*@
                         <a class="collapse-item" href="@Url.Action("Index","Tabela")">Tabelas</a>
-                        <a class="collapse-item" href="utilities-border.html">Acessos</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Acesso")">Acessos</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Perfil")">Perfis</a>
 
                     </div>
                 </div>
@@ -214,7 +215,7 @@
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Procurar por..."
+                            <input id="procurar" type="text" class="form-control bg-light border-0 small" placeholder="Procurar por..."
                                    aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary prn-btn" type="button">
@@ -238,8 +239,8 @@
                                  aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                               placeholder="Search for..." aria-label="Search"
+                                        <input id="procurar_2" type="text" class="form-control bg-light border-0 small"
+                                               placeholder="Procuar por..." aria-label="Search"
                                                aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
@@ -407,9 +408,6 @@
 
 
 
-
-
-
     @Scripts.Render("~/bundles/jquery")
 
 
@@ -419,9 +417,22 @@
     <script src="~/Scripts/toastr.js"></script>
 
     <script src="~/Content/Principal/vendor/jquery/jquery.min.js"></script>
+
+
+
+
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Content/Principal/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/wz_tooltip.js"></script>
+
+
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 
 
 
@@ -432,7 +443,9 @@
     <script src="~/Content/Principal/js/sb-admin-2.js"></script>
     <script src="~/Content/Adm/prn-admin.js"></script>
 
+
     @RenderSection("scripts", required: false)
+
 </body>
 
 </html>

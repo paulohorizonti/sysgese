@@ -10,32 +10,32 @@ using System.Web.Mvc;
 
 namespace SysGeSe.Controllers
 {
-    public class TabelaController : Controller
+    public class PerfilController : Controller
     {
         //Objego context
         readonly SysGeseDbContext db;
 
         //Lista geral dos registros
-        List<Tabela> listTabelas = new List<Tabela>();
+        List<Perfil> listPerfis = new List<Perfil>();
         List<Acesso> listaAcessos = new List<Acesso>();
 
-        //Nome da tabela EM UMA CONSTANTE
-        public const string NomeTabela = "TABELA";
+        //Nome da Perfil EM UMA CONSTANTE
+        public const string NomePerfil = "PERFIL";
 
         //Construtor instanciando o contexto no obejto db
-        public TabelaController()
+        public PerfilController()
         {
             db = new SysGeseDbContext();
         }
-       
 
-        /*** Index: Mostra todo o conteudo da tabela com parametros para o pagedList
+
+        /*** Index: Mostra todo o conteudo da Perfil com parametros para o pagedList
          * @author: PAULO ROBERTO NOGUEIRA
          * param: Parametro que retorna uma mensagem das actions: create, edit, delete
          * ordenacao: Parametro para guardar a ordenação dos dados na view
          * qtdSalvos: Recebe a msg de quantidade de salvos
          * qtdNaoSalvos: Idem anterios mas com msg de nao salvos
-         * procuraTabela: String para receber a procura pelo nome da tabela
+         * procuraPerfil: String para receber a procura pelo nome da Perfil
          * filtroNome: qual o filtro que esta ativo  nomemento
          * inputStatus: recebe o status caso o usuario muda na view
          * filtroCorrente: recebe qual filtro esta ativo no momento
@@ -46,21 +46,21 @@ namespace SysGeSe.Controllers
          */
         public ActionResult Index(
             string param,
-            string ordenacao, 
-            string qtdSalvos, 
+            string ordenacao,
+            string qtdSalvos,
             string qtdNaoSalvos,
             string procuraNome,
             string filtroNome,
             string procuraAtivo,
             string filtroAtivo,
             int? inputStatus,
-            int? page, 
+            int? page,
             int? numeroLinhas)
         {
 
             /*
                 TO-DO
-                Fazer o mecaninsmo de verificação se o usuario tem acesso a tabela, buscando os acesso e guardando na requisição
+                Fazer o mecaninsmo de verificação se o usuario tem acesso a Perfil, buscando os acesso e guardando na requisição
              */
             //if (Session["usuario"] == null)
             //{
@@ -74,28 +74,28 @@ namespace SysGeSe.Controllers
             //this.listaAcessos = db.Acessos.ToList();
             //this.listaAcessos = this.acess.Where(x => x.IdPerfil == ViewBag.PerfilUsuario).ToList(); //aqui pega os acessos BASEADO NO ID
 
-            //AQUI ELE PEGA O ACESSO DE ACORDO COM A TABELA
-            //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Tabela.Equals(this.Tabela)).ToList();
+            //AQUI ELE PEGA O ACESSO DE ACORDO COM A Perfil
+            //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Perfil.Equals(this.Perfil)).ToList();
 
             //Resultado do CREATE-EDIT-DELETE
             string resultado = param;
-            if(resultado == "0")
+            if (resultado == "0")
             {
                 TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
             }
-            if(resultado == "1")
+            if (resultado == "1")
             {
                 TempData["success"] = "Registro salvo com sucesso!!";
             }
-            if(resultado == "2")
+            if (resultado == "2")
             {
                 TempData["info"] = "Registro Deletado com sucesso!!";
             }
-            if(resultado == "3")
+            if (resultado == "3")
             {
                 TempData["warning"] = "Já existe um registro com essa descrição!!";
             }
-          
+
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
             procuraNome = (filtroNome != null) ? filtroNome : procuraNome; //procura por nome
@@ -120,30 +120,30 @@ namespace SysGeSe.Controllers
             ViewBag.FiltroAtivo = procuraAtivo;
             if (procuraNome != null)
             {
-                ViewBag.FiltroCorrenteTabela = (procuraNome);
+                ViewBag.FiltroCorrentePerfil = (procuraNome);
             }
 
-            //lista das tabelas instanciadas
-            this.listTabelas = db.Tabelas.ToList(); //geral
+            //lista das Perfils instanciadas
+            this.listPerfis = db.Perfis.ToList(); //geral
 
             //buscar os ativos
             switch (ViewBag.Status)
             {
                 case 0://somente os inativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 0).ToList();
+                    this.listPerfis = this.listPerfis.Where(s => s.Status == 0).ToList();
                     break;
                 case 1: //somente ativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 1).ToList();
+                    this.listPerfis = this.listPerfis.Where(s => s.Status == 1).ToList();
                     break;
                 case 2: //todos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 0 || s.Status == 1).ToList();
+                    this.listPerfis = this.listPerfis.Where(s => s.Status == 0 || s.Status == 1).ToList();
                     break;
             }
 
             //procura
             if (!String.IsNullOrEmpty(procuraNome))
             {
-                this.listTabelas = listTabelas.Where(s => s.Nome.Contains(procuraNome)).ToList();
+                this.listPerfis = listPerfis.Where(s => s.Descricao.Contains(procuraNome)).ToList();
             }
 
             //montar a pagina
@@ -156,17 +156,17 @@ namespace SysGeSe.Controllers
 
             ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
 
-          
 
-            return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
+
+            return View(this.listPerfis.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
 
 
 
         public ActionResult Incluir()
         {
-            
-            var model = new TabelaViewModel();
+
+            var model = new PerfilViewModel();
 
             return View(model);
         }
@@ -174,47 +174,47 @@ namespace SysGeSe.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Incluir(TabelaViewModel model)
+        public ActionResult Incluir(PerfilViewModel model)
         {
             string resultado = "";
-           
+
             model.Data_Cad = DateTime.Now;
             model.Data_Alt = DateTime.Now;
             model.Status = 1;
-          
-            model.Obs = (model.Obs == null) ? "" : model.Obs;
 
-           
+          
+
+
 
             if (ModelState.IsValid)
             {
-                var tabela = from s in db.Tabelas select s;
+                var perfil = from s in db.Perfis select s;
 
-                string nome = model.Nome.Trim(); //tira espaços em branco
-                nome = nome.ToUpper(); //passa para maiusculo
+                string descricao = model.Descricao.Trim(); //tira espaços em branco
+                descricao = descricao.ToUpper(); //passa para maiusculo
 
-                tabela = tabela.Where(s => s.Nome.Contains(nome));
+                perfil = perfil.Where(s => s.Descricao.Contains(descricao));
 
-                if (tabela.Count() > 0)
+                if (perfil.Count() > 0)
                 {
                     resultado = "3";
-                    
-                    return RedirectToAction("Index", new { param = resultado});
+
+                    return RedirectToAction("Index", new { param = resultado });
 
                 }
-                var tabela_nova = new Tabela();
+                var perfil_novo = new Perfil();
 
-                tabela_nova.Nome = model.Nome.ToUpper(); //passa para maiusculo
-                tabela_nova.Obs = model.Obs.ToUpper();
-                tabela_nova.Status = model.Status;
-                tabela_nova.Data_Cad = model.Data_Cad;
-                tabela_nova.Data_Alt = model.Data_Alt;
+                perfil_novo.Descricao = model.Descricao.ToUpper(); //passa para maiusculo
 
-                
+                perfil_novo.Status = model.Status;
+                perfil_novo.Data_Cad = model.Data_Cad;
+                perfil_novo.Data_Alt = model.Data_Alt;
+
+
 
                 try
                 {
-                    db.Tabelas.Add(tabela_nova);
+                    db.Perfis.Add(perfil_novo);
                     db.SaveChanges();
                     resultado = "1";
                     return RedirectToAction("Index", new { param = resultado });
@@ -222,16 +222,16 @@ namespace SysGeSe.Controllers
                 catch (Exception e)
                 {
                     string ex = e.ToString();
-                    
+
                     resultado = "0";
                 }
             }
-           
 
-                return View(model);
-            
 
-            
+            return View(model);
+
+
+
         }
 
 
@@ -240,19 +240,20 @@ namespace SysGeSe.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Details(int? id) {
+        public ActionResult Details(int? id)
+        {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tabela tabela = db.Tabelas.Find(id);
-            if (tabela == null)
+            Perfil perfil = db.Perfis.Find(id);
+            if (perfil == null)
             {
                 return HttpNotFound();
             }
-         
-            return View(tabela);
-          
+
+            return View(perfil);
+
 
         }
 
@@ -262,13 +263,13 @@ namespace SysGeSe.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tabela tabela = db.Tabelas.Find(id);
-            if (tabela == null)
+            Perfil perfil = db.Perfis.Find(id);
+            if (perfil == null)
             {
                 return HttpNotFound();
             }
 
-            return View(tabela);
+            return View(perfil);
         }
 
         // POST: Produtos/Delete/5
@@ -277,8 +278,8 @@ namespace SysGeSe.Controllers
         public ActionResult DeleteConfirmed(int? Id)
         {
             string resultado;
-            Tabela tabela = db.Tabelas.Find(Id);
-            db.Tabelas.Remove(tabela);
+            Perfil perfil = db.Perfis.Find(Id);
+            db.Perfis.Remove(perfil);
 
             try
             {
@@ -295,6 +296,7 @@ namespace SysGeSe.Controllers
 
 
         }
+
         //EDIÇÃO
         public ActionResult Edit(int? id, bool? atv)
         {
@@ -302,15 +304,15 @@ namespace SysGeSe.Controllers
 
             if (atv != null)
             {
-                var tabela_var = db.Tabelas.Find(id);
+                var perfil_var = db.Perfis.Find(id);
 
-                if (tabela_var.Status == 1)
+                if (perfil_var.Status == 1)
                 {
-                    tabela_var.Status = 0;
+                    perfil_var.Status = 0;
                 }
                 else
                 {
-                    tabela_var.Status = 1;
+                    perfil_var.Status = 1;
                 }
 
                 db.SaveChanges();
@@ -324,27 +326,26 @@ namespace SysGeSe.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tabela tabela = db.Tabelas.Find(id);
-            if (tabela == null)
+            Perfil perfil = db.Perfis.Find(id);
+            if (perfil == null)
             {
                 return HttpNotFound();
             }
-            return View(tabela);
+            return View(perfil);
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Nome, Obs")] Tabela model)
+        public ActionResult Edit([Bind(Include = "Id,Descricao")] Perfil model)
         {
             string resultado;
-          
-                var tabela = db.Tabelas.Find(model.Id);
-                if (tabela == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                tabela.Nome = model.Nome.ToUpper();
-                tabela.Obs = model.Obs.ToUpper();
-                tabela.Data_Alt = DateTime.Now;
+
+            var perfil = db.Perfis.Find(model.Id);
+            if (perfil == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            perfil.Descricao = model.Descricao.ToUpper();
+            perfil.Data_Alt = DateTime.Now;
 
             try
             {
@@ -359,7 +360,7 @@ namespace SysGeSe.Controllers
 
             }
 
-           
+
 
 
         }

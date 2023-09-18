@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.ViewModels.AcessoViewModel
+@{
+    ViewBag.Title = "Incluir";
+}
+@using (Html.BeginForm("Incluir", "Acesso", FormMethod.Post, new { @class = "needs-validation" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Incluir novo  ACESSO  </h4>
+
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+
+                    <div class="mb-3 row">
+
+
+                        <div class="col-lg-6">
+                            <label class="form-label" for="idNivel">Perfil*</label>
+
+                            @Html.DropDownListFor(m => m.IdPerfil, new SelectList(ViewBag.Perfil, "Id", "Descricao"), "Escolha o Perfil", new { @class = "form-control  form-select", id = "idPerfil", name = "idPerfil" })
+                            @Html.ValidationMessageFor(m => m.IdPerfil, "", new { @class = "alert-danger" })
+
+
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="form-label" for="idTabela">Tabela*</label>
+
+                            @Html.DropDownListFor(m => m.IdTabela, new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela", new { @class = "form-control  form-select", id = "idTabela", name = "idTabela" })
+                            @Html.ValidationMessageFor(m => m.IdTabela, "", new { @class = "alert-danger" })
+
+                        </div>
+
+                        
+
+
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-lg-12 mb-3">
+                            <label class="form-label" for="incluir">Permissões</label><br />
+
+                            <div class="form-check form-check-inline">
+
+                                @Html.CheckBoxFor(m => m.Tabela_V, new { @class = "form-check-input" })
+                                <label class="form-check-label" for="visualizar">Visualizar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.CheckBoxFor(m => m.Tabela_I, new { @class = "form-check-input" })
+                                <label class="pr-fonte-label form-check-label" for="incluir">Incluir</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                @Html.CheckBoxFor(m => m.Tabela_A, new { @class = "form-check-input" })
+                                <label class="pr-fonte-label form-check-label" for="alterar">Alterar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.CheckBoxFor(m => m.Tabela_E, new { @class = "form-check-input" })
+                                <label class="pr-fonte-label form-check-label" for="excluir">Excluir</label>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+             
+
+                    @*<div class="mb-3 row">
+
+            <label class="col-sm-2 col-form-label" for="idNivel">Tabela*</label>
+            <div class="col-sm-10">
+
+                @Html.DropDownListFor(m => m.IdTabela, new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela", new { @class = "form-control  form-select", id = "idTabela", name = "idTabela" })
+                @Html.ValidationMessageFor(m => m.IdTabela, "", new { @class = "alert-danger" })
+
+
+
+            </div>
+        </div>*@
+
+
+                    @*<div class="mb-3 row">
+            @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
+
+            <div class="col-sm-10">
+
+                @Html.TextAreaFor(m => m.Obs, new { @class = "form-control", placeholder = "Digite a objservação, se houver", onkeyup = "maiuscula(this);", name = "nome", rows = "4", cols = "50", maxlength = "500" })
+
+
+            </div>
+        </div>*@
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+
+
+
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")

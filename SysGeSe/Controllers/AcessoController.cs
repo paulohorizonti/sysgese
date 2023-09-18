@@ -1,0 +1,335 @@
+﻿using PagedList;
+using SysGeSe.Models;
+using SysGeSe.Models.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+
+namespace SysGeSe.Controllers
+{
+    public class AcessoController : Controller
+    { 
+         //Objego context
+        readonly SysGeseDbContext db;
+
+        //Lista geral dos registros
+        List<Tabela> listTabelas = new List<Tabela>();
+        List<Acesso> listaAcessos = new List<Acesso>();
+        List<Perfil> listaPerfil = new List<Perfil>();
+        IEnumerable<Tabela> tabEnu = new List<Tabela>();
+
+        //Nome da tabela EM UMA CONSTANTE
+        public const string NomeTabela = "ACESSO";
+
+        //Construtor instanciando o contexto no obejto db
+        public AcessoController()
+        {
+            db = new SysGeseDbContext();
+        }
+
+        // GET: Acesso
+        public ActionResult Index(
+           string param,
+           string procuraPerfil,
+           string procuraTabela,
+           string filtroTabela,
+           string filtroPerfil,
+           string procuraAtivo,
+           string filtroAtivo,
+           int? inputStatus,
+           int? page,
+           int? numeroLinhas)
+        {
+
+            /*
+                TO-DO
+                Fazer o mecaninsmo de verificação se o usuario tem acesso a tabela, buscando os acesso e guardando na requisição
+             */
+            //if (Session["usuario"] == null)
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+            //else
+            //{
+            //    ViewBag.PerfilUsuario = Session["perfilId"]; //PEGA O ID ODO PERFIL DO USUARIO
+            //}
+            //Pega os acessos
+            //this.listaAcessos = db.Acessos.ToList();
+            //this.listaAcessos = this.acess.Where(x => x.IdPerfil == ViewBag.PerfilUsuario).ToList(); //aqui pega os acessos BASEADO NO ID
+
+            //AQUI ELE PEGA O ACESSO DE ACORDO COM A TABELA
+            //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Tabela.Equals(this.Tabela)).ToList();
+
+            //Resultado do CREATE-EDIT-DELETE
+            string resultado = param;
+            if (resultado == "0")
+            {
+                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+            }
+            if (resultado == "1")
+            {
+                TempData["success"] = "Registro salvo com sucesso!!";
+            }
+            if (resultado == "2")
+            {
+                TempData["info"] = "Registro Deletado com sucesso!!";
+            }
+            if (resultado == "3")
+            {
+                TempData["warning"] = "Já existe um registro com essa descrição!!";
+            }
+
+            if (resultado == "4")
+            {
+                TempData["warning"] = "Já existe um ACESSO com essa TABELA!!";
+            }
+
+            procuraTabela = (procuraTabela == "") ? null : procuraTabela;
+            //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
+
+            procuraAtivo = (filtroAtivo != null) ? filtroAtivo : procuraAtivo; //procura por filtro
+            procuraPerfil = (filtroPerfil != null) ? filtroPerfil : procuraPerfil; //procura por Perfil
+            procuraTabela = (filtroTabela != null) ? filtroTabela : procuraTabela; //procura por Perfil
+
+            
+
+            ViewBag.MensagemGravar = (param != null) ? param : "";
+
+            //numero de linhas e status (ativo=1 ou inativo=0)
+            ViewBag.NumeroLinhas = (numeroLinhas != null) ? numeroLinhas : 10;
+            ViewBag.Status = (inputStatus != null) ? inputStatus : 2;
+
+           
+
+            //atribui 1 a pagina caso os parametros nao sejam nulos
+            page = (procuraAtivo != null) || (procuraPerfil != null) || (procuraTabela != null) ? 1 : page; //atribui 1 à pagina caso procurapor seja diferente de nullo
+
+            //viewBag do filtro
+            ViewBag.FiltroAtivo = procuraAtivo;
+           
+            if (procuraPerfil != null)
+            {
+                ViewBag.FiltroCorrentePerfil = (procuraPerfil);
+            }
+
+            if (procuraTabela != null)
+            {
+                ViewBag.FiltroCorrenteTabela = (procuraTabela);
+            }
+
+
+
+
+            //lista das tabelas instanciadas
+            this.listaAcessos = db.Acessos.ToList(); //geral
+
+            //buscar os ativos
+            switch (ViewBag.Status)
+            {
+                case 0://somente os inativos
+                    this.listaAcessos = this.listaAcessos.Where(s => s.Status == 0).ToList();
+                    break;
+                case 1: //somente ativos
+                    this.listaAcessos = this.listaAcessos.Where(s => s.Status == 1).ToList();
+                    break;
+                case 2: //todos
+                    this.listaAcessos = this.listaAcessos.Where(s => s.Status == 0 || s.Status == 1).ToList();
+                    break;
+            }
+
+            //temp data da tabela - busca
+            if (TempData["tabelaAtivo"] == null)
+            {
+                if (procuraTabela != null)
+                {
+                    TempData["tabelaAtivo"] = procuraTabela;
+                    ViewBag.FiltroCorrenteTabelaInt = int.Parse(procuraTabela);
+                    TempData.Keep("tabelaAtivo");
+
+                }
+
+            }
+            else
+            {
+                if (procuraTabela != null)
+                {
+                    if (TempData["tabelaAtivo"].ToString() != procuraTabela)
+                    {
+                        TempData["tabelaAtivo"] = procuraTabela;
+                        ViewBag.FiltroCorrenteTabelaInt = int.Parse(procuraTabela);
+                        TempData.Keep("tabelaAtivo");
+                    }
+                }
+                else
+                {
+                    procuraTabela = TempData["tabelaAtivo"].ToString();
+                    ViewBag.FiltroCorrenteTabelaInt = int.Parse(procuraTabela);
+
+                }
+            }
+            //busca pelo perfil
+            if (!String.IsNullOrEmpty(procuraTabela))
+            {
+                this.listaAcessos = this.listaAcessos.Where(s => s.IdTabela.ToString() == procuraTabela).ToList();
+            }
+           
+
+
+            //temp data do perfil - busca
+            if (TempData["perfilAtivo"] == null)
+            {
+                if (procuraPerfil != null)
+                {
+                    TempData["perfilAtivo"] = procuraPerfil;
+                    ViewBag.FiltroCorrentePerfilInt = int.Parse(procuraPerfil);
+                    TempData.Keep("perfilAtivo");
+
+                }
+
+            }
+            else
+            {
+                if (procuraPerfil != null)
+                {
+                    if (TempData["perfilAtivo"].ToString() != procuraPerfil)
+                    {
+                        TempData["perfilAtivo"] = procuraPerfil;
+                        ViewBag.FiltroCorrentePerfilInt = int.Parse(procuraPerfil);
+                        TempData.Keep("perfilAtivo");
+                    }
+                }
+                else
+                {
+                    procuraPerfil = TempData["perfilAtivo"].ToString();
+                    ViewBag.FiltroCorrentePerfilInt = int.Parse(procuraPerfil);
+
+                }
+            }
+            //busca pelo perfil
+            if (!String.IsNullOrEmpty(procuraPerfil))
+            {
+                this.listaAcessos = this.listaAcessos.Where(s => s.IdPerfil.ToString() == procuraPerfil).ToList();
+            }
+            else
+            {
+                this.listaAcessos = this.listaAcessos.Where(s => s.Perfis.Descricao.ToString() == "ADMINISTRATIVO").ToList();
+            }
+
+
+
+            
+
+           
+
+            //montar a pagina
+            int tamanhoPagina = 0;
+
+            //Ternario para tamanho da pagina
+            tamanhoPagina = (ViewBag.NumeroLinha != null) ? ViewBag.NumeroLinhas : (tamanhoPagina = (numeroLinhas != 10) ? ViewBag.numeroLinhas : (int)numeroLinhas);
+
+            int numeroPagina = (page ?? 1);
+
+            ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
+
+            ViewBag.Perfil = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
+
+           
+            this.tabEnu = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
+
+
+            ViewBag.Tabela = this.tabEnu;
+
+            return View(this.listaAcessos.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
+        }
+
+
+        //incluir novos acessos ao perfil: o usuario pode criar novos perfis desde que tenha acesso a isso
+        public ActionResult Incluir()
+        {
+
+            ViewBag.Perfil = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
+            ViewBag.Tabela = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
+            var model = new AcessoViewModel();
+
+            return View(model);
+
+           
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Incluir(AcessoViewModel model)
+        {
+            string resultado = "";
+
+            model.Data_Cad = DateTime.Now;
+            model.Data_Alt = DateTime.Now;
+            model.Status = 1;
+
+            model.Obs = (model.Obs == null) ? "" : model.Obs;
+
+            if (ModelState.IsValid)
+            {
+
+                var acesso = from s in db.Acessos select s; //banco de acessos
+                acesso = acesso.Where(s => s.IdTabela == model.IdTabela && s.IdPerfil == model.IdPerfil);//busca se tem tabela
+                if (acesso.Count() > 0)
+                {
+                    resultado = "4";
+                    
+                    return RedirectToAction("Index", new { param = resultado});
+                }
+
+                //objeto para ser salvo
+                Acesso access = new Acesso();
+
+                access.IdTabela = model.IdTabela;
+                access.Tabela_V = model.Tabela_V;
+                access.Tabela_I = model.Tabela_I;
+                access.Tabela_A = model.Tabela_A;
+                access.Tabela_E = model.Tabela_E;
+                access.Obs = model.Obs.ToUpper();
+                access.Data_Cad = model.Data_Cad;
+                access.Data_Alt = model.Data_Alt;
+                access.Status = model.Status;
+                access.IdPerfil = model.IdPerfil;
+                try
+                {
+                    db.Acessos.Add(access);
+                    db.SaveChanges();
+                    resultado = "1";
+                    return RedirectToAction("Index", new { param = resultado });
+                }
+                catch (Exception e)
+                {
+                    string ex = e.ToString();
+
+                    resultado = "0";
+                }
+            }
+
+            return View(model);
+        }
+
+
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Acesso acesso = db.Acessos.Find(id);
+            if (acesso == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(acesso);
+
+
+        }
+    }
+}

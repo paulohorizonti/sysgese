@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.Perfil
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<div class="container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalhes do PERFIL</h4>
+
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-1 row">
+                    <label for="id" class="col-lg-3 col-form-label">Id</label>
+                    <div class="col-lg-5">
+                        <input type="text" disabled class="form-control" id="id" value=@Model.Id>
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <label for="descricao" class="col-lg-3 col-form-label">Nome</label>
+                    <div class="col-lg-9">
+                        <input type="text" disabled class="form-control" id="descricao" value="@Model.Descricao">
+                    </div>
+                </div>
+
+                <div class="mb-1 row">
+                    <label for="cad" class="col-lg-3 col-form-label">Cadastro</label>
+                    <div class="col-lg-7">
+                        <input type="text" disabled class="form-control" id="cad" value="@Model.DataCad">
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <label for="alt" class="col-lg-3 col-form-label">Alteração</label>
+                    <div class="col-lg-7">
+                        <input type="text" disabled class="form-control" id="alt" value="@Model.DataAlt">
+                    </div>
+                </div>
+                <div class="mb-1 row">
+                    <label for="atv" class="col-lg-3 col-form-label">Ativo</label>
+                    <div class="col-lg-7">
+                        @if (Model.Status == 1)
+                        {
+
+
+                            <input type="text" disabled class="form-control" id="atv" value="SIM">
+                        }
+                        else
+                        {
+                            <input type="text" disabled class="form-control" id="atv" value="NÃO">
+                        }
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-primary" onclick="chamarEdit(@Model.Id,true)" style="border-color: #7a7a7a;"><i class="fas fa-edit p-1"></i> Editar</a>
+                <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+            </div>
+
+        </div> <!--fim modal content-->
+    </div> <!--fim modal dialog-->
+
+</div>

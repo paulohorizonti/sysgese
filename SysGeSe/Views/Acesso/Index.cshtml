@@ -1,0 +1,204 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<SysGeSe.Models.Acesso>
+@{ViewBag.Title = "Acesso";}
+
+
+<div class="row g-0 p-1">
+    <!--pegar o nome da controler-->
+
+    <div class="card prn-cardposition">
+        <div class="card-header">
+            <span class="prn-alternative-font">Cadastro de ACESSOS</span>
+            <a class="float-end dis-block btn btn-primary" onclick="chamarIncluir()"><i class="fas fa-plus-circle prn-font-icones-white"></i>  Novo </a>
+        </div>
+        <div class="card-body prn-card-geral">
+            <div class="container-fluid prn-continer-geral">
+
+                @using (Html.BeginForm("Index", "Acesso", FormMethod.Get))
+                {
+                    @RenderPage("~/Views/Acoes/AcoesAcessos.cshtml") <!--Renderiza os botões de ação-->
+                }
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <table id="prn_table" class="table table table-light table-hover thead-dark table-striped">
+                            <thead id="thead-tabela" class="prn-head-table-color">
+                                <tr>
+                                    <th style="border-left: 1px solid #ccc !important;" class="prn-border-table-white">ID</th>
+                                    <th class="prn-border-table-white">Tabela</th>
+                                    <th class="prn-border-table-white">Visualizar</th>
+                                    <th class="prn-border-table-white">Incluir</th>
+                                    <th class="prn-border-table-white">Alterar</th>
+                                    <th class="prn-border-table-white">Excluir</th>
+                                    <th class="prn-border-table-white">Perfil</th>
+                                    <th style="text-align:center;" class="prn-border-table-white">Ativo</th>
+                                    <th style="text-align:center;">Ação</th>
+
+                                </tr>
+                            </thead><!--fim do cabeçaçalho da tabela-->
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="border-left: 1px solid #ccc !important;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
+                                        <td class="prn-border-table" style="width: 50%;">@Html.DisplayFor(modelItem => item.Tabelas.Nome)</td>
+
+                                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                                            @if (item.Tabela_V == true)
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Bloquear"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_v = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Liberar"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_v = false  })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            }
+
+
+
+                                        </td>
+                                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                                            @if (item.Tabela_I == true)
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Bloquear"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_i = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Liberar"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_i = false  })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            }
+
+
+
+                                        </td>
+                                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                                            @if (item.Tabela_A == true)
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Bloquear"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_a = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Liberar"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_a = false  })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            }
+
+
+
+                                        </td>
+                                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                                            @if (item.Tabela_E == true)
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Bloquear"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_e = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a  data-toggle="tooltip" data-placement="left" data-title="Liberar"  href="@Url.Action("Edit", "Acesso", new { id = item.Id, tab_e = false  })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            }
+
+
+
+                                        </td>
+                                        <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Perfis.Descricao)</td>
+
+                                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                                            @if (item.Status == 1)
+                                            {
+
+                                                <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Acesso", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Acesso", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            }
+
+
+
+                                        </td>
+
+
+
+
+                                        <td class="prn-border-table" style="text-align: center;">
+                                            <button data-toggle="tooltip" data-placement="left" data-title="Editar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
+
+
+                                            <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
+
+
+                                            @*<a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>*@
+                                            <button data-toggle="tooltip" data-placement="left" data-title="Excluir Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="prn-font-icones fas fa-trash-alt p-1"></i> </button>
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody> <!--fim do corpo da tabela-->
+                        </table> <!--fim da tabela-->
+                        <!--fim do form-->
+
+                    </div><!--fim da col-->
+                </div><!--fim da row-->
+            </div><!--fim conteinar-fluid-->
+
+
+
+        </div>
+        <div class="card-footer text-body-secondary prn-card-footer">
+            <div class="d-flex">
+                <div class="mr-auto p-2">
+                    <p>
+                        <span class="pr-fontalternativa"> Página @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</span>
+                    </p>
+
+                </div>
+
+
+                <div style="float:right;" class="p-2">
+                    @Html.PagedListPager(
+                                                     Model, page => Url.Action("Index", new
+                                                     {
+                                                         page,
+                                                         inputStatus = ViewBag.Status,
+                                                         filtroTabela = ViewBag.FiltroCorrenteTabelaInt,
+                                                         filtroPerfil = ViewBag.FiltroCorrentePerfilInt,
+                                                         numeroLinhas = ViewBag.NumeroLinhas,
+                                                     }),
+                                                        new PagedListRenderOptions()
+                                                        {
+                                                            LiElementClasses = new List<string>
+                                                             {
+                               "page-item",
+                               "prn-botoes-geral"
+
+                                                              }
+                                                        }
+
+                                                    )
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="MODAL"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
