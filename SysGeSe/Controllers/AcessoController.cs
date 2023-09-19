@@ -248,6 +248,8 @@ namespace SysGeSe.Controllers
         //incluir novos acessos ao perfil: o usuario pode criar novos perfis desde que tenha acesso a isso
         public ActionResult Incluir()
         {
+            //TO-DO
+            //FILTRAR AS TABELAS POR PERFIL
 
             ViewBag.Perfil = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
             ViewBag.Tabela = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
