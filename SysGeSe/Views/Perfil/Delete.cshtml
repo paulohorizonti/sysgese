@@ -11,49 +11,44 @@
 {
     @Html.AntiForgeryToken()
     <div class="container">
-        <div class="modal-dialog">
+        <div class="modal-dialog prn-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Deletar REGISTRO</h4>
+                    <h4 class="modal-title">Deletar REGISTRO - ID: @Model.Id</h4>
 
                 </div>
                 <div class="modal-body">
-                    <div class="mb-2 row">
-                        <div class="alert alert-danger" role="alert">
-                            Deseja realmente EXCLUIR esse registro?
+                    <div class="mb-2 row g-0">
+                        <div class="col-lg-12 mb-2">
+                            <div class="alert alert-danger" role="alert">
+                                Deseja realmente EXCLUIR esse registro?
+                            </div>
                         </div>
+
                     </div>
 
 
-                    <div class="mb-1 row">
-                        <label for="id" class="col-lg-3 col-form-label">Id</label>
-                        <div class="col-lg-5">
-                            <input type="text" disabled class="form-control" id="id" value=@Model.Id>
+                    <div class="row g-0">
+                        <div class="col-lg-6 mb-2">
+                            <label for="nome" class="form-label">Descrição</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="nome" value="@Model.Descricao">
                         </div>
-                    </div>
-                    <div class="mb-1 row">
-                        <label for="nome" class="col-lg-3 col-form-label">Descrição</label>
-                        <div class="col-lg-9">
-                            <input type="text" disabled class="form-control" id="nome" value="@Model.Descricao">
-                        </div>
-                    </div>
 
-                    <div class="mb-1 row">
-                        <label for="cad" class="col-lg-3 col-form-label">Cadastro</label>
-                        <div class="col-lg-7">
-                            <input type="text" disabled class="form-control" id="cad" value="@Model.DataCad">
+
+                        <div class="col-lg-2 mb-2">
+                            <label for="cad" class="form-label">Cadastro</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="cad" value="@Model.DataCad">
+
                         </div>
-                    </div>
-                    <div class="mb-1 row">
-                        <label for="alt" class="col-lg-3 col-form-label">Alteração</label>
-                        <div class="col-lg-7">
-                            <input type="text" disabled class="form-control" id="alt" value="@Model.DataAlt">
+
+                        <div class="col-lg-2 mb-2">
+                            <label for="alt" class="form-label">Alteração</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="cad" value="@Model.DataCad">
+
                         </div>
-                    </div>
-                    <div class="mb-1 row">
-                        <label for="atv" class="col-lg-3 col-form-label">Ativo</label>
-                        <div class="col-lg-7">
-                            @if (Model.Status == 1)
+                        <div class="col-lg-2 mb-2">
+                            <label for="atv" class="form-label">Ativo</label>
+                            @if (Model.Status == true)
                             {
 
 
@@ -61,12 +56,20 @@
                             }
                             else
                             {
-                                <input type="text" disabled class="form-control" id="atv" value="NÃO">
+                                <input style="color:red !important;" type="text" disabled class="form-control" id="atv" value="NÃO">
                             }
 
                         </div>
+
+
+
+
                     </div>
 
+                   
+
+               
+                  
 
 
                 </div>

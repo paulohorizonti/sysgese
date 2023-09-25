@@ -130,13 +130,13 @@ namespace SysGeSe.Controllers
             switch (ViewBag.Status)
             {
                 case 0://somente os inativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 0).ToList();
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == false).ToList();
                     break;
                 case 1: //somente ativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 1).ToList();
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == true).ToList();
                     break;
                 case 2: //todos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 0 || s.Status == 1).ToList();
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == false || s.Status == true).ToList();
                     break;
             }
 
@@ -180,7 +180,7 @@ namespace SysGeSe.Controllers
            
             model.Data_Cad = DateTime.Now;
             model.Data_Alt = DateTime.Now;
-            model.Status = 1;
+            model.Status = true;
           
             model.Obs = (model.Obs == null) ? "" : model.Obs;
 
@@ -304,13 +304,13 @@ namespace SysGeSe.Controllers
             {
                 var tabela_var = db.Tabelas.Find(id);
 
-                if (tabela_var.Status == 1)
+                if (tabela_var.Status == true)
                 {
-                    tabela_var.Status = 0;
+                    tabela_var.Status = false;
                 }
                 else
                 {
-                    tabela_var.Status = 1;
+                    tabela_var.Status = true;
                 }
 
                 db.SaveChanges();

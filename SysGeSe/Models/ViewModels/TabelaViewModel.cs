@@ -30,6 +30,6 @@ namespace SysGeSe.Models.ViewModels
         {
             get { return Data_Alt?.ToShortDateString(); }
         }
-        public sbyte Status { get; set; }
+        public bool Status { get; set; }
     }
 }
