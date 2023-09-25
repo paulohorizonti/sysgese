@@ -333,5 +333,157 @@ namespace SysGeSe.Controllers
 
 
         }
+
+
+        //EDIÇÃO
+        public ActionResult Edit(int? id, bool? atv, bool? tab_v, bool? tab_i, bool? tab_a, bool? tab_e)
+        {
+            var acesso_var = db.Acessos.Find(id);
+
+            if (atv != null)
+            {
+                acesso_var.Status = (acesso_var.Status == 1) ? acesso_var.Status = 0 : acesso_var.Status = 1;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+          
+            if (tab_v != null)
+            {
+                acesso_var.Tabela_V = (acesso_var.Tabela_V == true) ? acesso_var.Tabela_V = false : acesso_var.Tabela_V = true;
+
+               
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+            if (tab_i != null)
+            {
+                acesso_var.Tabela_I = (acesso_var.Tabela_I == true) ? acesso_var.Tabela_I = false : acesso_var.Tabela_I = true;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+            if (tab_a != null)
+            {
+                acesso_var.Tabela_A = (acesso_var.Tabela_A == true) ? acesso_var.Tabela_A = false : acesso_var.Tabela_A = true;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+            if (tab_e != null)
+            {
+                acesso_var.Tabela_E = (acesso_var.Tabela_E == true) ? acesso_var.Tabela_E = false : acesso_var.Tabela_E = true;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            Acesso acesso = db.Acessos.Find(id);
+            ViewBag.Perfil = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
+            ViewBag.Tabela = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
+            if (acesso == null)
+            {
+                return HttpNotFound();
+            }
+            return View(acesso);
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "Id,IdPerfil, IdTabela, Tabela_V, Tabela_I, Tabela_A, Tabela_E, Obs")] Acesso model)
+        {
+            string resultado;
+
+            var acesso = db.Acessos.Find(model.Id);
+            if (acesso == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+           
+            acesso.Data_Alt = DateTime.Now;
+            acesso.Tabela_A = model.Tabela_A;
+            acesso.Tabela_E = model.Tabela_E;
+            acesso.Tabela_I = model.Tabela_I;
+            acesso.Tabela_V = model.Tabela_V;
+            acesso.Obs = model.Obs;
+            try
+            {
+                db.SaveChanges();
+                resultado = "1";
+                return RedirectToAction("Index", new { param = resultado });
+            }
+            catch (Exception e)
+            {
+                resultado = "0";
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+
+
+
+
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Acesso acesso = db.Acessos.Find(id);
+            if (acesso == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(acesso);
+        }
+
+        // POST: Produtos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? Id)
+        {
+            string resultado;
+
+            Acesso acesso = db.Acessos.Find(Id);
+
+            db.Acessos.Remove(acesso);
+
+            try
+            {
+                db.SaveChanges();
+                resultado = "2"; //2 = deletado
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+            catch (Exception e)
+            {
+                resultado = "0"; //não foi possivel
+                return RedirectToAction("Index", new { param = resultado });
+            }
+
+
+        }
     }
 }

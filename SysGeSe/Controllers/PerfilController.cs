@@ -130,13 +130,13 @@ namespace SysGeSe.Controllers
             switch (ViewBag.Status)
             {
                 case 0://somente os inativos
-                    this.listPerfis = this.listPerfis.Where(s => s.Status == 0).ToList();
+                    this.listPerfis = this.listPerfis.Where(s => s.Status == false).ToList();
                     break;
                 case 1: //somente ativos
-                    this.listPerfis = this.listPerfis.Where(s => s.Status == 1).ToList();
+                    this.listPerfis = this.listPerfis.Where(s => s.Status == true).ToList();
                     break;
                 case 2: //todos
-                    this.listPerfis = this.listPerfis.Where(s => s.Status == 0 || s.Status == 1).ToList();
+                    this.listPerfis = this.listPerfis.Where(s => s.Status == true || s.Status == false).ToList();
                     break;
             }
 
@@ -180,9 +180,8 @@ namespace SysGeSe.Controllers
 
             model.Data_Cad = DateTime.Now;
             model.Data_Alt = DateTime.Now;
-            model.Status = 1;
-
-          
+            model.Status = true;
+                    
 
 
 
@@ -306,13 +305,13 @@ namespace SysGeSe.Controllers
             {
                 var perfil_var = db.Perfis.Find(id);
 
-                if (perfil_var.Status == 1)
+                if (perfil_var.Status == true)
                 {
-                    perfil_var.Status = 0;
+                    perfil_var.Status = false;
                 }
                 else
                 {
-                    perfil_var.Status = 1;
+                    perfil_var.Status = true;
                 }
 
                 db.SaveChanges();

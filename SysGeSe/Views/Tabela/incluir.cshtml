@@ -13,34 +13,34 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Incluir novo Registro</h4>
+                    <h4 class="modal-title">Incluir nova TABELA</h4>
 
                 </div>
                 <div class="modal-body">
                     @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
-                    <div class="mb-3 row">
-                        @Html.LabelFor(m => m.Nome, new { @class = "col-sm-2 col-form-label" })
 
-                        <div class="col-sm-10">
 
-                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", placeholder = "Digite o nome da Tabela", onkeyup = "maiuscula(this);" })
-                          
+                    <div class="row">
+                        <div class="mb-2 col-lg-12">
+                            @Html.LabelFor(m => m.Nome, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control prn-inputs", placeholder = "Digite o nome da Tabela", onkeyup = "maiuscula(this);" })
+
                             @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "alert-danger" })
 
-
                         </div>
+                       
+
                     </div>
 
-                    <div class="mb-3 row">
-                        @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
-
-                        <div class="col-sm-10">
-
-                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control", placeholder = "Digite a objservação, se houver", onkeyup = "maiuscula(this);", name = "nome", rows = "4", cols = "50", maxlength = "500" })
-
+                    <div class="row">
+                        <div class="mb-2 col-lg-12">
+                            @Html.LabelFor(m => m.Obs, new { @class = "form-label" })
+                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control  prn-inputs", placeholder = "Digite a objservação, se houver", onkeyup = "maiuscula(this);", name = "nome", rows = "4", cols = "50", maxlength = "500" })
 
                         </div>
+
                     </div>
+
 
 
                 </div>

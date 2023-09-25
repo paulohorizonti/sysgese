@@ -93,6 +93,10 @@ a{
     max-width: 100% !important;
 }
 
+.prn-modal {
+    --bs-modal-width: 1000px !important;
+}
+
 .prn-font-icones-white {
     font-size: 1.3em !important;
     color: #ffffff !important;

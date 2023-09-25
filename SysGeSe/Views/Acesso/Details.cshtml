@@ -10,186 +10,143 @@
 }
 
 <div class="container">
-    <div class="modal-dialog">
+    <div class="modal-dialog prn-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Detalhes dos ACESSOS</h4>
+                <h4 class="modal-title">Detalhes dos ACESSOS - ID: @Model.Id</h4>
 
             </div>
             <div class="modal-body">
+                
+                        
+                <div class="row g-0">
 
-                <div class="mb-1 row">
-                    <label for="id" class="col-lg-3 col-form-label">Id</label>
-                    <div class="col-lg-5">
-                        <input type="text" disabled class="form-control" id="id" value=@Model.Id>
+                    <div class="col-lg-4 mb-2">
+                        <label for="tabela" class="form-label">Tabela</label>
+                        <input type="text" disabled class="form-control prn-inputs" id="tabela" value="@Model.Tabelas.Nome">
                     </div>
-                </div>
-                <div class="mb-1 row">
-                    <label for="nome" class="col-lg-3 col-form-label">Tabela</label>
-                    <div class="col-lg-9">
-                        <input type="text" disabled class="form-control" id="nome" value="@Model.Tabelas.Nome">
+                    <div class="col-lg-4 mb-2">
+                        <label for="perfil" class="form-label">Perfil</label>
+                        <input type="text" disabled class="form-control prn-inputs" id="perfil" value="@Model.Perfis.Descricao">
                     </div>
-                </div>
-                <div class="mb-1 row">
-                    <label for="perfil" class="col-lg-3 col-form-label">Perfil</label>
-                    <div class="col-lg-9">
-                        <input type="text" disabled class="form-control" id="perfil" value="@Model.Perfis.Descricao">
+                    <div class="col-lg-2 mb-2">
+                        <label for="dataCad" class="form-label">Cadastro</label>
+                        <input type="text" disabled class="form-control prn-inputs" id="dataCad" value="@Model.DataCad">
                     </div>
-                </div>
+                    <div class="col-lg-2 mb-2">
+                        <label for="dataAlt" class="form-label">Alteração</label>
+                        <input type="text" disabled class="form-control prn-inputs" id="dataAlt" value="@Model.DataAlt">
+                    </div>
 
-                <div class="mb-1 row">
-                    <label for="atv_v" class="col-lg-3 col-form-label">Visualizar</label>
-                    <div class="col-lg-2">
+
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-2 mb-2">
+                        <label for="atv_v" class="form-label">Visualizar</label>
+
                         @if (Model.Tabela_V == true)
                         {
 
+                            <input type="text" disabled class="form-control prn-inputs" id="atv_v" value="SIM">
 
-                            <input type="text" disabled class="form-control" id="atv_v" value="SIM">
                         }
                         else
                         {
-                            <input type="text" disabled class="form-control" id="atv_v" value="NÃO">
+                            <input  style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_v" value="NÃO">
                         }
 
+
                     </div>
-                </div>
-                <div class="mb-1 row">
-                    <label for="atv_i" class="col-lg-3 col-form-label">Incluir</label>
-                    <div class="col-lg-2">
+                    <div class="col-lg-2 mb-2">
+                        <label for="atv_i" class="form-label">Incluir</label>
+
+
                         @if (Model.Tabela_I == true)
                         {
 
 
-                            <input type="text" disabled class="form-control" id="atv_i" value="SIM">
+                            <input type="text" disabled class="form-control prn-inputs" id="atv_i" value="SIM">
                         }
                         else
                         {
-                            <input type="text" disabled class="form-control" id="atv_i" value="NÃO">
+                            <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_i" value="NÃO">
                         }
 
+
                     </div>
-                </div>
-                <div class="mb-1 row">
-                    <label for="atv_a" class="col-lg-3 col-form-label">Alterar</label>
-                    <div class="col-lg-2">
+
+                    <div class="col-lg-2 mb-2">
+                        <label for="atv_a" class="form-label">Alterar</label>
+
+
                         @if (Model.Tabela_A == true)
                         {
 
 
-                            <input type="text" disabled class="form-control" id="atv_a" value="SIM">
+                            <input type="text" disabled class="form-control prn-inputs" id="atv_a" value="SIM">
                         }
                         else
                         {
-                            <input type="text" disabled class="form-control" id="atv_a" value="NÃO">
+                            <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_a" value="NÃO">
                         }
 
-                    </div>
-                </div>
 
-                <div class="mb-1 row">
-                    <label for="atv_e" class="col-lg-3 col-form-label">Excluir</label>
-                    <div class="col-lg-2">
-                        @if (Model.Tabela_A == true)
+                    </div>
+
+                    <div class="col-lg-2 mb-2">
+                        <label for="atv_e" class="form-label">Excluir</label>
+
+
+
+                        @if (Model.Tabela_E == true)
                         {
 
 
-                            <input type="text" disabled class="form-control" id="atv_e" value="SIM">
+                            <input type="text" disabled class="form-control prn-inputs" id="atv_e" value="SIM">
                         }
                         else
                         {
-                            <input type="text" disabled class="form-control" id="atv_e" value="NÃO">
+                            <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_e" value="NÃO">
                         }
 
                     </div>
-                </div>
 
-                <div class="mb-1 row">
-                    <label for="obs" class="col-lg-3 col-form-label">Observações</label>
-                    <div class="col-lg-9">
-                        <input type="text" disabled class="form-control" id="obs" value="@Model.Obs">
-                    </div>
-                </div>
+                    <div class="col-lg-2 mb-2">
+                        <label for="atv" class="form-label">Ativo</label>
 
-                <div class="mb-1 row">
-                    <label for="cad" class="col-lg-3 col-form-label">Cadastro</label>
-                    <div class="col-lg-7">
-                        <input type="text" disabled class="form-control" id="cad" value="@Model.DataCad">
-                    </div>
-                </div>
-                <div class="mb-1 row">
-                    <label for="alt" class="col-lg-3 col-form-label">Alteração</label>
-                    <div class="col-lg-7">
-                        <input type="text" disabled class="form-control" id="alt" value="@Model.DataAlt">
-                    </div>
-                </div>
-                <div class="mb-1 row">
-                    <label for="atv" class="col-lg-3 col-form-label">Ativo</label>
-                    <div class="col-lg-7">
+
                         @if (Model.Status == 1)
                         {
 
 
-                            <input type="text" disabled class="form-control" id="atv" value="SIM">
+                            <input type="text" disabled class="form-control prn-inputs" id="atv" value="SIM">
                         }
                         else
                         {
-                            <input type="text" disabled class="form-control" id="atv" value="NÃO">
+                            <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv" value="NÃO">
                         }
 
                     </div>
+
+
+
                 </div>
 
 
-
-                <hr />
-                <form class="row g-3">
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                <div class="row g-0">
+                    <div class="col-12 mb-2">
+                        <label for="obs" class="form-label">Alteração</label>
+                        <textarea disabled class="form-control prn-inputs" cols="70" id="Obs" maxlength="500" name="Obs" rows="4">@Model.Obs</textarea>
                     </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4">
-                    </div>
-                    <div class="col-12">
-                        <label for="inputAddress" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="col-12">
-                        <label for="inputAddress2" class="form-label">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputCity" class="form-label">City</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="inputState" class="form-label">State</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputZip" class="form-label">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
-                    </div>
-                    <div class="col-12">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                Check me out
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
-                </form>
 
 
+                </div>
 
-            </div>
+
+              
+
+
+            </div> <!--fim do modal body-->
 
             <div class="modal-footer">
                 <a class="btn btn-primary" onclick="chamarEdit(@Model.Id,true)" style="border-color: #7a7a7a;"><i class="fas fa-edit p-1"></i> Editar</a>

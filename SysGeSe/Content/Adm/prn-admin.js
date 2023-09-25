@@ -9,10 +9,10 @@
                 "positionClass": "toast-top-right",
                 "preventDuplicates": false,
                 "onclick": null,
-                "showDuration": "10000",
-                "hideDuration": "10000",
-                "timeOut": "10000",
-                "extendedTimeOut": "10000",
+                "showDuration": "4000",
+                "hideDuration": "4000",
+                "timeOut": "4000",
+                "extendedTimeOut": "4000",
                 "showEasing": "swing",
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
@@ -90,18 +90,14 @@ function fecharModal() {
 }
 
 
-function chamarEdit(id, condicao) {
+function chamarEdit(id) {
     var cont = document.querySelector(".prn-titulo"); //pega o titulo
 
     var controller = cont.innerText;
 
     $("#modal").load("/" +controller+"/Edit/" + id, function () {
         $('#modal').modal("show");
-
-        if (condicao == false)
-            $('#detailsBack').hide();
-        if (condicao == true)
-            $('#indexBack').hide();
+              
     });
 }
 

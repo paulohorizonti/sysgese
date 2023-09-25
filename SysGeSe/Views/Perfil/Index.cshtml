@@ -41,7 +41,7 @@
 
                                       
                                         <td class="prn-border-table" style="width: 5%; text-align: center">
-                                            @if (item.Status == 1)
+                                            @if (item.Status == true)
                                             {
 
                                                 <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Perfil", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>

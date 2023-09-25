@@ -31,7 +31,7 @@ namespace SysGeSe.Models.ViewModels
         }
 
        
-        public sbyte Status { get; set; }
+        public bool Status { get; set; }
 
        
     }

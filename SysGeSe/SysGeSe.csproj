@@ -2257,6 +2257,8 @@
     <Content Include="Views\Acoes\AcoesAcessos.cshtml" />
     <Content Include="Views\Acesso\Incluir.cshtml" />
     <Content Include="Views\Acesso\Details.cshtml" />
+    <Content Include="Views\Acesso\Edit.cshtml" />
+    <Content Include="Views\Acesso\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

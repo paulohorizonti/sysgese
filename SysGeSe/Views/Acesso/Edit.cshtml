@@ -2,22 +2,24 @@
     Layout = null;
 }
 
-@model SysGeSe.Models.ViewModels.AcessoViewModel
+@model SysGeSe.Models.Acesso
 @{
-    ViewBag.Title = "Incluir";
+    ViewBag.Title = "Edit";
 }
-@using (Html.BeginForm("Incluir", "Acesso", FormMethod.Post, new { @class = "needs-validation" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="container">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Incluir novo  ACESSO  </h4>
+                    <h4 class="modal-title">Editar ACESSO - ID: @Model.Id</h4>
 
                 </div>
                 <div class="modal-body">
                     @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+                 
+
 
                     <div class="row">
 
@@ -25,7 +27,7 @@
                         <div class="mb-3 col-lg-6">
                             <label class="form-label" for="idNivel">Perfil*</label>
 
-                            @Html.DropDownListFor(m => m.IdPerfil, new SelectList(ViewBag.Perfil, "Id", "Descricao"), "Escolha o Perfil", new { @class = "form-control  form-select", id = "idPerfil", name = "idPerfil" })
+                            @Html.DropDownListFor(m => m.IdPerfil, new SelectList(ViewBag.Perfil, "Id", "Descricao"), "Escolha o Perfil", new { @class = "form-control  form-select ", @disabled = true, id = "idPerfil", name = "idPerfil" })
                             @Html.ValidationMessageFor(m => m.IdPerfil, "", new { @class = "alert-danger" })
 
 
@@ -33,12 +35,12 @@
                         <div class="mb-3 col-lg-6">
                             <label class="form-label" for="idTabela">Tabela*</label>
 
-                            @Html.DropDownListFor(m => m.IdTabela, new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela", new { @class = "form-control  form-select", id = "idTabela", name = "idTabela" })
+                            @Html.DropDownListFor(m => m.IdTabela, new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela", new { @class = "form-control  form-select", @disabled = true, id = "idTabela", name = "idTabela" })
                             @Html.ValidationMessageFor(m => m.IdTabela, "", new { @class = "alert-danger" })
 
                         </div>
 
-                        
+
 
                     </div>
                     <div class="row">
@@ -69,31 +71,29 @@
                         </div>
 
                     </div>
-                              
+
                     <div class="row">
                         <div class="col-lg-12 mb-3">
                             <label class="form-label" for="obs">Observações</label>
-                                              
 
-                                @Html.TextAreaFor(m => m.Obs, new { @class = "form-control prn-inputs", placeholder = "Digite a observação, se houver", onkeyup = "maiuscula(this);", name = "obs", rows = "4", cols = "70", maxlength = "500" })
 
-                                                    
+                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control prn-inputs", placeholder = "Digite a observação, se houver", onkeyup = "maiuscula(this);", name = "obs", rows = "4", cols = "70", maxlength = "500" })
+
+
 
                         </div>
 
-                           
 
-                         
-                     </div>
 
 
                     </div>
 
+
+                </div>
+
                 <div class="modal-footer">
 
                     <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
-
-
 
                     <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
