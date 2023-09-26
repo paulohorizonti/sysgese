@@ -170,24 +170,30 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AcessoController.cs" />
+    <Compile Include="Controllers\FuncaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\TabelaController.cs" />
+    <Compile Include="Controllers\UnidadeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Acesso.cs" />
+    <Compile Include="Models\EstadoEnum.cs" />
+    <Compile Include="Models\Funcao.cs" />
     <Compile Include="Models\Perfil.cs" />
     <Compile Include="Models\Contexts\SysGeseDbContext.cs" />
     <Compile Include="Models\Tabela.cs" />
+    <Compile Include="Models\Unidade.cs" />
     <Compile Include="Models\ViewModels\AcessoViewModel.cs" />
+    <Compile Include="Models\ViewModels\FuncaoViewModel.cs" />
     <Compile Include="Models\ViewModels\PerfilViewModel.cs" />
     <Compile Include="Models\ViewModels\TabelaViewModel.cs" />
+    <Compile Include="Models\ViewModels\UnidadeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Adm\prn-admin.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -1944,6 +1950,9 @@
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\prn-admin.js" />
     <Content Include="Scripts\wz_tooltip.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -2259,9 +2268,17 @@
     <Content Include="Views\Acesso\Details.cshtml" />
     <Content Include="Views\Acesso\Edit.cshtml" />
     <Content Include="Views\Acesso\Delete.cshtml" />
+    <Content Include="Views\Funcao\Index.cshtml" />
+    <Content Include="Views\Funcao\Incluir.cshtml" />
+    <Content Include="Views\Funcao\Edit.cshtml" />
+    <Content Include="Views\Funcao\Details.cshtml" />
+    <Content Include="Views\Funcao\Delete.cshtml" />
+    <Content Include="Views\Unidade\Index.cshtml" />
+    <Content Include="Views\Unidade\Incluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Adm\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

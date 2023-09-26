@@ -38,7 +38,7 @@
 
                         </div>
 
-                        
+
 
                     </div>
                     <div class="row">
@@ -69,25 +69,25 @@
                         </div>
 
                     </div>
-                              
+
                     <div class="row">
                         <div class="col-lg-12 mb-3">
                             <label class="form-label" for="obs">Observações</label>
-                                              
 
-                                @Html.TextAreaFor(m => m.Obs, new { @class = "form-control prn-inputs", placeholder = "Digite a observação, se houver", onkeyup = "maiuscula(this);", name = "obs", rows = "4", cols = "70", maxlength = "500" })
 
-                                                    
+                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control prn-inputs", placeholder = "Digite a observação, se houver", onkeyup = "maiuscula(this);", name = "obs", rows = "4", cols = "70", maxlength = "500" })
+
+
 
                         </div>
 
-                           
 
-                         
-                     </div>
 
 
                     </div>
+
+
+                </div>
 
                 <div class="modal-footer">
 
@@ -108,3 +108,5 @@
 }
 
 @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-@model SysGeSe.Models.Tabela
+@model SysGeSe.Models.Funcao
 @{
     ViewBag.Title = "Delete";
 }
@@ -14,8 +14,8 @@
         <div class="modal-dialog prn-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Deletar TABELA - ID: @Model.Id</h4>
-                   
+                    <h4 class="modal-title">Deletar FUNÇÃO - ID: @Model.Id</h4>
+
                 </div>
                 <div class="modal-body">
                     <div class="mb-2 row g-0">
@@ -24,18 +24,19 @@
                                 Deseja realmente EXCLUIR esse registro?
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="row g-0">
-                        <div class="col-lg-4 mb-2">
-                            <label for="tabela" class="form-label">Tabela</label>
-                            <input type="text" disabled class="form-control prn-inputs" id="tabela" value="@Model.Nome">
+                        <div class="col-lg-6 mb-2">
+                            <label for="nome" class="form-label">Descrição</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="nome" value="@Model.Descricao">
                         </div>
 
-                        <div class="col-lg-4 mb-2">
+                        <div class="col-lg-2 mb-2">
                             <label for="cad" class="form-label">Cadastro</label>
                             <input type="text" disabled class="form-control prn-inputs" id="cad" value="@Model.DataCad">
+
                         </div>
 
                         <div class="col-lg-2 mb-2">
@@ -43,7 +44,6 @@
                             <input type="text" disabled class="form-control prn-inputs" id="cad" value="@Model.DataCad">
 
                         </div>
-
                         <div class="col-lg-2 mb-2">
                             <label for="atv" class="form-label">Ativo</label>
                             @if (Model.Status == true)
@@ -59,24 +59,8 @@
 
                         </div>
 
-                    </div>
-
-                    <div class="row g-0">
-                        <div class="mb-3 col-lg-12">
-                            @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
-                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control  prn-inputs", placeholder = "Digite a objservação, se houver", onkeyup = "maiuscula(this);", name = "nome", rows = "4", cols = "50", maxlength = "500", disabled = true })
-
-                        </div>
-
 
                     </div>
-
-
-
-
-
-
-
 
 
                 </div>
@@ -84,7 +68,7 @@
                 <div class="modal-footer">
 
                     <button type="submit" value="Excluir" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Confirmar</button>
-                    @*<a class="btn btn-primary" onclick="chamarEdit(@Model.Id,true)" style="border-color: #7a7a7a;"><i class="fas fa-edit p-1"></i> Excluir</a>*@
+
                     <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
                 </div>
@@ -94,3 +78,6 @@
 
     </div>
 }
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

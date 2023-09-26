@@ -6,14 +6,14 @@
 @{
     ViewBag.Title = "Incluir";
 }
-@using (Html.BeginForm("Incluir", "Perfil", FormMethod.Post, new { @class = "needs-validation" }))
+@using (Html.BeginForm("Incluir", "Funcao", FormMethod.Post, new { @class = "needs-validation" }))
 {
     @Html.AntiForgeryToken()
     <div class="container">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Incluir novo PERFIL</h4>
+                    <h4 class="modal-title">Incluir nova FUNÇÃO</h4>
 
                 </div>
                 <div class="modal-body">
@@ -24,14 +24,12 @@
 
                         @Html.LabelFor(m => m.Descricao, new { @class = "form-label" })
 
-                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control prn-inputs", placeholder = "Digite o nome do Perfil", onkeyup = "maiuscula(this);" })
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control prn-inputs", placeholder = "Digite o nome da Função", onkeyup = "maiuscula(this);" })
 
                         @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "alert-danger" })
 
 
                     </div>
-
-
 
 
 

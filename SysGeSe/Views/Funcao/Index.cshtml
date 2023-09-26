@@ -1,22 +1,21 @@
 ﻿@using PagedList.Mvc
-@model PagedList.IPagedList<SysGeSe.Models.Tabela>
-@{ ViewBag.Title = "Tabela"; }
+@model PagedList.IPagedList<SysGeSe.Models.Funcao>
+@{ ViewBag.Title = "Funcao"; }
 
 <div class="row g-0 p-1">
     <!--pegar o nome da controler-->
-   
+
     <div class="card prn-cardposition">
         <div class="card-header">
-            <span class="prn-alternative-font">Cadastro de Tabelas</span>
+            <span class="prn-alternative-font">Cadastro de FUNÇÕES</span>
             <a class="float-end dis-block btn btn-primary" onclick="chamarIncluir()"><i class="fas fa-plus-circle prn-font-icones-white"></i>  Novo </a>
         </div>
         <div class="card-body prn-card-geral">
             <div class="container-fluid prn-continer-geral">
 
-                @using (Html.BeginForm("Index", "Tabela", FormMethod.Get))
+                @using (Html.BeginForm("Index", "Funcao", FormMethod.Get))
                 {
-                       @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->
-                }
+                    @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->}
 
 
                 <div class="row">
@@ -27,7 +26,7 @@
                                 <tr>
                                     <th style="border-left: 1px solid #ccc !important;" class="prn-border-table-white">ID</th>
                                     <th class="prn-border-table-white">Nome</th>
-                                   <th style="text-align:center;" class="prn-border-table-white">Ativo</th>
+                                    <th style="text-align:center;" class="prn-border-table-white">Ativo</th>
                                     <th style="text-align:center;">Ação</th>
 
                                 </tr>
@@ -35,45 +34,44 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                    <tr>
-                        <td style="border-left: 1px solid #ccc !important;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
-                        <td class="prn-border-table" style="width: 75%;">@Html.DisplayFor(modelItem => item.Nome)</td>
-
-
-                     
-                        <td class="prn-border-table" style="width: 5%; text-align: center">
-                            @if (item.Status == true)
-                            {
-                           
-                                <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Tabela", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
-                            }
-                            else
-                            {
-                            
-                                <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Tabela", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
-                            }
+                                    <tr>
+                                        <td style="border-left: 1px solid #ccc !important;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
+                                        <td class="prn-border-table" style="width: 75%;">@Html.DisplayFor(modelItem => item.Descricao)</td>
 
 
 
-                        </td>
+                                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                                            @if (item.Status == true)
+                                            {
+
+                                                <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Funcao", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            }
+                                            else
+                                            {
+
+                                                <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Funcao", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            }
+
+
+
+                                        </td>
 
 
 
 
-                    <td class="prn-border-table" style="text-align: center;">
-                        <button data-toggle="tooltip" data-placement="left" data-title="Editar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
+                                        <td class="prn-border-table" style="text-align: center;">
+                                            <button data-toggle="tooltip" data-placement="left" data-title="Alterar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
 
 
-                        <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
-
-            
-                        @*<a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>*@
-                        <button  data-toggle="tooltip" data-placement="left" data-title="Apagar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="prn-font-icones fas fa-trash-alt p-1"></i> </button>
+                                            <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
 
 
-                    </td>
-                    </tr>
-}
+                                            <button data-toggle="tooltip" data-placement="left" data-title="Apagar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="prn-font-icones fas fa-trash-alt p-1"></i> </button>
+
+
+                                        </td>
+                                    </tr>
+                                }
                             </tbody> <!--fim do corpo da tabela-->
                         </table> <!--fim da tabela-->
                         <!--fim do form-->
@@ -133,6 +131,5 @@
         </div>
     </div>
 </div>
-
 
 

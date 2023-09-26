@@ -34,14 +34,14 @@
 
                     <div class="row">
                         <div class="col-lg-12 mb-3">
-                            <label class="form-label" for="incluir">Ativo</label><br />
+                            <label class="form-label" for="incluir">Ativo?</label><br />
 
                             <div class="form-check form-check-inline">
 
                                 @Html.CheckBoxFor(m => m.Status, new { @class = "form-check-input" })
-                                <label class="form-check-label" for="visualizar">Bloqueado</label>
+
                             </div>
-                          </div>
+                        </div>
 
                     </div>
 
@@ -52,10 +52,10 @@
                 <div class="modal-footer">
 
                     <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
-                
+
                     <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
-                  
+
 
                 </div>
 
@@ -64,5 +64,6 @@
 
     </div>
 }
-
 @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

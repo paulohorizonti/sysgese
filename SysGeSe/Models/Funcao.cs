@@ -3,23 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace SysGeSe.Models
 {
-    [Table("TABELA")]
-    public class Tabela
+    [Table("FUNCAO")]
+    public class Funcao
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("ID")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "O nome da TABELA é obrigatório", AllowEmptyStrings = false)]
-        [Column("TABELA")]
-        public string Nome { get; set; }
+        [Required(ErrorMessage = "O nome da FUNCAO é obrigatório", AllowEmptyStrings = false)]
+        [Column("DESCRICAO")]
+        public string Descricao { get; set; }
 
-      
-        [Column("OBSERVACAO")]
-        public string Obs { get; set; }
 
         [Column("DATA_CAD")]
         [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
@@ -43,12 +42,7 @@ namespace SysGeSe.Models
         [Column("STATUS")]
         public bool Status { get; set; }
 
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Acesso> Acessso { get; set; }
-
-
-
-
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

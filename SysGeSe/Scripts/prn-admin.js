@@ -53,7 +53,7 @@ function chamarDetails(id) {
 
     var controller = cont.innerText;
 
-    $("#modal").load("/"+controller+"/Details/" + id, function () {
+    $("#modal").load("/" + controller + "/Details/" + id, function () {
         $('#modal').modal("show");
     });
 }
@@ -95,9 +95,9 @@ function chamarEdit(id) {
 
     var controller = cont.innerText;
 
-    $("#modal").load("/" +controller+"/Edit/" + id, function () {
+    $("#modal").load("/" + controller + "/Edit/" + id, function () {
         $('#modal').modal("show");
-              
+
     });
 }
 
@@ -105,3 +105,26 @@ function maiuscula(z) {
     v = z.value.toUpperCase();
     z.value = v;
 }
+
+//mascaras
+$(document).ready(function () {
+    $('.date').mask('99/99/9999');
+    $('.time').mask('00:00:00');
+    $('#cep').mask('99.999-999');
+
+    $('.phone').mask('9999-9999');
+    $('#cnpj').mask('99.999.999/9999-99');
+    $('#telefone').mask('(99)99999-9999');
+    $(".senha").mask("xxxxxxxxx");
+    $("#cest").mask("99.999.99");
+    $("#ProcuraNCM").mask("9999.99.99");
+    $("#ncm").mask("9999.99.99");
+    $(".decimal").mask("9999,999");
+    $(".pr-aliq").mask("9999.999");
+});
+
+jQuery(function ($) {
+    $("#campoData").mask("99/99/9999");
+    $("#campoTelefone").mask("(999) 999-9999");
+
+});

@@ -479,6 +479,7 @@ namespace SysGeSe.Controllers
             }
             catch (Exception e)
             {
+                
                 resultado = "0"; //não foi possivel
                 return RedirectToAction("Index", new { param = resultado });
             }
