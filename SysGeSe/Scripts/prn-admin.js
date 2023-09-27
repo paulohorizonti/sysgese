@@ -111,10 +111,10 @@ $(document).ready(function () {
     $('.date').mask('99/99/9999');
     $('.time').mask('00:00:00');
     $('#cep').mask('99.999-999');
-
     $('.phone').mask('9999-9999');
-    $('#cnpj').mask('99.999.999/9999-99');
-    $('#telefone').mask('(99)99999-9999');
+    $('#Cnpj').mask('99.999.999/9999-99');
+    $('#Telefone').mask('(99)9999-9999');
+    $('#Celular').mask('(99)99999-9999');
     $(".senha").mask("xxxxxxxxx");
     $("#cest").mask("99.999.99");
     $("#ProcuraNCM").mask("9999.99.99");

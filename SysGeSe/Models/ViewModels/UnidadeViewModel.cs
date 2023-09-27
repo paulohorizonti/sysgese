@@ -7,7 +7,8 @@ namespace SysGeSe.Models.ViewModels
     public class UnidadeViewModel
     {
         public int Id { get; set; }
-       
+
+        [Required(ErrorMessage = "O nome da UNIDADE é obrigatório", AllowEmptyStrings = false)]
         public string Nome { get; set; }
 
         public string Cep { get; set; }

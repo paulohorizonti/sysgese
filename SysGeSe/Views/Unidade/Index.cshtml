@@ -41,26 +41,26 @@
                                 @foreach (var item in Model)
                                 {
                                 <tr>
-                                    <td style="border-left: 1px solid #ccc !important;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
-                                    <td class="prn-border-table" style="width: 20%;">@Html.DisplayFor(modelItem => item.Nome)</td>
-                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Cidade)</td>
+                                    <td style="border-left: 1px solid #ccc !important; width: 4%;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td class="prn-border-table" style="width: 18%;">@Html.DisplayFor(modelItem => item.Nome)</td>
+                                    <td class="prn-border-table" style="width: 25%;">@Html.DisplayFor(modelItem => item.Cidade)</td>
                                     <td class="prn-border-table" style="width: 2%;">@Html.DisplayFor(modelItem => item.Estado)</td>
-                                    <td class="prn-border-table" style="width: 5%;">@Html.DisplayFor(modelItem => item.Cnpj)</td>
-                                    <td class="prn-border-table" style="width: 5%;">@Html.DisplayFor(modelItem => item.Telefone)</td>
-                                    <td class="prn-border-table" style="width: 5%;">@Html.DisplayFor(modelItem => item.Celular)</td>
+                                    <td class="prn-border-table" style="width: 15%;">@Html.DisplayFor(modelItem => item.Cnpj)</td>
+                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Telefone)</td>
+                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Celular)</td>
 
 
 
-                                    <td class="prn-border-table" style="width: 5%; text-align: center">
+                                    <td class="prn-border-table" style="width: 3%; text-align: center">
                                         @if (item.Status == true)
                                         {
 
-                                            <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Tabela", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                            <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Unidade", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
                                         }
                                         else
                                         {
 
-                                            <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Tabela", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                            <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Unidade", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
                                         }
 
 

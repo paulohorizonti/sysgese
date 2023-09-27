@@ -49,7 +49,7 @@ namespace SysGeSe.Models
         [Column("OBSERVACOES")]
         public string Observacoes { get; set; }
 
-
+        [Display(Name = "Ativo?")]
         [Column("STATUS")]
         public bool Status { get; set; }
 
@@ -58,6 +58,7 @@ namespace SysGeSe.Models
         public DateTime? Data_Cad { get; set; }
 
         //Retorna a data com formato Brasil
+        [Display(Name = "Data do Cadastro")]
         public string DataCad
         {
             get { return Data_Cad?.ToShortDateString(); }
@@ -67,6 +68,7 @@ namespace SysGeSe.Models
         [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
         public DateTime? Data_Alt { get; set; }
 
+        [Display(Name = "Data da Alteração")]
         public string DataAlt
         {
             get { return Data_Alt?.ToShortDateString(); }

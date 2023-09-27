@@ -207,5 +207,107 @@ namespace SysGeSe.Controllers
 
 
         }
+
+        public ActionResult Edit(int? id, bool? atv)
+        {
+
+
+            if (atv != null)
+            {
+                var uniade_var = db.Unidades.Find(id);
+
+                if (uniade_var.Status == true)
+                {
+                    uniade_var.Status = false;
+                }
+                else
+                {
+                    uniade_var.Status = true;
+                }
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Unidade unidade = db.Unidades.Find(id);
+            if (unidade == null)
+            {
+                return HttpNotFound();
+            }
+            return View(unidade);
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "Id, Nome, Cep, Cidade, Estado, Logradouro, Cnpj, Ie, Bairro, Telefone, Celular, Observacoes")] Unidade model)
+        {
+            string resultado;
+
+            var unidade = db.Unidades.Find(model.Id);
+            if (unidade == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            unidade.Nome = model.Nome.ToUpper();
+            unidade.Logradouro = model.Logradouro;
+            unidade.Cep = model.Cep;
+            unidade.Cidade = model.Cidade;
+            unidade.Estado = model.Estado;
+            unidade.Cnpj = model.Cnpj;
+            unidade.Ie = model.Ie;
+            unidade.Bairro = model.Bairro;
+            unidade.Telefone = model.Telefone;
+            unidade.Celular = model.Celular;
+            unidade.Observacoes = model.Observacoes;
+            unidade.Data_Alt = DateTime.Now;
+
+
+            if (model.Observacoes!=null)
+            {
+                unidade.Observacoes = model.Observacoes.ToUpper();
+            }
+           
+           
+
+            try
+            {
+                db.SaveChanges();
+                resultado = "1";
+                return RedirectToAction("Index", new { param = resultado });
+            }
+            catch (Exception e)
+            {
+                resultado = "0";
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+
+
+
+
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Unidade unidade = db.Unidades.Find(id);
+            if (unidade == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(unidade);
+
+
+        }
     }
 }
