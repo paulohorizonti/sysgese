@@ -8,14 +8,15 @@
     <div class="card prn-cardposition">
         <div class="card-header">
             <span class="prn-alternative-font">Cadastro de Tabelas</span>
-           
+            <a class="float-end dis-block btn btn-primary" onclick="chamarIncluir()"><i class="fas fa-plus-circle prn-font-icones-white"></i>  Novo </a>
         </div>
         <div class="card-body prn-card-geral">
             <div class="container-fluid prn-continer-geral">
 
                 @using (Html.BeginForm("Index", "Tabela", FormMethod.Get))
                 {
-    @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->}
+                       @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->
+                }
 
 
                 <div class="row">
@@ -24,9 +25,9 @@
                         <table id="prn_table" class="table table table-light table-hover thead-dark table-striped">
                             <thead id="thead-tabela" class="prn-head-table-color">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                   <th style="text-align:center;">Ativo</th>
+                                    <th style="border-left: 1px solid #ccc !important;" class="prn-border-table-white">ID</th>
+                                    <th class="prn-border-table-white">Nome</th>
+                                   <th style="text-align:center;" class="prn-border-table-white">Ativo</th>
                                     <th style="text-align:center;">Ação</th>
 
                                 </tr>
@@ -35,30 +36,40 @@
                                 @foreach (var item in Model)
                                 {
                     <tr>
-                        <td class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td style="border-left: 1px solid #ccc !important;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
                         <td class="prn-border-table" style="width: 75%;">@Html.DisplayFor(modelItem => item.Nome)</td>
-                        @if (item.Status == 1)
-                        {
+
+
+                     
+                        <td class="prn-border-table" style="width: 5%; text-align: center">
+                            @if (item.Status == true)
+                            {
+                           
+                                <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Tabela", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                            }
+                            else
+                            {
+                            
+                                <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Tabela", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                            }
 
 
 
-        <td class="prn-border-table" style="width: 5%; text-align: center;"><i class="fas fa-smile prn-font-icones"></i></td>
- }
-    else
-    {
+                        </td>
 
-<td class="prn-border-table" style="width: 5%; text-align: center;"><i class="fas fa-frown prn-font-icones"></i></td>
-}
 
 
 
                     <td class="prn-border-table" style="text-align: center;">
-                        <button style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
+                        <button data-toggle="tooltip" data-placement="left" data-title="Editar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
 
-                        @*<a href="@Url.Action("Edit","Tabela",  new { id = item.Id })"> <i class="prn-font-icones fas fa-edit p-1"></i>  </a>*@
 
-                        <button style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
-                        <a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>
+                        <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
+
+            
+                        @*<a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>*@
+                        <button  data-toggle="tooltip" data-placement="left" data-title="Apagar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="prn-font-icones fas fa-trash-alt p-1"></i> </button>
+
 
                     </td>
                     </tr>
@@ -124,16 +135,4 @@
 </div>
 
 
-@*<script>
-        $(function () {
-            $(".details").click(function () {
-                var id = $(this).attr("data-id");
-                alert('chegou aqui');
-                $("#modal").load("/Tabela/Details?id=" + id, function () {
-                    $("#modal").modal().show();
-                })
-            });
 
-
-        })
-    </script>*@

@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.Perfil
+@{
+    ViewBag.Title = "Edit";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar PERFIL - ID:@Model.Id</h4>
+
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+
+
+                    <div class="mb-3 row">
+                        <div class="col-lg-12 mb-2">
+                            @Html.LabelFor(m => m.Descricao, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control prn-inputs" })
+                            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "alert-danger" })
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-12 mb-3">
+                            <label class="form-label" for="incluir">Ativo?</label><br />
+
+                            <div class="form-check form-check-inline">
+
+                                @Html.CheckBoxFor(m => m.Status, new { @class = "form-check-input" })
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

@@ -13,34 +13,34 @@ namespace SysGeSe.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Selecione uma PERFIL", AllowEmptyStrings = false)]
-        [ForeignKey("Perfil")]
+        [ForeignKey("Perfis")]
         [Column("PERFIL_ID")]
         public int IdPerfil { get; set; }
 
         [Required(ErrorMessage = "Selecione uma TABELA", AllowEmptyStrings = false)]
-        [ForeignKey("Tabela")]
+        [ForeignKey("Tabelas")]
         [Column("TABELA_ID")]
         public int IdTabela { get; set; }
 
         [Required(ErrorMessage = "Informe se o acesso de VISUALIZAÇÃO é permitido", AllowEmptyStrings = false)]
         [Column("TABELA_V")]
-        public sbyte Tabela_V { get; set; }
+        public bool Tabela_V { get; set; }
 
         [Required(ErrorMessage = "Informe se o acesso de INCLUSÃO é permitido", AllowEmptyStrings = false)]
         [Column("TABELA_I")]
-        public sbyte Tabela_I { get; set; }
+        public bool Tabela_I { get; set; }
 
         [Required(ErrorMessage = "Informe se o acesso de ALTERAÇÃO é permitido", AllowEmptyStrings = false)]
         [Column("TABELA_A")]
-        public sbyte Tabela_A { get; set; }
+        public bool Tabela_A { get; set; }
 
         [Required(ErrorMessage = "Informe se o acesso de EXCLUSÃO é permitido", AllowEmptyStrings = false)]
         [Column("TABELA_E")]
-        public sbyte Tabela_E { get; set; }
+        public bool Tabela_E { get; set; }
 
               
        
-        [Column("OBSERVACAO")]
+        [Column("TABELA_OBS")]
         public string Obs { get; set; }
 
         [Column("DATA_CAD")]
@@ -70,10 +70,10 @@ namespace SysGeSe.Models
 
 
         [JsonIgnore]
-        public virtual Tabela Tabela{ get; set; }
+        public virtual Tabela Tabelas{ get; set; }
 
         [JsonIgnore]
-        public virtual Perfil Perfil { get; set; }
+        public virtual Perfil Perfis { get; set; }
 
     }
 }

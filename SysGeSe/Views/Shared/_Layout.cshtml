@@ -8,12 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="~/Content/Img/logo.ico" />
 
-     <title id="titulo" class="prn-titulo">@ViewBag.Title</title>
-  
+    <title id="titulo" class="prn-titulo">@ViewBag.Title</title>
+
     <!-- Custom styles for this template-->
     <link href="~/Content/Principal/css/sb-admin-2.css" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/toastr.css" rel="stylesheet" />
 
     <!-- Custom fonts for this template-->
 
@@ -25,7 +26,6 @@
             transition: .90s !important;
         }
     </style>
-
 
 </head>
 
@@ -70,13 +70,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-tasks"></i>
-                    <span>Unidades</span>
+                    <span>Administrativos</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Unidades</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Unidade")">Unidades</a>
                         <a class="collapse-item" href="cards.html">Servidores</a>
-                        <a class="collapse-item" href="utilities-color.html">Funções</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Funcao")">Funções</a>
                         <a class="collapse-item" href="utilities-color.html">Artigos</a>
 
                     </div>
@@ -97,7 +97,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         @*<a class="collapse-item" href="utilities-color.html">Perfis</a>*@
                         <a class="collapse-item" href="@Url.Action("Index","Tabela")">Tabelas</a>
-                        <a class="collapse-item" href="utilities-border.html">Acessos</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Acesso")">Acessos</a>
+                        <a class="collapse-item" href="@Url.Action("Index","Perfil")">Perfis</a>
 
                     </div>
                 </div>
@@ -214,7 +215,7 @@
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Procurar por..."
+                            <input id="procurar" type="text" class="form-control bg-light border-0 small" placeholder="Procurar por..."
                                    aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary prn-btn" type="button">
@@ -238,8 +239,8 @@
                                  aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                               placeholder="Search for..." aria-label="Search"
+                                        <input id="procurar_2" type="text" class="form-control bg-light border-0 small"
+                                               placeholder="Procuar por..." aria-label="Search"
                                                aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
@@ -343,6 +344,10 @@
                 <!-- End of Topbar -->
                 <!-- Begin Page Content - aqui vai o reder body -->
                 <div class="container-fluid g-0">
+
+
+
+
                     @RenderBody()
 
 
@@ -403,19 +408,59 @@
 
 
 
-
-
-
     @Scripts.Render("~/bundles/jquery")
 
 
 
 
-    <script src="~/Scripts/bootstrap.js"></script>
 
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
 
     <script src="~/Content/Principal/vendor/jquery/jquery.min.js"></script>
+
+    <script src="~/Scripts/jquery.maskedinput.min.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script>
+        //mascaras
+        $(document).ready(function () {
+            $('.date').mask('99/99/9999');
+            $('.time').mask('00:00:00');
+            $('#cep').mask('99.999-999');
+
+            $('.phone').mask('9999-9999');
+            $('#cnpj').mask('99.999.999/9999-99');
+            $('#telefone').mask('(99)99999-9999');
+            $(".senha").mask("xxxxxxxxx");
+            $("#cest").mask("99.999.99");
+            $("#ProcuraNCM").mask("9999.99.99");
+            $("#ncm").mask("9999.99.99");
+            $(".decimal").mask("9999,999");
+            $(".pr-aliq").mask("9999.999");
+        });
+
+        jQuery(function ($) {
+            $("#campoData").mask("99/99/9999");
+            $("#campoTelefone").mask("(999) 999-9999");
+
+        });
+
+
+    </script>
+
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Content/Principal/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/wz_tooltip.js"></script>
+
+
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 
 
 
@@ -424,8 +469,13 @@
     <script src="~/Content/Principal/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="~/Content/Principal/js/sb-admin-2.js"></script>
-    <script src="~/Content/Adm/prn-admin.js"></script>
+    <script src="~/Scripts/prn-admin.js"></script>
+
+
+
+
     @RenderSection("scripts", required: false)
+
 </body>
 
 </html>

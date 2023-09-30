@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.ViewModels.UnidadeViewModel
+@{
+    ViewBag.Title = "Incluir";
+}
+@using (Html.BeginForm("Incluir", "Unidade", FormMethod.Post, new { @class = "needs-validation" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog prn-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Incluir nova UNIDADE</h4>
+
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+
+
+                    <div class="row">
+                        <div class="mb-2 col-lg-4">
+                            @Html.LabelFor(m => m.Nome, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control prn-inputs", placeholder = "Digite o nome da Unidade", onkeyup = "maiuscula(this);" })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "alert-danger" })
+                        </div>
+
+                        <div class="mb-2 col-lg-8">
+                            @Html.LabelFor(m => m.Logradouro, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Logradouro, new { @class = "form-control prn-inputs", placeholder = "Digite o Logradouro da Unidade", onkeyup = "maiuscula(this);" })
+                          
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-2 col-lg-2">
+                            @Html.LabelFor(m => m.Cep, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Cep, new { @class = "form-control prn-inputs", placeholder = "Digite o CEP", onkeyup = "maiuscula(this);", name = "cep", id = "cep" })
+                        
+                        </div>
+                        <div class="mb-2 col-lg-4">
+                            @Html.LabelFor(m => m.Bairro, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Bairro, new { @class = "form-control prn-inputs", placeholder = "Digite o Bairro", onkeyup = "maiuscula(this);" })
+                          
+                        </div>
+                        <div class="mb-2 col-lg-4">
+                            @Html.LabelFor(m => m.Cidade, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control prn-inputs", placeholder = "Digite a Cidade", onkeyup = "maiuscula(this);" })
+                          
+                        </div>
+
+                        <div class="mb-2 col-lg-2">
+                            @Html.LabelFor(m => m.Estado, new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.Estado, new SelectList(Enum.GetValues(typeof(SysGeSe.Models.EstadosEnun))), "UF", htmlAttributes: new { @class = "form-select form-control prn-inputs", id = "estado", name = "estado" })
+                          
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-2 col-lg-4">
+                            @Html.LabelFor(m => m.Cnpj, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Cnpj, new { @class = "form-control prn-inputs", placeholder = "Digite o CNPJ", onkeyup = "maiuscula(this);" })
+                          
+                        </div>
+                        <div class="mb-2 col-lg-4">
+                            @Html.LabelFor(m => m.Ie, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Ie, new { @class = "form-control prn-inputs", placeholder = "Digite a Insc. Estadual", onkeyup = "maiuscula(this);" })
+           
+                        </div>
+                        <div class="mb-2 col-lg-2">
+                            @Html.LabelFor(m => m.Telefone, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control prn-inputs", placeholder = "Fixo", onkeyup = "maiuscula(this);" })
+                      
+                        </div>
+
+                        <div class="mb-2 col-lg-2">
+                            @Html.LabelFor(m => m.Celular, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Celular, new { @class = "form-control prn-inputs", placeholder = "Celular", onkeyup = "maiuscula(this);" })
+
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="mb-2 col-lg-12">
+                            @Html.LabelFor(m => m.Observacoes, new { @class = "form-label" })
+                            @Html.TextAreaFor(m => m.Observacoes, new { @class = "form-control  prn-inputs", placeholder = "Digite as observações, se houver", onkeyup = "maiuscula(this);", name = "nome", rows = "4", cols = "50", maxlength = "500" })
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

@@ -1,0 +1,148 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<SysGeSe.Models.Unidade>
+@{ ViewBag.Title = "Unidade"; }
+
+<div class="row g-0 p-1">
+    <!--pegar o nome da controler-->
+
+    <div class="card prn-cardposition">
+        <div class="card-header">
+            <span class="prn-alternative-font">Cadastro de Tabelas</span>
+            <a class="float-end dis-block btn btn-primary" onclick="chamarIncluir()"><i class="fas fa-plus-circle prn-font-icones-white"></i>  Novo </a>
+        </div>
+        <div class="card-body prn-card-geral">
+            <div class="container-fluid prn-continer-geral">
+
+                @using (Html.BeginForm("Index", "Unidade", FormMethod.Get))
+                {
+                    @RenderPage("~/Views/Acoes/AcoesTabelas.cshtml") <!--Renderiza os botões de ação-->
+                }
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <table id="prn_table" class="table table table-light table-hover thead-dark table-striped">
+                            <thead id="thead-tabela" class="prn-head-table-color">
+                                <tr>
+                                    <th style="border-left: 1px solid #ccc !important;" class="prn-border-table-white">ID</th>
+                                    <th class="prn-border-table-white">Nome</th>
+                                    <th class="prn-border-table-white">Cidade</th>
+                                    <th class="prn-border-table-white">Estado</th>
+                                    <th class="prn-border-table-white">CNPJ</th>
+                                    <th class="prn-border-table-white">Telefone</th>
+                                    <th class="prn-border-table-white">Celular</th>
+                                    <th style="text-align:center;" class="prn-border-table-white">Ativo</th>
+                                    <th style="text-align:center;">Ação</th>
+
+                                </tr>
+                            </thead><!--fim do cabeçaçalho da tabela-->
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td style="border-left: 1px solid #ccc !important; width: 4%;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td class="prn-border-table" style="width: 18%;">@Html.DisplayFor(modelItem => item.Nome)</td>
+                                    <td class="prn-border-table" style="width: 25%;">@Html.DisplayFor(modelItem => item.Cidade)</td>
+                                    <td class="prn-border-table" style="width: 2%;">@Html.DisplayFor(modelItem => item.Estado)</td>
+                                    <td class="prn-border-table" style="width: 15%;">@Html.DisplayFor(modelItem => item.Cnpj)</td>
+                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Telefone)</td>
+                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Celular)</td>
+
+
+
+                                    <td class="prn-border-table" style="width: 3%; text-align: center">
+                                        @if (item.Status == true)
+                                        {
+
+                                            <a data-toggle="tooltip" data-placement="left" data-title="Bloquear" href="@Url.Action("Edit", "Unidade", new { id = item.Id, atv = true })"><i class="fas fa-check-circle prn-font-icones"></i></a>
+                                        }
+                                        else
+                                        {
+
+                                            <a data-toggle="tooltip" data-placement="left" data-title="Liberar" href="@Url.Action("Edit", "Unidade", new { id = item.Id, atv = false })"><i style="color:red !important;" class="fas fa-times-circle prn-font-icones"></i></a>
+                                        }
+
+
+
+                                    </td>
+
+
+
+
+                                    <td class="prn-border-table" style="text-align: center;">
+                                        <button data-toggle="tooltip" data-placement="left" data-title="Editar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
+
+
+                                        <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
+
+
+                                        @*<a href="@Url.Action("Delete","Tabela",  new { id = item.Id })"><i class=" prn-font-icones fas fa-trash-alt p-1"></i>  </a>*@
+                                        <button data-toggle="tooltip" data-placement="left" data-title="Apagar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="prn-font-icones fas fa-trash-alt p-1"></i> </button>
+
+
+                                    </td>
+                                </tr>
+                                }
+                            </tbody> <!--fim do corpo da tabela-->
+                        </table> <!--fim da tabela-->
+                        <!--fim do form-->
+
+                    </div><!--fim da col-->
+                </div><!--fim da row-->
+            </div><!--fim conteinar-fluid-->
+
+
+
+        </div>
+        <div class="card-footer text-body-secondary prn-card-footer">
+            <div class="d-flex">
+                <div class="mr-auto p-2">
+                    <p>
+                        <span class="pr-fontalternativa"> Página @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</span>
+                    </p>
+
+                </div>
+
+
+                <div style="float:right;" class="p-2">
+                    @Html.PagedListPager(
+                                                     Model, page => Url.Action("Index", new
+                                                     {
+                                                         page,
+                                                         inputStatus = ViewBag.Status,
+                                                         filtroNome = ViewBag.FiltroCorrenteTabela,
+                                                         numeroLinhas = ViewBag.NumeroLinhas,
+                                                     }),
+                                                        new PagedListRenderOptions()
+                                                        {
+                                                            LiElementClasses = new List<string>
+                                                             {
+                               "page-item",
+                               "prn-botoes-geral"
+
+             }
+                                                        }
+
+                                                    )
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="MODAL"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

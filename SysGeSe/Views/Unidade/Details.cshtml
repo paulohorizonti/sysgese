@@ -1,0 +1,138 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.Unidade
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<div class="container">
+    <div class="modal-dialog prn-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalhes da UNIDADE - ID: @Model.Id</h4>
+
+            </div>
+            <div class="modal-body">
+
+
+                <div class="mb-3 row">
+                    <div class="mb-2 col-lg-4">
+                        @Html.LabelFor(m => m.Nome, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control prn-inputs",  disabled = true })
+
+                    </div>
+
+                    <div class="mb-2 col-lg-8">
+                        @Html.LabelFor(m => m.Logradouro, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Logradouro, new { @class = "form-control prn-inputs",  disabled = true })
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.Cep, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Cep, new { @class = "form-control prn-inputs", name = "cep", id = "cep", disabled = true })
+
+                    </div>
+                    <div class="mb-2 col-lg-4">
+                        @Html.LabelFor(m => m.Bairro, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Bairro, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+                    <div class="mb-2 col-lg-4">
+                        @Html.LabelFor(m => m.Cidade, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control prn-inputs",  disabled = true })
+
+                    </div>
+
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.Estado, new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.Estado, new SelectList(Enum.GetValues(typeof(SysGeSe.Models.EstadosEnun))), "UF", htmlAttributes: new { @class = "form-select form-control prn-inputs", id = "estado", name = "estado", disabled = true })
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="mb-2 col-lg-4">
+                        @Html.LabelFor(m => m.Cnpj, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Cnpj, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+                    <div class="mb-2 col-lg-4">
+                        @Html.LabelFor(m => m.Ie, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Ie, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.Telefone, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.Celular, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Celular, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="mb-2 col-lg-12">
+                        @Html.LabelFor(m => m.Observacoes, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.Observacoes, new { @class = "form-control  prn-inputs", name = "nome", rows = "4", cols = "50", maxlength = "500", disabled=true })
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.DataCad, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.DataCad, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.DataAlt, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.DataAlt, new { @class = "form-control prn-inputs", disabled = true })
+
+                    </div>
+                    <div class="mb-2 col-lg-2">
+                        @Html.LabelFor(m => m.Status, new { @class = "form-label" })
+                        @if (Model.Status == true)
+                        {
+
+
+                            <input type="text" disabled class="form-control" id="atv" value="SIM">
+                        }
+                        else
+                        {
+                            <input style="color:red !important;" type="text" disabled class="form-control" id="atv" value="NÃO">
+                        }
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <a class="btn btn-primary" onclick="chamarEdit(@Model.Id,true)" style="border-color: #7a7a7a;"><i class="fas fa-edit p-1"></i> Editar</a>
+                <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+            </div>
+
+        </div> <!--fim modal content-->
+    </div> <!--fim modal dialog-->
+
+</div>

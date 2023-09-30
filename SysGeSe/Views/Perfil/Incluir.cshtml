@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.ViewModels.PerfilViewModel
+@{
+    ViewBag.Title = "Incluir";
+}
+@using (Html.BeginForm("Incluir", "Perfil", FormMethod.Post, new { @class = "needs-validation" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Incluir novo PERFIL</h4>
+
+                </div>
+                <div class="modal-body">
+                    @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+
+
+                    <div class="mb-3 g-0 col-lg-12">
+
+                        @Html.LabelFor(m => m.Descricao, new { @class = "form-label" })
+
+                        @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control prn-inputs", placeholder = "Digite o nome do Perfil", onkeyup = "maiuscula(this);" })
+
+                        @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "alert-danger" })
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+
+
+
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using SysGeSe.Models;
+using SysGeSe.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +47,6 @@ namespace SysGeSe.Controllers
         public ActionResult Index(
             string param,
             string ordenacao, 
-            string qtdSalvos, 
-            string qtdNaoSalvos,
             string procuraNome,
             string filtroNome,
             string procuraAtivo,
@@ -78,11 +77,29 @@ namespace SysGeSe.Controllers
 
             //Resultado do CREATE-EDIT-DELETE
             string resultado = param;
+            if(resultado == "0")
+            {
+                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+            }
+            if(resultado == "1")
+            {
+                TempData["success"] = "Registro salvo com sucesso!!";
+            }
+            if(resultado == "2")
+            {
+                TempData["info"] = "Registro Deletado com sucesso!!";
+            }
+            if(resultado == "3")
+            {
+                TempData["warning"] = "Já existe um registro com essa descrição!!";
+            }
+          
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
             procuraNome = (filtroNome != null) ? filtroNome : procuraNome; //procura por nome
             procuraAtivo = (filtroAtivo != null) ? filtroAtivo : procuraAtivo; //procura por nome
 
+            ViewBag.MensagemGravar = (param != null) ? param : "";
 
             //numero de linhas e status (ativo=1 ou inativo=0)
             ViewBag.NumeroLinhas = (numeroLinhas != null) ? numeroLinhas : 10;
@@ -111,13 +128,13 @@ namespace SysGeSe.Controllers
             switch (ViewBag.Status)
             {
                 case 0://somente os inativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 0).ToList();
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == false).ToList();
                     break;
                 case 1: //somente ativos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 1).ToList();
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == true).ToList();
                     break;
                 case 2: //todos
-                    this.listTabelas = this.listTabelas.Where(s => s.Status == 0 || s.Status == 1).ToList();
+                    this.listTabelas = this.listTabelas.Where(s => s.Status == false || s.Status == true).ToList();
                     break;
             }
 
@@ -136,13 +153,87 @@ namespace SysGeSe.Controllers
             int numeroPagina = (page ?? 1);
 
             ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
-            ViewBag.RegSalvos = (qtdSalvos != null) ? qtdSalvos : "";
-            ViewBag.RegNaoSalvos = (qtdNaoSalvos != null) ? qtdNaoSalvos : "";
 
-           
+          
 
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
+
+
+
+        public ActionResult Incluir()
+        {
+            
+            var model = new TabelaViewModel();
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Incluir(TabelaViewModel model)
+        {
+            string resultado = "";
+           
+            model.Data_Cad = DateTime.Now;
+            model.Data_Alt = DateTime.Now;
+            model.Status = true;
+          
+            model.Obs = (model.Obs == null) ? "" : model.Obs;
+
+           
+
+            if (ModelState.IsValid)
+            {
+
+
+                var tabela = from s in db.Tabelas select s;
+
+                string nome = model.Nome.Trim(); //tira espaços em branco
+                nome = nome.ToUpper(); //passa para maiusculo
+
+                tabela = tabela.Where(s => s.Nome.Contains(nome));
+
+                if (tabela.Count() > 0)
+                {
+                    resultado = "3";
+                    
+                    return RedirectToAction("Index", new { param = resultado});
+
+                }
+                var tabela_nova = new Tabela();
+
+                tabela_nova.Nome = model.Nome.ToUpper(); //passa para maiusculo
+                tabela_nova.Obs = model.Obs.ToUpper();
+                tabela_nova.Status = model.Status;
+                tabela_nova.Data_Cad = model.Data_Cad;
+                tabela_nova.Data_Alt = model.Data_Alt;
+
+                
+
+                try
+                {
+                    db.Tabelas.Add(tabela_nova);
+                    db.SaveChanges();
+                    resultado = "1";
+                    return RedirectToAction("Index", new { param = resultado });
+                }
+                catch (Exception e)
+                {
+                    string ex = e.ToString();
+                    
+                    resultado = "0";
+                }
+            }
+           
+
+                return View(model);
+            
+
+            
+        }
+
 
         /// <summary>
         /// 
@@ -165,9 +256,70 @@ namespace SysGeSe.Controllers
 
         }
 
-
-        public ActionResult Edit(int? id)
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Tabela tabela = db.Tabelas.Find(id);
+            if (tabela == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(tabela);
+        }
+
+        // POST: Produtos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? Id)
+        {
+            string resultado;
+            Tabela tabela = db.Tabelas.Find(Id);
+            db.Tabelas.Remove(tabela);
+
+            try
+            {
+                db.SaveChanges();
+                resultado = "2"; //2 = deletado
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+            catch (Exception e)
+            {
+                resultado = "0"; //não foi possivel
+                return RedirectToAction("Index", new { param = resultado });
+            }
+
+
+        }
+        //EDIÇÃO
+        public ActionResult Edit(int? id, bool? atv)
+        {
+
+
+            if (atv != null)
+            {
+                var tabela_var = db.Tabelas.Find(id);
+
+                if (tabela_var.Status == true)
+                {
+                    tabela_var.Status = false;
+                }
+                else
+                {
+                    tabela_var.Status = true;
+                }
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -181,24 +333,35 @@ namespace SysGeSe.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id,Nome")] Tabela model)
+        public ActionResult Edit([Bind(Include = "Id,Nome, Obs")] Tabela model)
         {
+            string resultado;
           
                 var tabela = db.Tabelas.Find(model.Id);
                 if (tabela == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                tabela.Nome = model.Nome;
+                tabela.Nome = model.Nome.ToUpper();
+                tabela.Obs = model.Obs.ToUpper();
                 tabela.Data_Alt = DateTime.Now;
 
-               
-
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            
-            
-            return View(model);
+                resultado = "1";
+                return RedirectToAction("Index", new { param = resultado });
+            }
+            catch (Exception e)
+            {
+                resultado = "0";
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+
+           
+
+
         }
     }
 }

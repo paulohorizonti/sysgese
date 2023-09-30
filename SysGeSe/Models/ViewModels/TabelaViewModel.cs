@@ -10,7 +10,7 @@ namespace SysGeSe.Models.ViewModels
         [Required(ErrorMessage = "O nome da TABELA é obrigatório", AllowEmptyStrings = false)]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "O nome da TABELA é obrigatório", AllowEmptyStrings = false)]
+      
         public string Obs { get; set; }
 
         [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
@@ -30,6 +30,6 @@ namespace SysGeSe.Models.ViewModels
         {
             get { return Data_Alt?.ToShortDateString(); }
         }
-        public sbyte Status { get; set; }
+        public bool Status { get; set; }
     }
 }

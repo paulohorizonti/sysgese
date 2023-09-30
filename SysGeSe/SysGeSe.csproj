@@ -169,23 +169,31 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AcessoController.cs" />
+    <Compile Include="Controllers\FuncaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\TabelaController.cs" />
+    <Compile Include="Controllers\UnidadeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Acesso.cs" />
+    <Compile Include="Models\EstadoEnum.cs" />
+    <Compile Include="Models\Funcao.cs" />
     <Compile Include="Models\Perfil.cs" />
     <Compile Include="Models\Contexts\SysGeseDbContext.cs" />
     <Compile Include="Models\Tabela.cs" />
+    <Compile Include="Models\Unidade.cs" />
     <Compile Include="Models\ViewModels\AcessoViewModel.cs" />
+    <Compile Include="Models\ViewModels\FuncaoViewModel.cs" />
     <Compile Include="Models\ViewModels\PerfilViewModel.cs" />
     <Compile Include="Models\ViewModels\TabelaViewModel.cs" />
+    <Compile Include="Models\ViewModels\UnidadeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Adm\prn-admin.js" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -205,9 +213,11 @@
     <Content Include="Content\Img\fundlg.png" />
     <Content Include="Content\Img\fundo-login-22.png" />
     <Content Include="Content\Img\logo-2022.ico" />
+    <Content Include="Content\Img\logo-sitema-opaco.png" />
     <Content Include="Content\Img\logo.ico" />
     <Content Include="Content\Img\logo_sistema.png" />
     <Content Include="Content\Img\logo_transp.png" />
+    <Content Include="Content\Img\luxa.org-opacity-changed-logo-sitema-opaco.png" />
     <Content Include="Content\Img\sistema.png" />
     <Content Include="Content\LoginForm\css\main.css" />
     <Content Include="Content\LoginForm\css\util.css" />
@@ -1938,6 +1948,12 @@
     <Content Include="Content\Principal\vendor\jquery\jquery.min.js" />
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\prn-admin.js" />
+    <Content Include="Scripts\wz_tooltip.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2202,6 +2218,8 @@
     <Content Include="Content\Principal\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\Principal\vendor\jquery\jquery.min.map" />
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2215,6 +2233,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\snippets.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2234,9 +2255,32 @@
     <Content Include="Views\Acoes\AcoesTabelas.cshtml" />
     <Content Include="Views\Tabela\Details.cshtml" />
     <Content Include="Views\Tabela\Edit.cshtml" />
+    <Content Include="Views\Tabela\Delete.cshtml" />
+    <Content Include="Views\Tabela\incluir.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Perfil\Incluir.cshtml" />
+    <Content Include="Views\Perfil\Details.cshtml" />
+    <Content Include="Views\Perfil\Edit.cshtml" />
+    <Content Include="Views\Perfil\Delete.cshtml" />
+    <Content Include="Views\Acesso\Index.cshtml" />
+    <Content Include="Views\Acoes\AcoesAcessos.cshtml" />
+    <Content Include="Views\Acesso\Incluir.cshtml" />
+    <Content Include="Views\Acesso\Details.cshtml" />
+    <Content Include="Views\Acesso\Edit.cshtml" />
+    <Content Include="Views\Acesso\Delete.cshtml" />
+    <Content Include="Views\Funcao\Index.cshtml" />
+    <Content Include="Views\Funcao\Incluir.cshtml" />
+    <Content Include="Views\Funcao\Edit.cshtml" />
+    <Content Include="Views\Funcao\Details.cshtml" />
+    <Content Include="Views\Funcao\Delete.cshtml" />
+    <Content Include="Views\Unidade\Index.cshtml" />
+    <Content Include="Views\Unidade\Incluir.cshtml" />
+    <Content Include="Views\Unidade\Edit.cshtml" />
+    <Content Include="Views\Unidade\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Adm\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

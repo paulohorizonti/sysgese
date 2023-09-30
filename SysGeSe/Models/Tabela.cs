@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace SysGeSe.Models
 {
@@ -43,7 +41,7 @@ namespace SysGeSe.Models
         }
 
         [Column("STATUS")]
-        public sbyte Status { get; set; }
+        public bool Status { get; set; }
 
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

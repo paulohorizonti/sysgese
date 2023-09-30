@@ -1,0 +1,125 @@
+﻿<div class="row">
+    <div class="container-fluid">
+        <input type="hidden" id="success" value="@TempData["success"]" />
+        <input type="hidden" id="info" value="@TempData["info"]" />
+        <input type="hidden" id="warning" value="@TempData["warning"]" />
+        <input type="hidden" id="error" value="@TempData["error"]" />
+       
+    </div>
+   
+</div>
+<!--Parte da procura-->
+<div class="row">
+    <!--primeira coluna-->
+    <div class="form-group  col-lg-4">
+        <label for="ProcuraPerfil" class="form-label">Perfil</label>
+        <div class="input-group">
+
+            <!--select-->
+            <select style="max-width: 100% !important;" class="form-select" id="ProcuraPerfil" name="ProcuraPerfil">
+
+                @foreach (var item in ViewBag.Perfil)
+                {
+                    if (item.Id == ViewBag.FiltroCorrentePerfilInt)
+                    {
+    <option selected value="@item.Id">@item.Descricao</option> }
+                    else
+                    {
+    <option value="@item.Id">@item.Descricao</option>}
+
+                }
+            </select>
+
+
+            <button class="btn btn-primary" type="submit" id="button-addon2"><i class="prn-font-icones-white fas fa-search"></i></button>
+        </div>
+
+    </div>
+    <div class="form-group  col-lg-4">
+        <label for="ProcuraTabela" class="form-label">Tabela</label>
+        <div class="input-group">
+
+                  
+            @Html.DropDownList("ProcuraTabela", new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela para filtrar", new { @style = "max-width: 100% !important;",  @class = "form-select" })
+
+
+            <button class="btn btn-primary" type="submit" id="button-addon2"><i class="prn-font-icones-white fas fa-search"></i></button>
+        </div>
+
+    </div>
+
+    <div class="form-group  col-lg-2">
+        <label for="numeroLinhas" class="form-label">Linhas</label>
+        <div class="input-group">
+            <select class="form-select" id="numeroLinhas" name="numeroLinhas">
+
+                @if (ViewBag.NumeroLinhas == 10)
+                {
+
+    <option selected>10</option>
+                    <option>20</option>
+                                    <option>30</option>
+ }
+                                else
+                                {
+                                    if (ViewBag.NumeroLinhas == 20)
+                                    {
+
+                    <option>10</option>
+                                        <option selected>20</option>
+                                                            <option>30</option>
+ }
+                                                        else
+                                                        {
+                                        <option>10</option>
+                                                            <option>20</option>
+                                                                                <option selected>30</option>
+}
+
+                                                                        }
+
+
+            </select>
+            <button class="btn btn-primary" type="submit"><i class="prn-font-icones-white fas fa-check-circle"></i></button>
+        </div>
+    </div>
+
+
+    <div class="form-group col-lg-2">
+        <label for="inputStatus" class="form-label">Status</label>
+        <div class="input-group">
+            <select class="form-select" id="inputStatus" name="inputStatus">
+
+                @if (ViewBag.Status == 1)
+                {
+
+    <option value="1" selected>Ativos</option>
+                    <option value="0">Inativos</option>
+                                    <option value="2">Todos</option>
+ }
+                                else
+                                {
+                                    if (ViewBag.Status == 0)
+                                    {
+
+                    <option value="1">Ativos</option>
+                                        <option selected value="0">Inativos</option>
+                                                            <option value="2">Todos</option>
+ }
+                                                        else
+                                                        {
+                                        <option value="1">Ativos</option>
+                                                            <option value="0">Inativos</option>
+                                                                                <option selected value="2">Todos</option>
+}
+
+                                                                        }
+
+
+
+
+            </select>
+            <button class="btn btn-primary" type="submit"><i class="prn-font-icones-white fas fa-check-circle"></i></button>
+        </div>
+    </div>
+</div>

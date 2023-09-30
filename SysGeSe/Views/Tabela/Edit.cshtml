@@ -13,55 +13,47 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Editar Tabela</h4>
+                    <h4 class="modal-title">Editar TABELA - ID: @Model.Id</h4>
 
                 </div>
                 <div class="modal-body">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Id)
+                    @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
 
-                    <div class="mb-3 row">
-                        @*<label for="staticEmail" class="col-sm-2 col-form-label">IDs</label>*@
-                        @Html.LabelFor(m => m.Id, new { @class = "col-sm-2 col-form-label" })
-                        <div class="col-sm-10">
-                            @Html.TextBoxFor(m => m.Id, new { @class = "form-control-plaintext", @readonly = true })
-
-                            @*<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">*@
+                    <div class="row g-0">
+                        <div class="mb-3 col-lg-12">
+                            @Html.LabelFor(m => m.Nome, new { @class = "form-label" })
+                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control  prn-inputs" })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "alert-danger" })
                         </div>
+
+
                     </div>
-                    <div class="mb-3 row">
-                        @Html.LabelFor(m => m.Nome, new { @class = "col-sm-2 col-form-label" })
-
-                        <div class="col-sm-10">
-
-                            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                    <div class="row g-0">
+                        <div class="mb-3 col-lg-12">
+                            @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
+                            @Html.TextAreaFor(m => m.Obs, new { @class = "form-control  prn-inputs", placeholder = "Digite a objservação, se houver", onkeyup = "maiuscula(this);", name = "nome", rows = "4", cols = "50", maxlength = "500" })
 
                         </div>
+
+
                     </div>
 
-                    <div class="mb-3 row">
-                        @Html.LabelFor(m => m.Obs, new { @class = "col-sm-2 col-form-label" })
 
-                        <div class="col-sm-10">
 
-                            @Html.TextBoxFor(m => m.Obs, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
 
-                        </div>
-                    </div>
+
 
 
                 </div>
 
                 <div class="modal-footer">
-                    
-                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
-                    <a class="btn btn-dark" id="indexBack" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
+                    <button type="submit" value="Salvar alterações" class="btn btn-primary"><i class="fas fa-save p-1"></i>Salvar</button>
+                    @*<a class="btn btn-dark" id="indexBack" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>*@
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
 
                     @*<a class="btn btn-primary" href="@Url.Action("Edit","Tabela",  new { id = Model.Id })"><i class="fas fa-edit p-1"></i> Editar  </a>
-                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>*@
+                        <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>*@
 
                 </div>
 
@@ -70,3 +62,7 @@
 
     </div>
 }
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquerymaskedinput")
+@Scripts.Render("~/bundles/jquerymask")

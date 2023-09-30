@@ -1,0 +1,172 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model SysGeSe.Models.Acesso
+@{
+    ViewBag.Title = "Delete";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="modal-dialog prn-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Deletar ACESSO - ID: @Model.Id</h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2 row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-danger" role="alert">
+                                Deseja realmente EXCLUIR esse registro?
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row g-0">
+
+                        <div class="col-md-4 mb-2">
+                            <label for="tabela" class="form-label">Tabela</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="tabela" value="@Model.Tabelas.Nome">
+                        </div>
+                        <div class="col-4 mb-2">
+                            <label for="perfil" class="form-label">Perfil</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="perfil" value="@Model.Perfis.Descricao">
+                        </div>
+                        <div class="col-2 mb-2">
+                            <label for="dataCad" class="form-label">Cadastro</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="dataCad" value="@Model.DataCad">
+                        </div>
+                        <div class="col-2 mb-2">
+                            <label for="dataAlt" class="form-label">Alteração</label>
+                            <input type="text" disabled class="form-control prn-inputs" id="dataAlt" value="@Model.DataAlt">
+                        </div>
+
+
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-2 mb-2">
+                            <label for="atv_v" class="form-label">Visualizar</label>
+
+                            @if (Model.Tabela_V == true)
+                            {
+
+                                <input type="text" disabled class="form-control prn-inputs" id="atv_v" value="SIM">
+
+                            }
+                            else
+                            {
+                                <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_v" value="NÃO">
+                            }
+
+
+                        </div>
+                        <div class="col-lg-2 mb-2">
+                            <label for="atv_i" class="form-label">Incluir</label>
+
+
+                            @if (Model.Tabela_I == true)
+                            {
+
+
+                                <input type="text" disabled class="form-control prn-inputs" id="atv_i" value="SIM">
+                            }
+                            else
+                            {
+                                <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_i" value="NÃO">
+                            }
+
+
+                        </div>
+
+                        <div class="col-lg-2 mb-2">
+                            <label for="atv_a" class="form-label">Alterar</label>
+
+
+                            @if (Model.Tabela_A == true)
+                            {
+
+
+                                <input type="text" disabled class="form-control prn-inputs" id="atv_a" value="SIM">
+                            }
+                            else
+                            {
+                                <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_a" value="NÃO">
+                            }
+
+
+                        </div>
+
+                        <div class="col-lg-2 mb-2">
+                            <label for="atv_e" class="form-label">Excluir</label>
+
+
+
+                            @if (Model.Tabela_E == true)
+                            {
+
+
+                                <input type="text" disabled class="form-control prn-inputs" id="atv_e" value="SIM">
+                            }
+                            else
+                            {
+                                <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv_e" value="NÃO">
+                            }
+
+                        </div>
+
+                        <div class="col-lg-2 mb-2">
+                            <label for="atv" class="form-label">Ativo</label>
+
+
+                            @if (Model.Status == 1)
+                            {
+
+
+                                <input type="text" disabled class="form-control prn-inputs" id="atv" value="SIM">
+                            }
+                            else
+                            {
+                                <input style="color:red;" type="text" disabled class="form-control prn-inputs" id="atv" value="NÃO">
+                            }
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="row g-0">
+                        <div class="col-12 mb-2">
+                            <label for="obs" class="form-label">Observação</label>
+                            <textarea disabled class="form-control prn-inputs" cols="70" id="Obs" maxlength="500" name="Obs" rows="4">@Model.Obs</textarea>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </div> <!--fim do modal body-->
+
+                <div class="modal-footer">
+
+                    <button type="submit" value="Excluir" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Confirmar</button>
+
+                    <a class="btn btn-dark" onclick="fecharModal()" style="border-color: #7a7a7a;"><i class="fas fa-solid fa-arrow-left"></i> Voltar</a>
+
+                </div>
+
+            </div> <!--fim modal content-->
+        </div> <!--fim modal dialog-->
+
+    </div>
+}
