@@ -309,5 +309,45 @@ namespace SysGeSe.Controllers
 
 
         }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+             Unidade unidade = db.Unidades.Find(id);
+            if (unidade == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(unidade);
+        }
+
+        // POST: Produtos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? Id)
+        {
+            string resultado;
+            Unidade unidade = db.Unidades.Find(Id);
+            db.Unidades.Remove(unidade);
+
+            try
+            {
+                db.SaveChanges();
+                resultado = "2"; //2 = deletado
+                return RedirectToAction("Index", new { param = resultado });
+
+            }
+            catch (Exception e)
+            {
+                resultado = "0"; //não foi possivel
+                return RedirectToAction("Index", new { param = resultado });
+            }
+
+
+        }
     }
 }
