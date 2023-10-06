@@ -26,8 +26,9 @@ namespace SysGeSe.Controllers
             db = new SysGeseDbContext();
         }
 
-      
+
         // GET: Unidade
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Index(
             string param,
             string ordenacao,
@@ -310,6 +311,7 @@ namespace SysGeSe.Controllers
 
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -328,6 +330,7 @@ namespace SysGeSe.Controllers
         // POST: Produtos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult DeleteConfirmed(int? Id)
         {
             string resultado;
