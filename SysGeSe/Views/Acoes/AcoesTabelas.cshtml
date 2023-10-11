@@ -60,7 +60,7 @@
     <!--primeira coluna-->
     <div class="form-group  col-lg-8">
         <label for="procuraNome" class="form-label">Procura por NOME</label>
-        <div class="input-group">
+        <div class="input-group input-group-sm">
 
             @if (ViewBag.FiltroCorrenteTabela == null)
             {
@@ -77,7 +77,7 @@ else
 
     <div class="form-group  col-lg-2">
         <label for="numeroLinhas" class="form-label">Linhas</label>
-        <div class="input-group">
+        <div class="input-group input-group-sm">
             <select class="form-select" id="numeroLinhas" name="numeroLinhas" aria-label="Example select with button addon">
 
                 @if (ViewBag.NumeroLinhas == 10)
@@ -111,8 +111,8 @@ else
 
     <div class="form-group col-lg-2">
         <label for="inputStatus" class="form-label">Status</label>
-        <div class="input-group">
-            <select class="form-select" id="inputStatus" name="inputStatus">
+        <div class="input-group input-group-sm">
+            <select class="form-select " id="inputStatus" name="inputStatus">
 
                 @if (ViewBag.Status == 1)
                 {

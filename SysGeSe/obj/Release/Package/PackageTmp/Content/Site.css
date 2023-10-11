@@ -20,6 +20,9 @@ textarea {
     max-width: 280px;
 }
 
+
+
+
 /*Alterações epecificas prn : PAULO ROBERTO NOGUEIRA*/
 .prn-btn {
     color: #fff !important;
@@ -43,4 +46,99 @@ textarea {
     background-repeat: no-repeat;
     background-position: center;
    
+}
+
+.prn-cardposition {
+    margin-top:-25px !important;
+
+}
+.prn-head-table-color {
+    background: #063970 !important;
+    color: white !important;
+    
+}
+
+.prn-card-footer {
+    --bs-card-cap-padding-y: 0.0rem !important;
+   
+}
+.prn-card-geral {
+    --bs-card-spacer-y: 0.5rem !important;
+    --bs-card-spacer-x: 0.5rem !important;
+}
+
+.prn-continer-geral {
+    --bs-gutter-x: 0 !important;
+    --bs-gutter-y: 0 !important;
+}
+
+.prn-font-icones {
+    font-size: 1.3em;
+    color: #063970 !important;
+   
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.prn-border-table{
+    border-right: 1px solid #cccc !important;
+}
+.prn-border-table-white {
+    border-right: 1px solid #fff !important;
+}
+
+.prn-inputs {
+    max-width: 100% !important;
+}
+
+.prn-modal {
+    --bs-modal-width: 1000px !important;
+}
+
+.prn-font-icones-white {
+    font-size: 1.3em !important;
+    color: #ffffff !important;
+    background: none !important;
+}
+
+.prn-alternative-font{
+    font-size:1.5em;
+}
+
+.prn-botoes-geral{
+    border:1px solid #cccc;
+    padding-right:10px;
+    padding-left:10px;
+    border-radius:5px;
+}
+
+li.active {
+    background-color: #063970;
+    font-size: 1.1em;
+    color: #fff !important;
+}
+
+
+li.active.page-item :hover {
+    background-color: #ff6a00;
+    font-size: 1.1em;
+    color: #fff !important;
+}
+
+.prn-button-sem {
+    background-color:#ff000000 !important;
+}
+.toast-top-right {
+    top: 60px !important;
+    right: 12px !important;
+}
+.field-validation-error {
+    padding: 5px 5px 5px 5px !important;
+    margin-top:20px !important;
+    border-radius: 5px !important;
+}
+.input-validation-error{
+    margin-bottom: 0.5rem !important;
 }
