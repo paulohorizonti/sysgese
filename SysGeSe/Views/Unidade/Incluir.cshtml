@@ -39,7 +39,7 @@
 
                     <div class="row">
                         <div class="mb-2 col-lg-2">
-                            @Html.LabelFor(m => m.Cep, new { @class = "form-label" })
+                            @Html.LabelFor(m => m.Cep, new { @class = "form-label", @for = "cep" })
                             @Html.TextBoxFor(m => m.Cep, new { @class = "form-control prn-inputs", placeholder = "Digite o CEP", onkeyup = "maiuscula(this);", name = "cep", id = "cep" })
                         
                         </div>
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="mb-2 col-lg-2">
-                            @Html.LabelFor(m => m.Estado, new { @class = "form-label" })
+                            @Html.LabelFor(m => m.Estado, new { @class = "form-label", @for="estado" })
                             @Html.DropDownListFor(m => m.Estado, new SelectList(Enum.GetValues(typeof(SysGeSe.Models.EstadosEnun))), "UF", htmlAttributes: new { @class = "form-select form-control prn-inputs", id = "estado", name = "estado" })
                           
                         </div>

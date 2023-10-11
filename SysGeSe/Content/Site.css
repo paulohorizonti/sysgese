@@ -28,6 +28,8 @@ textarea {
     color: #fff !important;
     background-color: #063970 !important; /*CORES PADRAO*/
     border-color: #063970 !important;
+    --bs-btn-padding-x: 0.45rem !important;
+    --bs-btn-padding-y: 0.275rem !important;
 }
     .prn-btn:hover {
         color: #fff !important;
@@ -52,11 +54,7 @@ textarea {
     margin-top:-25px !important;
 
 }
-.prn-head-table-color {
-    background: #063970 !important;
-    color: white !important;
-    
-}
+
 
 .prn-card-footer {
     --bs-card-cap-padding-y: 0.0rem !important;
@@ -72,11 +70,85 @@ textarea {
     --bs-gutter-y: 0 !important;
 }
 
+/* Fontes com medias queries*/
 .prn-font-icones {
-    font-size: 1.3em;
+    font-size: 0.9em;
     color: #063970 !important;
+}
+.prn-font-dados {
+    font-size: 0.9em;
+    color: #000000fa !important;
+}
+
+.prn-head-table-color {
+    font-size: 0.9em;
+    background: #063970 !important;
+    color: white !important;
+}
+.prn-alternative-font {
+    font-size: 1.2em;
+}
+
+.prn-font-button {
+    font-size: 0.9em !important;
+}
+
+
+
+.prn-font-icones-white {
+    font-size: 0.8em !important;
+    color: #ffffff !important;
+    background: none !important;
+}
+
+
+
+
+@media (max-width: 900px) {
+    .prn-font-dados {
+        font-size: 0.6em;
+        color: #000000fa !important;
+    }
+
+    .prn-font-icones {
+        font-size: 0.8em;
+        color: #063970 !important;
+    }
+
+    .prn-head-table-color {
+        font-size: 0.6em;
+        background: #063970 !important;
+        color: white !important;
+    }
+    .prn-alternative-font {
+        font-size: 0.9em !important;
+    }
+    .prn-font-button {
+        font-size: 0.6em !important;
+    }
+
+
+    .prn-font-icones-white {
+        font-size: 0.7em !important;
+        color: #ffffff !important;
+        background: none !important;
+    }
+
    
 }
+/* para colunas das tabelas: tira as colunas de acordo com a resulução da tela*/
+@media screen and (max-width:900px) {
+    .prn-menos-colunas {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
 
 a{
     text-decoration: none !important;
@@ -97,15 +169,7 @@ a{
     --bs-modal-width: 1000px !important;
 }
 
-.prn-font-icones-white {
-    font-size: 1.3em !important;
-    color: #ffffff !important;
-    background: none !important;
-}
 
-.prn-alternative-font{
-    font-size:1.5em;
-}
 
 .prn-botoes-geral{
     border:1px solid #cccc;

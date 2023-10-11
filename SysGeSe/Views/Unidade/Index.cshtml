@@ -8,7 +8,7 @@
     <div class="card prn-cardposition">
         <div class="card-header">
             <span class="prn-alternative-font">Cadastro de UNIDADES</span>
-            <a class="float-end dis-block btn btn-primary" onclick="chamarIncluir()"><i class="fas fa-plus-circle prn-font-icones-white"></i>  Novo </a>
+            <a class="prn-btn prn-font-button float-end dis-block btn btn-primary" onclick="chamarIncluir()"><i class="fas fa-plus-circle prn-font-icones-white"></i>  Novo </a>
         </div>
         <div class="card-body prn-card-geral">
             <div class="container-fluid prn-continer-geral">
@@ -25,12 +25,12 @@
                         <table id="prn_table" class="table table table-light table-hover thead-dark table-striped">
                             <thead id="thead-tabela" class="prn-head-table-color">
                                 <tr>
-                                    <th style="border-left: 1px solid #ccc !important;" class="prn-border-table-white">ID</th>
+                                    <th style="border-left: 1px solid #ccc !important;" class="prn-menos-colunas prn-border-table-white">ID</th>
                                     <th class="prn-border-table-white">Nome</th>
-                                    <th class="prn-border-table-white">Cidade</th>
-                                    <th class="prn-border-table-white">Estado</th>
-                                    <th class="prn-border-table-white">CNPJ</th>
-                                    <th class="prn-border-table-white">Telefone</th>
+                                    <th class="prn-menos-colunas prn-border-table-white">Cidade</th>
+                                    <th class="prn-menos-colunas prn-border-table-white">Estado</th>
+                                    <th class="prn-menos-colunas prn-border-table-white">CNPJ</th>
+                                    <th class="prn-menos-colunas prn-border-table-white">Telefone</th>
                                     <th class="prn-border-table-white">Celular</th>
                                     <th style="text-align:center;" class="prn-border-table-white">Ativo</th>
                                     <th style="text-align:center;">Ação</th>
@@ -41,17 +41,17 @@
                                 @foreach (var item in Model)
                                 {
                                 <tr>
-                                    <td style="border-left: 1px solid #ccc !important; width: 4%;" class="prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
-                                    <td class="prn-border-table" style="width: 18%;">@Html.DisplayFor(modelItem => item.Nome)</td>
-                                    <td class="prn-border-table" style="width: 25%;">@Html.DisplayFor(modelItem => item.Cidade)</td>
-                                    <td class="prn-border-table" style="width: 2%;">@Html.DisplayFor(modelItem => item.Estado)</td>
-                                    <td class="prn-border-table" style="width: 15%;">@Html.DisplayFor(modelItem => item.Cnpj)</td>
-                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Telefone)</td>
-                                    <td class="prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Celular)</td>
+                                    <td style="border-left: 1px solid #ccc !important; width: 3%;" class="prn-menos-colunas prn-font-dados prn-border-table">@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td class="prn-font-dados prn-border-table" style="width: 16%;">@Html.DisplayFor(modelItem => item.Nome)</td>
+                                    <td class="prn-menos-colunas prn-font-dados prn-border-table" style="width: 20%;">@Html.DisplayFor(modelItem => item.Cidade)</td>
+                                    <td class="prn-menos-colunas prn-font-dados prn-border-table" style="width: 2%;">@Html.DisplayFor(modelItem => item.Estado)</td>
+                                    <td class="prn-menos-colunas prn-font-dados prn-border-table" style="width: 15%;">@Html.DisplayFor(modelItem => item.Cnpj)</td>
+                                    <td class="prn-menos-colunas prn-font-dados prn-border-table" style="width: 10%;">@Html.DisplayFor(modelItem => item.Telefone)</td>
+                                    <td class="prn-font-dados prn-border-table" style="width: 12%;">@Html.DisplayFor(modelItem => item.Celular)</td>
 
 
 
-                                    <td class="prn-border-table" style="width: 3%; text-align: center">
+                                    <td class="prn-border-table" style="width: 4%; text-align: center">
                                         @if (item.Status == true)
                                         {
 
@@ -119,7 +119,8 @@
                                                             LiElementClasses = new List<string>
                                                              {
                                "page-item",
-                               "prn-botoes-geral"
+                               "prn-botoes-geral",
+                               "prn-font-button"
 
              }
                                                         }
