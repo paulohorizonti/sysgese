@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    
+</head>
+
+<body>
+
+    <div>
+
+    
+       
+
+            <!-- Main Content -->
+            <div>
+
+                <!-- Topbar -->
+                <!-- End of Topbar -->
+                <!-- Begin Page Content - aqui vai o reder body -->
+                <div class="container-fluid g-0">
+
+
+
+
+                    @RenderBody()
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+
+       
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquerymaskedinput")
+        @Scripts.Render("~/bundles/jquerymask")
+
+
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

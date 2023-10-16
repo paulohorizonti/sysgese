@@ -28,7 +28,7 @@ namespace SysGeSe.Controllers
 
 
         // GET: Unidade
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        
         public ActionResult Index(
             string param,
             string ordenacao,
@@ -40,25 +40,39 @@ namespace SysGeSe.Controllers
             int? page,
             int? numeroLinhas)
         {
-            //Resultado do CREATE-EDIT-DELETE
-            string resultado = param;
-                      
+            string resultado = "";
+           
+            if(TempData["resultado"] ==null)
+            {
+                resultado = null;
+            }
+            else
+            {               
+                //Resultado do CREATE-EDIT-DELETE
+                resultado = (param != null) ? param : "";
+            }
+         
+
 
             if (resultado == "0")
             {
                 TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                TempData["resultado"] = null;
             }
             if (resultado == "1")
             {
                 TempData["success"] = "Registro salvo com sucesso!!";
+                TempData["resultado"] = null;
             }
             if (resultado == "2")
             {
                 TempData["info"] = "Registro Deletado com sucesso!!";
+                TempData["resultado"] = null;
             }
             if (resultado == "3")
             {
                 TempData["warning"] = "Já existe um registro com essa descrição!!";
+                TempData["resultado"] = null;
             }
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
@@ -121,7 +135,7 @@ namespace SysGeSe.Controllers
 
             int numeroPagina = (page ?? 1);
 
-            ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
+      
 
             return View(this.listUnidades.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
 
@@ -162,7 +176,7 @@ namespace SysGeSe.Controllers
                 if (unidade.Count() > 0)
                 {
                     resultado = "3";
-
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
 
                 }
@@ -192,6 +206,7 @@ namespace SysGeSe.Controllers
                     db.Unidades.Add(unidade_nova);
                     db.SaveChanges();
                     resultado = "1";
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
                 catch (Exception e)
@@ -280,11 +295,13 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "1";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
                 resultado = "0";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -341,12 +358,14 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "2"; //2 = deletado
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
             catch (Exception e)
             {
                 resultado = "0"; //não foi possivel
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
 

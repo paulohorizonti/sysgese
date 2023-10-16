@@ -14,6 +14,7 @@ namespace SysGeSe.Controllers
          //Objego context
         readonly SysGeseDbContext db;
 
+       
         //Lista geral dos registros
         List<Tabela> listTabelas = new List<Tabela>();
         List<Acesso> listaAcessos = new List<Acesso>();

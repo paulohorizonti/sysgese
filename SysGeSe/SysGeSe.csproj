@@ -176,6 +176,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\TabelaController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
+    <Compile Include="Controllers\Util\Util.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2278,6 +2279,7 @@
     <Content Include="Views\Unidade\Edit.cshtml" />
     <Content Include="Views\Unidade\Details.cshtml" />
     <Content Include="Views\Unidade\Delete.cshtml" />
+    <Content Include="Views\Shared\_Layout_Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

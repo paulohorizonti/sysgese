@@ -44,6 +44,8 @@ namespace SysGeSe.Controllers
          * page: pagina que esta sendo exibida
          * numeroLinhas: quantas linhas devem ser exibidas na view sss
          */
+
+     
         public ActionResult Index(
             string param,
             string ordenacao, 
@@ -76,24 +78,20 @@ namespace SysGeSe.Controllers
             //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Tabela.Equals(this.Tabela)).ToList();
 
             //Resultado do CREATE-EDIT-DELETE
-            string resultado = param;
-            if(resultado == "0")
+            string resultado = "";
+
+            if (TempData["resultado"] == null)
             {
-                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                resultado = null;
             }
-            if(resultado == "1")
+            else
             {
-                TempData["success"] = "Registro salvo com sucesso!!";
+                //Resultado do CREATE-EDIT-DELETE
+                resultado = (param != null) ? param : "";
             }
-            if(resultado == "2")
-            {
-                TempData["info"] = "Registro Deletado com sucesso!!";
-            }
-            if(resultado == "3")
-            {
-                TempData["warning"] = "Já existe um registro com essa descrição!!";
-            }
-          
+
+            //chamar aqui a resultado
+            verificaResultado(resultado);
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
             procuraNome = (filtroNome != null) ? filtroNome : procuraNome; //procura por nome
@@ -217,6 +215,7 @@ namespace SysGeSe.Controllers
                     db.Tabelas.Add(tabela_nova);
                     db.SaveChanges();
                     resultado = "1";
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
                 catch (Exception e)
@@ -284,6 +283,7 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "2"; //2 = deletado
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -350,11 +350,13 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "1";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
                 resultado = "0";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -362,6 +364,44 @@ namespace SysGeSe.Controllers
            
 
 
+        }
+
+        public void verificaResultado(string resultado)
+        {
+
+            switch (resultado)
+            {
+                case "0":
+                    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                    break;
+                case "1":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "2":
+                    TempData["info"] = "Registro Deletado com sucesso!!";
+                    break;
+                case "3":
+                    TempData["warning"] = "Já existe um registro com essa descrição!!";
+                    break;
+               
+            }
+            TempData["resultado"] = null;
+            //if (resultado == "0")
+            //{
+            //    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+            //}
+            //if (resultado == "1")
+            //{
+            //    TempData["success"] = "Registro salvo com sucesso!!";
+            //}
+            //if (resultado == "2")
+            //{
+            //    TempData["info"] = "Registro Deletado com sucesso!!";
+            //}
+            //if (resultado == "3")
+            //{
+            //    TempData["warning"] = "Já existe um registro com essa descrição!!";
+            //}
         }
     }
 }

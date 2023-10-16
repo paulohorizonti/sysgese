@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     $(function () {
         var displayMessage = function (message, msgType) {
             toastr.options = {
@@ -20,22 +21,28 @@
             };
             toastr[msgType](message);
         };
-
-        if ($('#success').val()) {
-            displayMessage($('#success').val(), 'success');
-        }
-        if ($('#info').val()) {
-            displayMessage($('#info').val(), 'info');
-        }
-        if ($('#warning').val()) {
-            displayMessage($('#warning').val(), 'warning');
-        }
-        if ($('#error').val()) {
-            displayMessage($('#error').val(), 'error');
-        }
+       
+            if ($('#success').val()) {
+                displayMessage($('#success').val(), 'success');
+                
+            }
+            if ($('#info').val()) {
+                displayMessage($('#info').val(), 'info');
+            }
+            if ($('#warning').val()) {
+                displayMessage($('#warning').val(), 'warning');
+            }
+            if ($('#error').val()) {
+                displayMessage($('#error').val(), 'error');
+            }
+          
+        
+       
     });
 
 });
+
+
 
 
 
