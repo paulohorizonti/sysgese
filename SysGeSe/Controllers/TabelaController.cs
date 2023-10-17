@@ -152,8 +152,6 @@ namespace SysGeSe.Controllers
 
             ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
 
-          
-
             return View(this.listTabelas.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
 
@@ -179,9 +177,7 @@ namespace SysGeSe.Controllers
             model.Status = true;
           
             model.Obs = (model.Obs == null) ? "" : model.Obs;
-
-           
-
+                     
             if (ModelState.IsValid)
             {
 
@@ -196,7 +192,7 @@ namespace SysGeSe.Controllers
                 if (tabela.Count() > 0)
                 {
                     resultado = "3";
-                    
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado});
 
                 }
@@ -220,9 +216,9 @@ namespace SysGeSe.Controllers
                 }
                 catch (Exception e)
                 {
-                    string ex = e.ToString();
-                    
+                    string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
                     resultado = "0";
+                    TempData["resultado"] = resultado;
                 }
             }
            
@@ -252,7 +248,6 @@ namespace SysGeSe.Controllers
          
             return View(tabela);
           
-
         }
 
         public ActionResult Delete(int? id)
@@ -289,7 +284,10 @@ namespace SysGeSe.Controllers
             }
             catch (Exception e)
             {
+                string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
+
                 resultado = "0"; //não foi possivel
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
 
@@ -386,22 +384,7 @@ namespace SysGeSe.Controllers
                
             }
             TempData["resultado"] = null;
-            //if (resultado == "0")
-            //{
-            //    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
-            //}
-            //if (resultado == "1")
-            //{
-            //    TempData["success"] = "Registro salvo com sucesso!!";
-            //}
-            //if (resultado == "2")
-            //{
-            //    TempData["info"] = "Registro Deletado com sucesso!!";
-            //}
-            //if (resultado == "3")
-            //{
-            //    TempData["warning"] = "Já existe um registro com essa descrição!!";
-            //}
+          
         }
     }
 }

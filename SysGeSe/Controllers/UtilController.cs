@@ -1,20 +1,22 @@
-﻿using PagedList;
-using SysGeSe.Models;
-using SysGeSe.Models.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SysGeSe.Controllers.Util
+namespace SysGeSe.Controllers
 {
-    public class Util : Controller
+    public class UtilController : Controller
     {
-        
-        public static void verificaResultado(string resultado)
+        // GET: Util
+        public ActionResult Index()
         {
+            return View();
+        }
+
+        public  void VerificaResultado(string resultado)
+        {
+            //Verifica cada estado do resultado na estrutura switch-case e atribui a mensagem ao TempData correspondente
             switch (resultado)
             {
                 case "0":
@@ -24,7 +26,7 @@ namespace SysGeSe.Controllers.Util
                     TempData["success"] = "Registro salvo com sucesso!!";
                     break;
                 case "2":
-                    TempData["info"] = "Registro Deletado com sucesso!!";
+                    TempData["success"] = "Registro salvo com sucesso!!";
                     break;
                 case "3":
                     TempData["warning"] = "Já existe um registro com essa descrição!!";

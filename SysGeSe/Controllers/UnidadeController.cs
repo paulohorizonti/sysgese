@@ -16,7 +16,7 @@ namespace SysGeSe.Controllers
         //Objego context
         readonly SysGeseDbContext db;
         List<Unidade> listUnidades = new List<Unidade>();
-       
+      
 
         //Nome da tabela EM UMA CONSTANTE
         public const string NomeTabela = "UNIDADE";
@@ -51,29 +51,11 @@ namespace SysGeSe.Controllers
                 //Resultado do CREATE-EDIT-DELETE
                 resultado = (param != null) ? param : "";
             }
-         
 
+            //Verifica o resultado da solicitacao CRUD
+            VerificaResultado(resultado);
 
-            if (resultado == "0")
-            {
-                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
-                TempData["resultado"] = null;
-            }
-            if (resultado == "1")
-            {
-                TempData["success"] = "Registro salvo com sucesso!!";
-                TempData["resultado"] = null;
-            }
-            if (resultado == "2")
-            {
-                TempData["info"] = "Registro Deletado com sucesso!!";
-                TempData["resultado"] = null;
-            }
-            if (resultado == "3")
-            {
-                TempData["warning"] = "Já existe um registro com essa descrição!!";
-                TempData["resultado"] = null;
-            }
+           
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
             procuraNome  = (filtroNome != null) ? filtroNome : procuraNome; //procura por nome
@@ -142,6 +124,7 @@ namespace SysGeSe.Controllers
 
         }
 
+       
 
         public ActionResult Incluir()
         {
@@ -370,6 +353,31 @@ namespace SysGeSe.Controllers
             }
 
 
+        }
+
+        private void VerificaResultado(string resultado)
+        {
+            switch (resultado)
+            {
+                case "0":
+                    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+
+                    break;
+                case "1":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+
+                    break;
+                case "2":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    TempData["resultado"] = null;
+                    break;
+                case "3":
+                    TempData["warning"] = "Já existe um registro com essa descrição!!";
+
+                    break;
+               
+            }
+            TempData["resultado"] = null;
         }
     }
 }

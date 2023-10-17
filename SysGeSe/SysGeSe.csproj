@@ -176,7 +176,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\TabelaController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
-    <Compile Include="Controllers\Util\Util.cs" />
+    <Compile Include="Controllers\UtilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2284,6 +2284,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Adm\" />
+    <Folder Include="Views\Util\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,51 +2,32 @@
 <html lang="pt-br">
 
 <head>
-
-    
+   
 </head>
 
-<body>
+            <body>
 
-    <div>
+                <div>
+                   
+                        <div>
 
-    
-       
-
-            <!-- Main Content -->
-            <div>
-
-                <!-- Topbar -->
-                <!-- End of Topbar -->
-                <!-- Begin Page Content - aqui vai o reder body -->
-                <div class="container-fluid g-0">
+                          
+                            <div class="container-fluid g-0">
 
 
+                                @RenderBody()
 
+                            </div>
 
-                    @RenderBody()
-
-
+                        </div>
+                     
                 </div>
-                <!-- /.container-fluid -->
+              
+                    @Scripts.Render("~/bundles/jqueryval")
+                    @Scripts.Render("~/bundles/jquerymaskedinput")
+                    @Scripts.Render("~/bundles/jquerymask")
+                    @RenderSection("scripts", required: false)
 
-            </div>
-
-
-       
-
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/bundles/jquerymaskedinput")
-        @Scripts.Render("~/bundles/jquerymask")
-
-
-
-
-    @RenderSection("scripts", required: false)
-
-</body>
+            </body>
 
 </html>

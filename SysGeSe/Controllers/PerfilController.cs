@@ -19,6 +19,7 @@ namespace SysGeSe.Controllers
         List<Perfil> listPerfis = new List<Perfil>();
         List<Acesso> listaAcessos = new List<Acesso>();
 
+      
         //Nome da Perfil EM UMA CONSTANTE
         public const string NomePerfil = "PERFIL";
 
@@ -78,23 +79,22 @@ namespace SysGeSe.Controllers
             //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Perfil.Equals(this.Perfil)).ToList();
 
             //Resultado do CREATE-EDIT-DELETE
-            string resultado = param;
-            if (resultado == "0")
+            //Resultado do CREATE-EDIT-DELETE
+            string resultado = "";
+
+            if (TempData["resultado"] == null)
             {
-                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                resultado = null;
             }
-            if (resultado == "1")
+            else
             {
-                TempData["success"] = "Registro salvo com sucesso!!";
+                //Resultado do CREATE-EDIT-DELETE
+                resultado = (param != null) ? param : "";
             }
-            if (resultado == "2")
-            {
-                TempData["info"] = "Registro Deletado com sucesso!!";
-            }
-            if (resultado == "3")
-            {
-                TempData["warning"] = "Já existe um registro com essa descrição!!";
-            }
+
+            //Verifica o resultado da solicitacao CRUD
+          
+            VerificaResultado(resultado);
 
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
@@ -350,18 +350,39 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "1";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
                 resultado = "0";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
+        }
 
+        //Receber variavel com valor de qualquer action
+        private void VerificaResultado(string resultado)
+        {
+            //Verifica cada estado do resultado na estrutura switch-case e atribui a mensagem ao TempData correspondente
+            switch (resultado)
+            {
+                case "0":
+                    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                    break;
+                case "1":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "2":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "3":
+                    TempData["warning"] = "Já existe um registro com essa descrição!!";
+                    break;
 
-
-
+            }
+            TempData["resultado"] = null;
         }
     }
 }
