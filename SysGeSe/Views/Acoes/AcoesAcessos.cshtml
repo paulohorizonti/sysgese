@@ -22,13 +22,20 @@
                 {
                     if (item.Id == ViewBag.FiltroCorrentePerfilInt)
                     {
-    <option selected value="@item.Id">@item.Descricao</option> }
+                        <option selected value="@item.Id">@item.Descricao</option>
+                    }
                     else
                     {
-    <option value="@item.Id">@item.Descricao</option>}
+                        <option value="@item.Id">@item.Descricao</option>
+                    }
 
                 }
             </select>
+
+
+
+
+
 
 
             <button class="btn btn-primary" type="submit" id="button-addon2"><i class="prn-font-icones-white fas fa-search"></i></button>

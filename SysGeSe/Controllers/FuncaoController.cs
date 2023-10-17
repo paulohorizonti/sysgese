@@ -282,6 +282,7 @@ namespace SysGeSe.Controllers
             }
             catch (Exception e)
             {
+                string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
                 resultado = "0"; //não foi possivel
                 TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
@@ -350,6 +351,8 @@ namespace SysGeSe.Controllers
             }
             catch (Exception e)
             {
+                string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
+
                 resultado = "0";
                 TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
