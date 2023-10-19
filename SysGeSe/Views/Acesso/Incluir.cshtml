@@ -28,14 +28,18 @@
 
                             @Html.DropDownListFor(m => m.IdPerfil, new SelectList(ViewBag.Perfil, "Id", "Descricao"), "Escolha o Perfil", new { @class = "form-control  form-select", @onchange = "mostrarValorDoSelect()", id = "idPerfil", name = "idPerfil" })
                             @Html.ValidationMessageFor(m => m.IdPerfil, "", new { @class = "alert-danger" })
-                          
+
 
 
                         </div>
                         <div class="mb-3 col-lg-6">
-                            <label class="form-label" for="idTabela">Tabela*</label>
+                            <label class="form-label" for="idTabela2">Tabela*</label>
 
-                            @Html.DropDownListFor(m => m.IdTabela, new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela", new { @class = "form-control  form-select", id = "idTabela", name = "idTabela" })
+                            @*@Html.DropDownListFor(m => m.IdTabela, new SelectList(ViewBag.Tabela, "Id", "Nome"), "Escolha a Tabela", new { @class = "form-control  form-select", id = "idTabela", name = "idTabela" })*@
+                        <select class = "form-control  form-select" id = "idTabela" name="idTabela"  disabled>
+                           
+                        </select>
+                            
                             @Html.ValidationMessageFor(m => m.IdTabela, "", new { @class = "alert-danger" })
 
                         </div>
@@ -49,20 +53,20 @@
 
                             <div class="form-check form-check-inline">
 
-                                @Html.CheckBoxFor(m => m.Tabela_V, new { @class = "form-check-input" })
+                                @Html.CheckBoxFor(m => m.Tabela_V, new { @class = "form-check-input", style="margin-top:5px;" })
                                 <label for="Tabela_V" class="form-check-label">Visualizar</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                @Html.CheckBoxFor(m => m.Tabela_I, new { @class = "form-check-input" })
+                                @Html.CheckBoxFor(m => m.Tabela_I, new { @class = "form-check-input", style = "margin-top:5px;" })
                                 <label for="Tabela_I" class="pr-fonte-label form-check-label">Incluir</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                @Html.CheckBoxFor(m => m.Tabela_A, new { @class = "form-check-input" })
+                                @Html.CheckBoxFor(m => m.Tabela_A, new { @class = "form-check-input", style = "margin-top:5px;" })
                                 <label for="Tabela_A" class="pr-fonte-label form-check-label">Alterar</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                @Html.CheckBoxFor(m => m.Tabela_E, new { @class = "form-check-input" })
+                                @Html.CheckBoxFor(m => m.Tabela_E, new { @class = "form-check-input", style = "margin-top:5px;" })
                                 <label for="Tabela_E" class="pr-fonte-label form-check-label">Excluir</label>
                             </div>
 

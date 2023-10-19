@@ -254,13 +254,13 @@ namespace SysGeSe.Controllers
 
             ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
 
+            //Carrega a lista de perfis para escolha
             ViewBag.Perfil = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
-
            
+
+            //Carregar a select de busca, quando for preciso fazer uma busca por tabela
             this.tabEnu = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
-
-
-            ViewBag.Tabela = this.tabEnu;
+            ViewBag.Tabela = this.tabEnu; //envia a vewbag para carregar a dropdwon de escolha
 
             return View(this.listaAcessos.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
@@ -273,7 +273,8 @@ namespace SysGeSe.Controllers
             //FILTRAR AS TABELAS POR PERFIL
 
             ViewBag.Perfil = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
-            ViewBag.Tabela = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
+            //ViewBag.Tabela = db.Tabelas.AsNoTracking().OrderBy(s => s.Nome).ToList();
+         
             var model = new AcessoViewModel();
 
             return View(model);
@@ -283,13 +284,14 @@ namespace SysGeSe.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Incluir(AcessoViewModel model)
+        public ActionResult Incluir(AcessoViewModel model, string idTabela)
         {
             string resultado = "";
 
             model.Data_Cad = DateTime.Now;
             model.Data_Alt = DateTime.Now;
             model.Status = 1;
+            model.IdTabela = int.Parse(idTabela);
 
             model.Obs = (model.Obs == null) ? "" : model.Obs;
 
@@ -327,11 +329,12 @@ namespace SysGeSe.Controllers
                     TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
-                catch (Exception e)
+                catch
                 {
-                    string ex = e.ToString();
+                   
                     resultado = "0";
                     TempData["resultado"] = resultado;
+                    return RedirectToAction("Index", new { param = resultado });
                 }
             }
 
@@ -457,8 +460,10 @@ namespace SysGeSe.Controllers
                
                 return RedirectToAction("Index", new { param = resultado });
             }
-            catch (Exception e)
+            catch
             {
+               
+
                 resultado = "0";
                 TempData["resultado"] = resultado;
                
@@ -505,7 +510,7 @@ namespace SysGeSe.Controllers
                 return RedirectToAction("Index", new { param = resultado });
 
             }
-            catch (Exception e)
+            catch
             {
                 
                 resultado = "0"; //não foi possivel
@@ -578,6 +583,30 @@ namespace SysGeSe.Controllers
 
             return View();
 
+        }
+
+        public ActionResult FiltrarPerfilJson(int id)
+        {
+
+            var consulta1 = from t in db.Tabelas
+                            where !(from a in db.Acessos
+                                    join tb in db.Tabelas on a.IdTabela equals tb.Id
+                                    join p in db.Perfis on a.IdPerfil equals p.Id
+                                    where a.IdPerfil == id
+                                    select a.IdTabela).Contains(t.Id)
+                            select t;
+
+
+            // Converta os resultados em um formato apropriado
+            var resultado = consulta1.Select(t => new
+            {
+                Value = t.Id,
+                Text = t.Nome // Suponha que você queira usar o campo 'Nome' como texto da opção
+            }).ToList();
+
+            ViewBag.Tabela = resultado;
+
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
     }
 }
