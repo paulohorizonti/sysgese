@@ -176,9 +176,11 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\TabelaController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
+    <Compile Include="Controllers\UtilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewAcesso.cs" />
     <Compile Include="Models\Acesso.cs" />
     <Compile Include="Models\EstadoEnum.cs" />
     <Compile Include="Models\Funcao.cs" />
@@ -1950,9 +1952,10 @@
     <Content Include="Content\Principal\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Scripts\Admin\prn-admin.js" />
+    <Content Include="Scripts\Admin\prn-modal-admin.js" />
     <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\jquery.maskedinput.min.js" />
-    <Content Include="Scripts\prn-admin.js" />
     <Content Include="Scripts\wz_tooltip.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -2278,10 +2281,13 @@
     <Content Include="Views\Unidade\Edit.cshtml" />
     <Content Include="Views\Unidade\Details.cshtml" />
     <Content Include="Views\Unidade\Delete.cshtml" />
+    <Content Include="Views\Shared\_Layout_Modal.cshtml" />
+    <Content Include="Views\Acesso\FiltrarPerfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Adm\" />
+    <Folder Include="Views\Util\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

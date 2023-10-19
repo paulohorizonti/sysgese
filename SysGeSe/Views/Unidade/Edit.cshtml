@@ -1,7 +1,7 @@
 ﻿@{
-    Layout = null;
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout_Modal.cshtml";
 }
-
 @model SysGeSe.Models.Unidade
 @{
     ViewBag.Title = "Edit";
@@ -94,17 +94,17 @@
                     </div>
 
                     @*<div class="row">
-                        <div class="col-lg-12 mb-3">
-                            <label class="form-label" for="incluir">Ativo?</label><br />
+                            <div class="col-lg-12 mb-3">
+                                <label class="form-label" for="incluir">Ativo?</label><br />
 
-                            <div class="form-check form-check-inline">
+                                <div class="form-check form-check-inline">
 
-                                @Html.CheckBoxFor(m => m.Status, new { @class = "form-check-input" })
+                                    @Html.CheckBoxFor(m => m.Status, new { @class = "form-check-input" })
 
+                                </div>
                             </div>
-                        </div>
 
-                    </div>*@
+                        </div>*@
 
 
 
@@ -125,6 +125,3 @@
 
     </div>
 }
-@Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/bundles/jquerymaskedinput")
-@Scripts.Render("~/bundles/jquerymask")

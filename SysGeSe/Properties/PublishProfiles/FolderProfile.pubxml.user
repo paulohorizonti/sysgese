@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\preciso\Desktop\PROJETO-SISGESE</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\preciso\Desktop\PROJETO-SISGESE\Subir</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -176,10 +176,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:06</publishTime>
     </File>
     <File Include="bin/SysGeSe.dll">
-      <publishTime>10/10/2023 10:17:03</publishTime>
+      <publishTime>10/17/2023 15:34:03</publishTime>
     </File>
     <File Include="bin/SysGeSe.pdb">
-      <publishTime>10/10/2023 10:17:03</publishTime>
+      <publishTime>10/17/2023 15:34:03</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>10/09/2023 14:45:06</publishTime>
@@ -6233,7 +6233,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/11/2023 09:31:19</publishTime>
     </File>
     <File Include="Content/toastr.css">
       <publishTime>10/09/2023 14:45:02</publishTime>
@@ -6329,7 +6329,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Scripts/prn-admin.js">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/16/2023 17:20:27</publishTime>
     </File>
     <File Include="Scripts/snippets.js">
       <publishTime>10/09/2023 14:45:02</publishTime>
@@ -6347,13 +6347,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Views/Acesso/Details.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 09:00:11</publishTime>
     </File>
     <File Include="Views/Acesso/Edit.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 09:00:22</publishTime>
     </File>
     <File Include="Views/Acesso/Incluir.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 09:00:22</publishTime>
     </File>
     <File Include="Views/Acesso/Index.cshtml">
       <publishTime>10/09/2023 14:45:02</publishTime>
@@ -6362,19 +6362,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Views/Acoes/AcoesTabelas.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/11/2023 09:02:02</publishTime>
     </File>
     <File Include="Views/Funcao/Delete.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:55:38</publishTime>
     </File>
     <File Include="Views/Funcao/Details.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:55:30</publishTime>
     </File>
     <File Include="Views/Funcao/Edit.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:55:11</publishTime>
     </File>
     <File Include="Views/Funcao/Incluir.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:55:30</publishTime>
     </File>
     <File Include="Views/Funcao/Index.cshtml">
       <publishTime>10/09/2023 14:45:02</publishTime>
@@ -6392,16 +6392,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Views/Perfil/Delete.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:54:28</publishTime>
     </File>
     <File Include="Views/Perfil/Details.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:54:28</publishTime>
     </File>
     <File Include="Views/Perfil/Edit.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:54:05</publishTime>
     </File>
     <File Include="Views/Perfil/Incluir.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:53:44</publishTime>
     </File>
     <File Include="Views/Perfil/Index.cshtml">
       <publishTime>10/09/2023 14:45:02</publishTime>
@@ -6410,19 +6410,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 10:28:41</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_Modal.cshtml">
+      <publishTime>10/17/2023 09:54:25</publishTime>
     </File>
     <File Include="Views/Tabela/Delete.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:53:10</publishTime>
     </File>
     <File Include="Views/Tabela/Details.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:53:08</publishTime>
     </File>
     <File Include="Views/Tabela/Edit.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:43:40</publishTime>
     </File>
     <File Include="Views/Tabela/incluir.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/17/2023 08:26:27</publishTime>
     </File>
     <File Include="Views/Tabela/Index.cshtml">
       <publishTime>10/09/2023 14:45:02</publishTime>
@@ -6437,10 +6440,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/09/2023 14:45:02</publishTime>
     </File>
     <File Include="Views/Unidade/Incluir.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/10/2023 16:24:14</publishTime>
     </File>
     <File Include="Views/Unidade/Index.cshtml">
-      <publishTime>10/09/2023 14:45:02</publishTime>
+      <publishTime>10/16/2023 16:06:25</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/09/2023 14:45:02</publishTime>

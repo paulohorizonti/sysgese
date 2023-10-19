@@ -14,6 +14,7 @@ namespace SysGeSe.Controllers
          //Objego context
         readonly SysGeseDbContext db;
 
+       
         //Lista geral dos registros
         List<Tabela> listTabelas = new List<Tabela>();
         List<Acesso> listaAcessos = new List<Acesso>();
@@ -63,28 +64,20 @@ namespace SysGeSe.Controllers
             //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Tabela.Equals(this.Tabela)).ToList();
 
             //Resultado do CREATE-EDIT-DELETE
-            string resultado = param;
-            if (resultado == "0")
+            string resultado = "";
+
+            if (TempData["resultado"] == null)
             {
-                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                resultado = null;
             }
-            if (resultado == "1")
+            else
             {
-                TempData["success"] = "Registro salvo com sucesso!!";
-            }
-            if (resultado == "2")
-            {
-                TempData["info"] = "Registro Deletado com sucesso!!";
-            }
-            if (resultado == "3")
-            {
-                TempData["warning"] = "Já existe um registro com essa descrição!!";
+                //Resultado do CREATE-EDIT-DELETE
+                resultado = (param != null) ? param : "";
             }
 
-            if (resultado == "4")
-            {
-                TempData["warning"] = "Já existe um ACESSO com essa TABELA!!";
-            }
+            //Verifica o resultado da solicitacao CRUD
+            VerificaResultado(resultado);
 
             procuraTabela = (procuraTabela == "") ? null : procuraTabela;
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
@@ -95,7 +88,7 @@ namespace SysGeSe.Controllers
 
             
 
-            ViewBag.MensagemGravar = (param != null) ? param : "";
+         
 
             //numero de linhas e status (ativo=1 ou inativo=0)
             ViewBag.NumeroLinhas = (numeroLinhas != null) ? numeroLinhas : 10;
@@ -103,8 +96,7 @@ namespace SysGeSe.Controllers
 
            
 
-            //atribui 1 a pagina caso os parametros nao sejam nulos
-            page = (procuraAtivo != null) || (procuraPerfil != null) || (procuraTabela != null) ? 1 : page; //atribui 1 à pagina caso procurapor seja diferente de nullo
+          
 
             //viewBag do filtro
             ViewBag.FiltroAtivo = procuraAtivo;
@@ -124,7 +116,7 @@ namespace SysGeSe.Controllers
 
             //lista das tabelas instanciadas
             this.listaAcessos = db.Acessos.ToList(); //geral
-
+          
             //buscar os ativos
             switch (ViewBag.Status)
             {
@@ -160,6 +152,10 @@ namespace SysGeSe.Controllers
                         TempData["tabelaAtivo"] = procuraTabela;
                         ViewBag.FiltroCorrenteTabelaInt = int.Parse(procuraTabela);
                         TempData.Keep("tabelaAtivo");
+                    }
+                    else
+                    {
+                        ViewBag.FiltroCorrenteTabelaInt = int.Parse(TempData["tabelaAtivo"].ToString());
                     }
                 }
                 else
@@ -199,6 +195,10 @@ namespace SysGeSe.Controllers
                         ViewBag.FiltroCorrentePerfilInt = int.Parse(procuraPerfil);
                         TempData.Keep("perfilAtivo");
                     }
+                    else
+                    {
+                        ViewBag.FiltroCorrentePerfilInt = int.Parse(TempData["perfilAtivo"].ToString());
+                    }
                 }
                 else
                 {
@@ -208,7 +208,7 @@ namespace SysGeSe.Controllers
                 }
             }
             //busca pelo perfil
-            if (!String.IsNullOrEmpty(procuraPerfil))
+            if (!String.IsNullOrEmpty(procuraPerfil)) 
             {
                 this.listaAcessos = this.listaAcessos.Where(s => s.IdPerfil.ToString() == procuraPerfil).ToList();
             }
@@ -218,11 +218,32 @@ namespace SysGeSe.Controllers
             }
 
 
+            if (TempData["perfilAtivo"] != null)
+            {
+                if (procuraPerfil != null)
+                {
+                    if (TempData["perfilAtivo"].ToString() == procuraPerfil)
+                    {
+                        //atribui 1 a pagina caso os parametros nao sejam nulos
+                        page = (procuraAtivo != null) || (procuraTabela != null) ? 1 : page; //atribui 1 à pagina caso procurapor seja diferente de nullo
 
-            
+                    }
+                    else
+                    {
+                        page = (procuraAtivo != null) || (procuraPerfil != null) || (procuraTabela != null) ? 1 : page; //atribui 1 à pagina caso procurapor seja diferente de nullo
+                       
+                    }
+                }
+                else
+                {
+                    procuraPerfil = TempData["perfilAtivo"].ToString();
+                    ViewBag.FiltroCorrentePerfilInt = int.Parse(procuraPerfil);
 
-           
+                }
 
+
+            }
+          
             //montar a pagina
             int tamanhoPagina = 0;
 
@@ -276,11 +297,12 @@ namespace SysGeSe.Controllers
             {
 
                 var acesso = from s in db.Acessos select s; //banco de acessos
-                acesso = acesso.Where(s => s.IdTabela == model.IdTabela && s.IdPerfil == model.IdPerfil);//busca se tem tabela
+                acesso = acesso.Where(s => s.IdTabela == model.IdTabela && s.IdPerfil == model.IdPerfil);//busca se tem tabela e o perfil para esse acesso
                 if (acesso.Count() > 0)
                 {
                     resultado = "4";
-                    
+                    TempData["resultado"] = resultado;
+                   
                     return RedirectToAction("Index", new { param = resultado});
                 }
 
@@ -302,13 +324,14 @@ namespace SysGeSe.Controllers
                     db.Acessos.Add(access);
                     db.SaveChanges();
                     resultado = "1";
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
                 catch (Exception e)
                 {
                     string ex = e.ToString();
-
                     resultado = "0";
+                    TempData["resultado"] = resultado;
                 }
             }
 
@@ -430,11 +453,15 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "1";
+                TempData["resultado"] = resultado;
+               
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
                 resultado = "0";
+                TempData["resultado"] = resultado;
+               
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -474,6 +501,7 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "2"; //2 = deletado
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -481,9 +509,74 @@ namespace SysGeSe.Controllers
             {
                 
                 resultado = "0"; //não foi possivel
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
 
+
+        }
+        //Receber variavel com valor de qualquer action
+        private void VerificaResultado(string resultado)
+        {
+            //Verifica cada estado do resultado na estrutura switch-case e atribui a mensagem ao TempData correspondente
+            switch (resultado)
+            {
+                case "0":
+                    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                    break;
+                case "1":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "2":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "3":
+                    TempData["warning"] = "Já existe um registro com essa descrição!!";
+                    break;
+                case "4":
+                    TempData["error"] = "ACESSO já cadastrado";
+                    break;
+            }
+            TempData["resultado"] = null;
+        }
+
+
+
+        public ActionResult FiltrarPerfil(int id)
+        {
+            // ViewBag.PefilFiltrado = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
+           
+            var consulta1 = from t in db.Tabelas
+                           where !(from a in db.Acessos
+                                   join tb in db.Tabelas on a.IdTabela equals tb.Id
+                                   join  p in db.Perfis  on a.IdPerfil equals p.Id
+                                   where a.IdPerfil == id select a.IdTabela).Contains(t.Id)
+                           select t;
+
+   
+
+
+            //ViewBag.Filtrados1 = consulta1.ToList();
+
+            //var consulta = from a in db.ViewAcessos where a.ID_PERFIL == id select a;
+
+            //////var consultaTabela = from t in db.Tabelas select t.Id;
+
+
+            ////ViewBag.ListaTabela = consultaTabela.ToList();
+
+            //ViewBag.Lista1 = consulta.ToList();
+
+            //ViewBag.Lista = consulta1.ToList();
+
+            
+            ViewBag.Filtrados = consulta1;
+
+            //ViewBag.FiltradosLista = consulta.ToList();
+
+
+
+            return View();
 
         }
     }

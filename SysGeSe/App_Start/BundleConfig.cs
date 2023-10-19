@@ -20,7 +20,7 @@ namespace SysGeSe
 
             bundles.Add(new ScriptBundle("~/bundles/jquerymask").Include(
                     "~/Scripts/jquery.mask.min.js",
-                     "~/Scripts/prn-admin.js"));
+                     "~/Scripts/Admin/prn-admin.js"));
 
            
 

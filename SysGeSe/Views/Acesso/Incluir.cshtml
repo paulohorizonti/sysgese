@@ -1,5 +1,6 @@
 ﻿@{
-    Layout = null;
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout_Modal.cshtml";
 }
 
 @model SysGeSe.Models.ViewModels.AcessoViewModel
@@ -23,10 +24,11 @@
 
 
                         <div class="mb-3 col-lg-6">
-                            <label class="form-label" for="idNivel">Perfil*</label>
+                            <label class="form-label" for="idPerfil">Perfil*</label>
 
-                            @Html.DropDownListFor(m => m.IdPerfil, new SelectList(ViewBag.Perfil, "Id", "Descricao"), "Escolha o Perfil", new { @class = "form-control  form-select", id = "idPerfil", name = "idPerfil" })
+                            @Html.DropDownListFor(m => m.IdPerfil, new SelectList(ViewBag.Perfil, "Id", "Descricao"), "Escolha o Perfil", new { @class = "form-control  form-select", @onchange = "mostrarValorDoSelect()", id = "idPerfil", name = "idPerfil" })
                             @Html.ValidationMessageFor(m => m.IdPerfil, "", new { @class = "alert-danger" })
+                          
 
 
                         </div>
@@ -43,25 +45,25 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 mb-3">
-                            <label class="form-label" for="incluir">Permissões</label><br />
+                            <span class="form-label">Permissões</span><br />
 
                             <div class="form-check form-check-inline">
 
                                 @Html.CheckBoxFor(m => m.Tabela_V, new { @class = "form-check-input" })
-                                <label class="form-check-label" for="visualizar">Visualizar</label>
+                                <label for="Tabela_V" class="form-check-label">Visualizar</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 @Html.CheckBoxFor(m => m.Tabela_I, new { @class = "form-check-input" })
-                                <label class="pr-fonte-label form-check-label" for="incluir">Incluir</label>
+                                <label for="Tabela_I" class="pr-fonte-label form-check-label">Incluir</label>
                             </div>
 
                             <div class="form-check form-check-inline">
                                 @Html.CheckBoxFor(m => m.Tabela_A, new { @class = "form-check-input" })
-                                <label class="pr-fonte-label form-check-label" for="alterar">Alterar</label>
+                                <label for="Tabela_A" class="pr-fonte-label form-check-label">Alterar</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 @Html.CheckBoxFor(m => m.Tabela_E, new { @class = "form-check-input" })
-                                <label class="pr-fonte-label form-check-label" for="excluir">Excluir</label>
+                                <label for="Tabela_E" class="pr-fonte-label form-check-label">Excluir</label>
                             </div>
 
 
@@ -72,7 +74,7 @@
 
                     <div class="row">
                         <div class="col-lg-12 mb-3">
-                            <label class="form-label" for="obs">Observações</label>
+                            <label class="form-label" for="Obs">Observações</label>
 
 
                             @Html.TextAreaFor(m => m.Obs, new { @class = "form-control prn-inputs", placeholder = "Digite a observação, se houver", onkeyup = "maiuscula(this);", name = "obs", rows = "4", cols = "70", maxlength = "500" })
@@ -107,6 +109,7 @@
     </div>
 }
 
-@Scripts.Render("~/bundles/jqueryval")
+@*@Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/jquerymaskedinput")
 @Scripts.Render("~/bundles/jquerymask")
+<script src="~/Scripts/Admin/prn-modal-admin.js"></script>*@

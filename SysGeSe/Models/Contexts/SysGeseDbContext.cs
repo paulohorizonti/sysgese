@@ -18,6 +18,9 @@ namespace SysGeSe.Models
 
         public DbSet<Unidade> Unidades { get; set; }
 
+        public DbSet<ViewAcesso> ViewAcessos { get; set; }
+
+
 
 
 

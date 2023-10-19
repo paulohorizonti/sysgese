@@ -78,23 +78,20 @@ namespace SysGeSe.Controllers
             //ViewBag.AcessoPermitido = this.listaAcessos.Where(x => x.Perfil.Equals(this.Perfil)).ToList();
 
             //Resultado do CREATE-EDIT-DELETE
-            string resultado = param;
-            if (resultado == "0")
+            string resultado = "";
+
+            if (TempData["resultado"] == null)
             {
-                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                resultado = null;
             }
-            if (resultado == "1")
+            else
             {
-                TempData["success"] = "Registro salvo com sucesso!!";
+                //Resultado do CREATE-EDIT-DELETE
+                resultado = (param != null) ? param : "";
             }
-            if (resultado == "2")
-            {
-                TempData["info"] = "Registro Deletado com sucesso!!";
-            }
-            if (resultado == "3")
-            {
-                TempData["warning"] = "Já existe um registro com essa descrição!!";
-            }
+
+            //Verifica o resultado da solicitacao CRUD
+            VerificaResultado(resultado);
 
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
@@ -154,9 +151,6 @@ namespace SysGeSe.Controllers
 
             int numeroPagina = (page ?? 1);
 
-            ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
-
-
 
             return View(this.listFuncoes.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
         }
@@ -194,7 +188,7 @@ namespace SysGeSe.Controllers
                 if (funcao.Count() > 0)
                 {
                     resultado = "3";
-
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
 
                 }
@@ -213,13 +207,14 @@ namespace SysGeSe.Controllers
                     db.Funcoes.Add(funcao_nova);
                     db.SaveChanges();
                     resultado = "1";
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
                 catch (Exception e)
                 {
                     string ex = e.ToString();
-
                     resultado = "0";
+                    TempData["resultado"] = resultado;
                 }
             }
 
@@ -281,12 +276,15 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "2"; //2 = deletado
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
             catch (Exception e)
             {
+                string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
                 resultado = "0"; //não foi possivel
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
 
@@ -348,18 +346,42 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "1";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
+                string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
+
                 resultado = "0";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
 
 
-
-
+        }
+        //Receber variavel com valor de qualquer action
+        private void VerificaResultado(string resultado)
+        {
+            //Verifica cada estado do resultado na estrutura switch-case e atribui a mensagem ao TempData correspondente
+            switch (resultado)
+            {
+                case "0":
+                    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+                    break;
+                case "1":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "2":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    break;
+                case "3":
+                    TempData["warning"] = "Já existe um registro com essa descrição!!";
+                    break;
+                
+            }
+            TempData["resultado"] = null;
         }
     }
 }

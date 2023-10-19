@@ -16,7 +16,7 @@ namespace SysGeSe.Controllers
         //Objego context
         readonly SysGeseDbContext db;
         List<Unidade> listUnidades = new List<Unidade>();
-       
+      
 
         //Nome da tabela EM UMA CONSTANTE
         public const string NomeTabela = "UNIDADE";
@@ -28,7 +28,7 @@ namespace SysGeSe.Controllers
 
 
         // GET: Unidade
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        
         public ActionResult Index(
             string param,
             string ordenacao,
@@ -40,26 +40,22 @@ namespace SysGeSe.Controllers
             int? page,
             int? numeroLinhas)
         {
-            //Resultado do CREATE-EDIT-DELETE
-            string resultado = param;
-                      
+            string resultado = "";
+           
+            if(TempData["resultado"] ==null)
+            {
+                resultado = null;
+            }
+            else
+            {               
+                //Resultado do CREATE-EDIT-DELETE
+                resultado = (param != null) ? param : "";
+            }
 
-            if (resultado == "0")
-            {
-                TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
-            }
-            if (resultado == "1")
-            {
-                TempData["success"] = "Registro salvo com sucesso!!";
-            }
-            if (resultado == "2")
-            {
-                TempData["info"] = "Registro Deletado com sucesso!!";
-            }
-            if (resultado == "3")
-            {
-                TempData["warning"] = "Já existe um registro com essa descrição!!";
-            }
+            //Verifica o resultado da solicitacao CRUD
+            VerificaResultado(resultado);
+
+           
 
             //Procura por nome: se o filstro for diferente de zero applica esse filtro, caso contrario procura por nome mesmo
             procuraNome  = (filtroNome != null) ? filtroNome : procuraNome; //procura por nome
@@ -121,13 +117,14 @@ namespace SysGeSe.Controllers
 
             int numeroPagina = (page ?? 1);
 
-            ViewBag.MensagemGravar = (resultado != null) ? resultado : "";
+      
 
             return View(this.listUnidades.ToPagedList(numeroPagina, tamanhoPagina));//retorna o pagedlist
 
 
         }
 
+       
 
         public ActionResult Incluir()
         {
@@ -162,7 +159,7 @@ namespace SysGeSe.Controllers
                 if (unidade.Count() > 0)
                 {
                     resultado = "3";
-
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
 
                 }
@@ -192,6 +189,7 @@ namespace SysGeSe.Controllers
                     db.Unidades.Add(unidade_nova);
                     db.SaveChanges();
                     resultado = "1";
+                    TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
                 catch (Exception e)
@@ -280,11 +278,13 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "1";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
                 resultado = "0";
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -341,16 +341,43 @@ namespace SysGeSe.Controllers
             {
                 db.SaveChanges();
                 resultado = "2"; //2 = deletado
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
 
             }
             catch (Exception e)
             {
                 resultado = "0"; //não foi possivel
+                TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
 
 
+        }
+
+        private void VerificaResultado(string resultado)
+        {
+            switch (resultado)
+            {
+                case "0":
+                    TempData["error"] = "Problemas ao concluir a operação, tente novamente!!";
+
+                    break;
+                case "1":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+
+                    break;
+                case "2":
+                    TempData["success"] = "Registro salvo com sucesso!!";
+                    TempData["resultado"] = null;
+                    break;
+                case "3":
+                    TempData["warning"] = "Já existe um registro com essa descrição!!";
+
+                    break;
+               
+            }
+            TempData["resultado"] = null;
         }
     }
 }
