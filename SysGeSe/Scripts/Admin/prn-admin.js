@@ -102,6 +102,12 @@ function chamarTeste() {
     $("#modal").load("/" + controller + "/filtrarPerfil/" + 2, function () {
         $('#modal').modal("show");
     });
+
+
+
+
+
+
 }
 
 

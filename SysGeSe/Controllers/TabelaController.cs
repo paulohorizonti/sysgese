@@ -214,11 +214,12 @@ namespace SysGeSe.Controllers
                     TempData["resultado"] = resultado;
                     return RedirectToAction("Index", new { param = resultado });
                 }
-                catch (Exception e)
+                catch
                 {
-                    string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
+                  
                     resultado = "0";
                     TempData["resultado"] = resultado;
+                    return RedirectToAction("Index", new { param = resultado });
                 }
             }
            
@@ -282,9 +283,9 @@ namespace SysGeSe.Controllers
                 return RedirectToAction("Index", new { param = resultado });
 
             }
-            catch (Exception e)
+            catch
             {
-                string ex = e.ToString(); //desaparecer o aviso de nao uso de variavel
+              
 
                 resultado = "0"; //não foi possivel
                 TempData["resultado"] = resultado;
@@ -351,8 +352,10 @@ namespace SysGeSe.Controllers
                 TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
             }
-            catch (Exception e)
+            catch
             {
+             
+
                 resultado = "0";
                 TempData["resultado"] = resultado;
                 return RedirectToAction("Index", new { param = resultado });
