@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "FiltrarPerfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FiltrarPerfil</h2>
+@using PagedList.Mvc
+@model PagedList.IPagedList<SysGeSe.Models.Acesso>
+@{ViewBag.Title = "Acesso";}
+
+
+<div class="row g-0 p-1">
+    <!--pegar o nome da controler-->
+
+    <div class="card prn-cardposition">
+        <div class="card-header">
+            TESTE
+        </div>
+        <div class="card-body prn-card-geral">
+            <div class="container-fluid prn-continer-geral">
+                         
+                <div class="row">
+                    <div class="col-lg-12">
+                        @*<table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TABELA</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var it in ViewBag.Filtrados)
+                {
+                    <tr class="pr-td">
+                        <td style="width:5%">
+                            @it.Id
+                        </td>
+                        <td>
+                            @it.IdTabela
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+                        <select name="opcaoSelecionada" id="opcaoSelecionada">
+                            @foreach (var opcao in ViewBag.Filtrados)
+                            {
+                                <option value="@opcao.Id">@opcao.Nome</option>
+                            }
+                        </select>
+
+                    </div><!--fim da col-->
+                </div><!--fim da row-->
+            </div><!--fim conteinar-fluid-->
+
+
+
+        </div>
+        <div class="card-footer text-body-secondary prn-card-footer">
+            <div class="d-flex">
+               
+                FOOTER DO TESTE
+
+             
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- Modal -->
+
+
+
+

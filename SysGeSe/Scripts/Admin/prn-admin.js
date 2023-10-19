@@ -20,6 +20,7 @@ $(document).ready(function () {
                 "hideMethod": "fadeOut"
             };
             toastr[msgType](message);
+            window.location.reload(true)
         };
        
             if ($('#success').val()) {
@@ -86,10 +87,22 @@ function chamarIncluir() {
     var controller = cont.innerText;
 
     $("#modal").load("/" + controller + "/Incluir/", function () {
+       
         $('#modal').modal("show");
+        
     });
 }
 
+function chamarTeste() {
+
+    var cont = document.querySelector(".prn-titulo"); //pega o titulo
+
+    var controller = cont.innerText;
+
+    $("#modal").load("/" + controller + "/filtrarPerfil/" + 2, function () {
+        $('#modal').modal("show");
+    });
+}
 
 
 function fecharModal() {
@@ -122,6 +135,26 @@ $(document).ready(function () {
     $('#Cnpj').mask('99.999.999/9999-99');
     $('#Telefone').mask('(99)9999-9999');
     $('#Celular').mask('(99)99999-9999');
+    $(".senha").mask("xxxxxxxxx");
+    $("#cest").mask("99.999.99");
+    $("#ProcuraNCM").mask("9999.99.99");
+    $("#ncm").mask("9999.99.99");
+    $(".decimal").mask("9999,999");
+    $(".pr-aliq").mask("9999.999");
+});
+
+
+
+
+//mascaras
+$(document).ready(function () {
+    $('.date').mask('99/99/9999');
+    $('.time').mask('00:00:00');
+    $('#cep').mask('99.999-999');
+
+    $('.phone').mask('9999-9999');
+    $('#cnpj').mask('99.999.999/9999-99');
+    $('#telefone').mask('(99)99999-9999');
     $(".senha").mask("xxxxxxxxx");
     $("#cest").mask("99.999.99");
     $("#ProcuraNCM").mask("9999.99.99");

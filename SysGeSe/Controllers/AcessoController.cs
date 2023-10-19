@@ -116,7 +116,7 @@ namespace SysGeSe.Controllers
 
             //lista das tabelas instanciadas
             this.listaAcessos = db.Acessos.ToList(); //geral
-
+          
             //buscar os ativos
             switch (ViewBag.Status)
             {
@@ -302,6 +302,7 @@ namespace SysGeSe.Controllers
                 {
                     resultado = "4";
                     TempData["resultado"] = resultado;
+                   
                     return RedirectToAction("Index", new { param = resultado});
                 }
 
@@ -329,7 +330,6 @@ namespace SysGeSe.Controllers
                 catch (Exception e)
                 {
                     string ex = e.ToString();
-
                     resultado = "0";
                     TempData["resultado"] = resultado;
                 }
@@ -454,12 +454,14 @@ namespace SysGeSe.Controllers
                 db.SaveChanges();
                 resultado = "1";
                 TempData["resultado"] = resultado;
+               
                 return RedirectToAction("Index", new { param = resultado });
             }
             catch (Exception e)
             {
                 resultado = "0";
                 TempData["resultado"] = resultado;
+               
                 return RedirectToAction("Index", new { param = resultado });
 
             }
@@ -536,6 +538,46 @@ namespace SysGeSe.Controllers
                     break;
             }
             TempData["resultado"] = null;
+        }
+
+
+
+        public ActionResult FiltrarPerfil(int id)
+        {
+            // ViewBag.PefilFiltrado = db.Perfis.AsNoTracking().OrderBy(s => s.Descricao).ToList();
+           
+            var consulta1 = from t in db.Tabelas
+                           where !(from a in db.Acessos
+                                   join tb in db.Tabelas on a.IdTabela equals tb.Id
+                                   join  p in db.Perfis  on a.IdPerfil equals p.Id
+                                   where a.IdPerfil == id select a.IdTabela).Contains(t.Id)
+                           select t;
+
+   
+
+
+            //ViewBag.Filtrados1 = consulta1.ToList();
+
+            //var consulta = from a in db.ViewAcessos where a.ID_PERFIL == id select a;
+
+            //////var consultaTabela = from t in db.Tabelas select t.Id;
+
+
+            ////ViewBag.ListaTabela = consultaTabela.ToList();
+
+            //ViewBag.Lista1 = consulta.ToList();
+
+            //ViewBag.Lista = consulta1.ToList();
+
+            
+            ViewBag.Filtrados = consulta1;
+
+            //ViewBag.FiltradosLista = consulta.ToList();
+
+
+
+            return View();
+
         }
     }
 }

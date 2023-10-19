@@ -411,49 +411,17 @@
     @Scripts.Render("~/bundles/jquery")
 
 
-
-
-
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/toastr.js"></script>
 
-    <script src="~/Content/Principal/vendor/jquery/jquery.min.js"></script>
+    @*<script src="~/Content/Principal/vendor/jquery/jquery.min.js"></script>*@
 
     <script src="~/Scripts/jquery.maskedinput.min.js"></script>
     <script src="~/Scripts/jquery.mask.min.js"></script>
-    <script>
-        //mascaras
-        $(document).ready(function () {
-            $('.date').mask('99/99/9999');
-            $('.time').mask('00:00:00');
-            $('#cep').mask('99.999-999');
-
-            $('.phone').mask('9999-9999');
-            $('#cnpj').mask('99.999.999/9999-99');
-            $('#telefone').mask('(99)99999-9999');
-            $(".senha").mask("xxxxxxxxx");
-            $("#cest").mask("99.999.99");
-            $("#ProcuraNCM").mask("9999.99.99");
-            $("#ncm").mask("9999.99.99");
-            $(".decimal").mask("9999,999");
-            $(".pr-aliq").mask("9999.999");
-        });
-
-        jQuery(function ($) {
-            $("#campoData").mask("99/99/9999");
-            $("#campoTelefone").mask("(999) 999-9999");
-
-        });
-
-
-    </script>
-
-
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Content/Principal/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/wz_tooltip.js"></script>
-
 
     <script>
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
@@ -469,7 +437,7 @@
     <script src="~/Content/Principal/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="~/Content/Principal/js/sb-admin-2.js"></script>
-    <script src="~/Scripts/prn-admin.js"></script>
+    <script src="~/Scripts/Admin/prn-admin.js"></script>
 
 
 

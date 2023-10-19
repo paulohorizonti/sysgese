@@ -1,33 +1,35 @@
-﻿<!DOCTYPE html>
+﻿
 <html lang="pt-br">
 
 <head>
    
 </head>
 
-            <body>
+<body>
 
-                <div>
-                   
-                        <div>
+    <div>
 
-                          
-                            <div class="container-fluid g-0">
+        <div>
 
 
-                                @RenderBody()
+            <div class="container-fluid g-0">
 
-                            </div>
 
-                        </div>
-                     
-                </div>
-              
-                    @Scripts.Render("~/bundles/jqueryval")
-                    @Scripts.Render("~/bundles/jquerymaskedinput")
-                    @Scripts.Render("~/bundles/jquerymask")
-                    @RenderSection("scripts", required: false)
+                @RenderBody()
 
-            </body>
+            </div>
+
+        </div>
+
+    </div>
+
+  
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerymaskedinput")
+    @Scripts.Render("~/bundles/jquerymask")
+    <script src="~/Scripts/Admin/prn-modal-admin.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
 
 </html>
